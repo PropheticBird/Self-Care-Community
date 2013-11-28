@@ -14,7 +14,8 @@
 
 	<context:component-scan base-package="com.lnu.*" />
 	<mvc:annotation-driven />
-    <mvc:resources mapping="/content/*" location="/WEB-INF/pages"/>
+    <mvc:resources mapping="/resources/**" location="/"/>
+    <mvc:resources mapping="/content/**" location="/WEB-INF/pages/content/"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix">

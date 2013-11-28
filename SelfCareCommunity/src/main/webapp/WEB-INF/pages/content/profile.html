@@ -1,0 +1,100 @@
+<html>
+<title>Profile Page</title>
+<head>
+		<link rel="stylesheet" type="text/css" href="../resources/styles/style.css">
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+</head>
+
+<body>
+<div class='work_area'>
+	<div class='profile_avatar'><img src= "../resources/img/avatar.png"></div>
+	<div class='profile_main_info'>
+		<div class='profile_head'>
+			<span class='profile_name'>User name(login)</span>
+		</div>
+		<div class='profile_main_info_body'>
+			Gender: Male<br>
+			Member since September 16<br>
+			2 helpful posts this month <br>
+			10 helpful posts all time<br>
+		</div>
+	</div>
+	<div class ='profile_stat'>
+		<ul class='sub_tabs'>
+			<li><a id='tab_1' class='current'>Summary</a></li>
+			<li><a id='tab_2'>Posts</a></li>
+			<li><a id='tab_3'>Greetings</a></li>
+			<li><a id='tab_4'>Full Profile</a></li>
+		</ul>
+		<div class='tabs_context' id='tab_con_1' style='display:block;'>
+			There are no posts or topics created by this user.
+		</div>
+		<div class='tabs_context' id='tab_con_2' style='display:none;'>
+			It looks like this user does not have any posts
+		</div>
+		<div class='tabs_context' id='tab_con_3' style='display:none;'>
+			No greetings yet.
+		</div>
+		<div class='tabs_context' id='tab_con_4' style='display:none;'>
+		About Dmytro<br>
+
+		Interests<br>
+
+
+		Random Fact About Dmytro<br>
+
+
+		Favorite Music<br>
+
+
+		Favorite Books & Authors<br>
+
+
+		Favorite Movies & Shows<br>
+
+
+		Causes & Charities<br>
+
+
+		My Story
+
+
+		</div>
+	</div>
+</div>
+</body>
+</html>
+<script>
+	$('#tab_1').bind( "click", function() {
+		$('.tabs_context').css('display','none');
+		$('#tab_con_1').css('display','block');
+		
+		$('#tab_1').css({'background':'#fff', 'color': '#444', 'border-bottom':'1px solid #fff'});
+		$('#tab_2, #tab_3, #tab_4').css({'background':'#f0f0f0', 'color': '#888', 'border-bottom':'1px solid #E0E0E0'});
+	});
+
+	$('#tab_2').bind( "click", function() {
+		$('.tabs_context').css('display','none');
+		$('#tab_con_2').css('display','block');
+		
+		$('#tab_2').css({'background':'#fff', 'color': '#444', 'border-bottom':'1px solid #fff'});
+		$('#tab_1, #tab_3, #tab_4').css({'background':'#f0f0f0', 'color': '#888', 'border-bottom':'1px solid #E0E0E0'});
+	});
+	
+	$('#tab_3').bind( "click", function() {
+		$('.tabs_context').css('display','none');
+		$('#tab_con_3').css('display','block');
+		
+		$('#tab_3').css({'background':'#fff', 'color': '#444', 'border-bottom':'1px solid #fff'});
+		$('#tab_1, #tab_2, #tab_4').css({'background':'#f0f0f0', 'color': '#888', 'border-bottom':'1px solid #E0E0E0'});
+	});
+	
+	$('#tab_4').bind( "click", function() {
+		$('.tabs_context').css('display','none');
+		$('#tab_con_4').css('display','block');
+		
+		$('#tab_3').css({'background':'#fff', 'color': '#444', 'border-bottom':'1px solid #fff'});
+		$('#tab_1, #tab_2, #tab_3').css({'background':'#f0f0f0', 'color': '#888', 'border-bottom':'1px solid #E0E0E0'});
+	});
+	
+</script>

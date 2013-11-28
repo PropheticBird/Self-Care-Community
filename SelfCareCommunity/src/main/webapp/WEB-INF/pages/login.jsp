@@ -71,7 +71,7 @@ $("#signUpForm").validate({
         Your login attempt was not successful, try again.
         <br/> Caused : ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
     </div>
-</c:if>
+  </c:if>
 
     <div class="container">
        <ul id="tab"class="nav nav-tabs">

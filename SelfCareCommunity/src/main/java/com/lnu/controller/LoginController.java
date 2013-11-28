@@ -1,14 +1,15 @@
 package com.lnu.controller;
 
+import com.lnu.bean.PersonCredentials;
+import com.lnu.dao.UserDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.security.Principal;
-
 /**
- * User: igor
+ * PersonCredentials: igor
  * Date: 11/28/13
  */
 @Controller
@@ -29,6 +30,12 @@ public class LoginController {
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logOut(ModelMap model) {
         model.addAttribute("error", "false");
+        return "login";
+    }
+
+    @RequestMapping(value="/register", method = RequestMethod.POST)
+    public String register(@RequestBody PersonCredentials user) {
+        UserDao.registerUser(user);
         return "login";
     }
 

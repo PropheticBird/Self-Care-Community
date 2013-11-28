@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.lnu.bean.User;
+import com.lnu.bean.PersonCredentials;
 /**
  * UserService: igor
  * Date: 11/28/13
@@ -15,7 +15,7 @@ public class UserService {
 
     @ResponseBody
     @RequestMapping(value = "/service/user", method = RequestMethod.GET)
-    public User getUserData() {
-        return new User();
+    public PersonCredentials getUserData() {
+        return new PersonCredentials();
     }
 }

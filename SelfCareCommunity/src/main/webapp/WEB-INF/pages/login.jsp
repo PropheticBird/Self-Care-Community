@@ -1,54 +1,110 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Login Page</title>
-    <style>
-        .errorblock {
-            color: #ff0000;
-            background-color: #ffEEEE;
-            border: 3px solid #ff0000;
-            padding: 8px;
-            margin: 16px;
-        }
-    </style>
-</head>
-<h3>Login with Username and Password (Custom Page)</h3>
+  <head>
+    <title>Sign</title>
+    <meta content="width=device-width, initial-scale=1.0">
+    <link href="resources/styles/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="resources/scripts/jquery.js"></script>
+    <script src="resources/scripts/jquery.validate.min.js"></script>
+    <script src="resources/scripts/bootstrap.min.js"></script>
+    <link href="resources/styles/sign.css" rel="stylesheet" media="screen">
+    <script>
 
-<c:if test="${error}">
+$(function(){
+
+$("#signInForm").validate({
+   //submitHandler: function(form){
+    //alert(form['user'].value);
+    //}  
+});
+
+$("#signUpForm").validate({
+    rules: {
+      userName: {
+        required: true,
+      },
+      passWord: {
+        required: true,
+        //minlength: 5
+      },
+      confirmPassword: {
+        required: true,
+        //minlength: 5,
+        equalTo: "#password"
+      },
+      email: {
+        required: true,
+        email: true
+      },
+    },
+    messages: {
+      username: {
+        required: "Please enter a username",
+        //minlength: "Your username must consist of at least 2 characters"
+      },
+      password: {
+        required: "Please provide a password",
+        //minlength: "Your password must be at least 5 characters long"
+      },
+      confirm_password: {
+        required: "Please provide a password",
+        //minlength: "Your password must be at least 5 characters long",
+        equalTo: "Please enter the same password as above"
+      },
+      email: "Please enter a valid email address"
+    },
+   //submitHandler: function(form){  
+    //form.submit();
+    //} 
+  });
+});
+</script>
+
+  </head>
+  
+  <body>
+  
+  <c:if test="${error}">
     <div class="errorblock">
         Your login attempt was not successful, try again.
         <br/> Caused : ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
     </div>
 </c:if>
 
-<form name='f' action="<c:url value='j_spring_security_check'/>" method="POST">
+    <div class="container">
+       <ul id="tab"class="nav nav-tabs">
+          <li class="active"><a href="#signIn" data-toggle="tab">Sign in</a></li>
+          <li><a href="#signUp" data-toggle="tab">Sign up</a></li>
+      </ul>
+      <div id="tabContent" class="tab-content">
+          <div class="tab-pane fade in active" id="signIn">
+          <form class="form" id="signInForm" action="<c:url value='j_spring_security_check'/>"  method="post">
+          <fieldset>
+            <input type="text" class="form-control" placeholder="User name or Email" name="j_username" id="user" required>
+            <input type="password" class="form-control" placeholder="Password" id="password" name="j_password" required>
+            <!--<label class="checkbox">
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>-->
+            <label><a href="">Forgot password?</a></label>
+            <button class="btn btn-large btn-primary" type="submit" id="btnSignIn">Sign in</button>
+          </fieldset>
+         </form>
+        </div>
 
-    <table>
-        <tr>
-            <td>User:</td>
-            <td>
-                <input type='text' name='j_username' value=''>
-            </td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td>
-                <input type='password' name='j_password'/>
-            </td>
-        </tr>
-        <tr>
-            <td colspan='2'>
-                <input name="submit" type="submit" value="submit"/>
-            </td>
-        </tr>
-        <tr>
-            <td colspan='2'>
-                <input name="reset" type="reset"/>
-            </td>
-        </tr>
-    </table>
-
-</form>
+          <div class="tab-pane fade" id="signUp">
+            <form class="form" id="signUpForm"  method="post">
+             <fieldset>
+                <input type="text" class="form-control" placeholder="User name" name="j_username" id="userName" required>
+                <input type="text" class="form-control" placeholder="Email" name="email" id="j_email" required>
+                <input type="password" class="form-control" placeholder="Password" name="j_password" id="password" required>
+                <input type="password" class="form-control" placeholder="Confirm Password" id="confirmPassword" required>
+                <button id="btnSignUp" class="btn btn-large btn-primary" type="submit">Sign up</button>
+             </fieldset>
+            </form>
+          </div>
+      </div>
+    </div>
 </body>
 </html>

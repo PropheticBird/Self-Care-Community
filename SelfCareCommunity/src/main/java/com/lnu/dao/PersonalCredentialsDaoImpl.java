@@ -21,6 +21,11 @@ public class PersonalCredentialsDaoImpl implements PersonalCredentialsDao{
     }
 
    
+    
+    
+    
+    
+   
     public PersonCredentials findByUserName(String userName) {
         Query query = sessionFactory.getCurrentSession().createQuery("from PersonCredentials where userName=:userName");
         query.setString("userName",userName);

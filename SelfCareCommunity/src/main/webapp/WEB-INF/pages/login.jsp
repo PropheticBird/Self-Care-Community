@@ -9,7 +9,7 @@
     <script src="resources/scripts/jquery.js"></script>
     <script src="resources/scripts/jquery.validate.min.js"></script>
     <script src="resources/scripts/bootstrap.min.js"></script>
-    <link href="resources/styles/sign.css" rel="stylesheet" media="screen">
+    <link href="resources/styles/login.css" rel="stylesheet" media="screen">
     <script>
 
 $(function(){
@@ -65,15 +65,14 @@ $("#signUpForm").validate({
   </head>
   
   <body>
-  
-  <c:if test="${error}">
-    <div class="errorblock">
-        Your login attempt was not successful, try again.
-        <br/> Caused : ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
-    </div>
-  </c:if>
 
     <div class="container">
+      <c:if test="${error}">
+    	<div class="alert alert-error">
+  			<button type="button" class="close" data-dismiss="alert">&times;</button>
+  			<strong>Try again</strong> Your login attempt was not successful
+		</div>
+  	 </c:if>
        <ul id="tab"class="nav nav-tabs">
           <li class="active"><a href="#signIn" data-toggle="tab">Sign in</a></li>
           <li><a href="#signUp" data-toggle="tab">Sign up</a></li>

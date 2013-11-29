@@ -94,11 +94,11 @@ $("#signUpForm").validate({
         </div>
 
           <div class="tab-pane fade" id="signUp">
-            <form class="form" id="signUpForm"  method="post">
+            <form class="form" id="signUpForm" action="register"  method="post">
              <fieldset>
-                <input type="text" class="form-control" placeholder="User name" name="j_username" id="userName" required>
-                <input type="text" class="form-control" placeholder="Email" name="email" id="j_email" required>
-                <input type="password" class="form-control" placeholder="Password" name="j_password" id="password" required>
+                <input type="text" class="form-control" placeholder="User name" name="userName" id="userName" required>
+                <input type="text" class="form-control" placeholder="Email" name="email" id="email" required>
+                <input type="password" class="form-control" placeholder="Password" name="password" id="password" required>
                 <input type="password" class="form-control" placeholder="Confirm Password" id="confirmPassword" required>
                 <button id="btnSignUp" class="btn btn-large btn-primary" type="submit">Sign up</button>
              </fieldset>

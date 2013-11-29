@@ -4,11 +4,15 @@ import com.lnu.bean.PersonCredentials;
 import com.lnu.dao.PersonalCredentialsDao;
 import com.lnu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.annotation.Resource;
 
 /**
  * PersonCredentials: igor
@@ -17,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class LoginController {
 
-    @Autowired
+    @Resource(name = "userService")
     UserService userService;
 
     @RequestMapping(value="/login", method = RequestMethod.GET)
@@ -39,7 +43,7 @@ public class LoginController {
     }
 
     @RequestMapping(value="/register", method = RequestMethod.POST)
-    public String register(@RequestBody PersonCredentials user) {
+    public String register(@ModelAttribute PersonCredentials user) {
         userService.registerUser(user);
         return "login";
     }

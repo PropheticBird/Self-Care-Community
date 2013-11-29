@@ -8,7 +8,7 @@
 
     <http auto-config="true">
         <intercept-url pattern="/content/*" access="ROLE_USER" />
-        
+        <intercept-url pattern="/service/*" access="ROLE_USER" />
 
         <form-login login-page="/login"
                     default-target-url="/content/profile.html"
@@ -16,11 +16,10 @@
         <logout logout-success-url="/logout" />
     </http>
 
+
+
     <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="user" password="user" authorities="ROLE_USER" />
-            </user-service>
+        <authentication-provider user-service-ref="userService">
         </authentication-provider>
     </authentication-manager>
 

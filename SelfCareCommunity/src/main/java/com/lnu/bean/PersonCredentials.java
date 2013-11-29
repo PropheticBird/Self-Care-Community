@@ -1,9 +1,6 @@
 package com.lnu.bean;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * PersonCredentials: igor
@@ -14,6 +11,7 @@ import javax.persistence.Table;
 public class PersonCredentials {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "person_credentials_id_PK")
     private Long id;
 

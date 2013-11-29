@@ -5,7 +5,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
 version="2.5">
   <display-name>SelfCareCommunity</display-name>
     <welcome-file-list>
-    <welcome-file>login</welcome-file>
+    <welcome-file>/login</welcome-file>
   </welcome-file-list>
 
     <!-- Spring Security-->

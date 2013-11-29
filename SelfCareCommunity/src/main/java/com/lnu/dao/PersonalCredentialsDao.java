@@ -10,4 +10,6 @@ public interface PersonalCredentialsDao {
 
 
     public void savePersonalCredentials(PersonCredentials user);
+
+    public PersonCredentials findByUserName(String userName);
 }

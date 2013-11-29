@@ -1,21 +1,24 @@
 package com.lnu.service;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.lnu.bean.PersonCredentials;
+import com.lnu.dao.PersonalCredentialsDao;
+import org.springframework.beans.factory.annotation.Autowire;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 /**
- * UserService: igor
+ * User: igor
  * Date: 11/28/13
  */
-@Controller
+@Service
 public class UserService {
 
-    @ResponseBody
-    @RequestMapping(value = "/service/user", method = RequestMethod.GET)
-    public PersonCredentials getUserData() {
-        return new PersonCredentials();
+    @Autowired
+    private PersonalCredentialsDao personalCredentialsDao;
+
+    @Transactional
+    public void registerUser(PersonCredentials credentials ){
+        personalCredentialsDao.savePersonalCredentials(credentials);
     }
 }

@@ -6,10 +6,8 @@ import com.lnu.bean.PersonCredentials;
  * PersonCredentials: igor
  * Date: 11/28/13
  */
-public class UserDao {
+public interface PersonalCredentialsDao {
 
 
-    public static void registerUser(PersonCredentials user) {
-
-    }
+    public void savePersonalCredentials(PersonCredentials user);
 }

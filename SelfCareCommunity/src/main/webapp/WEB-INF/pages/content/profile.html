@@ -13,10 +13,15 @@
 			<span class='profile_name'>User name(login)</span>
 		</div>
 		<div class='profile_main_info_body'>
-			Gender: Male<br>
-			Member since September 16<br>
-			2 helpful posts this month <br>
-			10 helpful posts all time<br>
+			Name: <input type="text" name="tbName" id='tbName' disabled='disabled'> <br>
+			Surname: <input type="text" name="tbSurName" id='tbSurName' disabled='disabled'> <br>
+			Email: <input type="text" name="tbEmail" id='tbEmail' disabled='disabled'> <br>
+			Date of birth: <input type="text" name="tbDofB" id='tbDofB' disabled='disabled'> <br>
+			Gender: <input type="text" name="tbGender" id='tbGender' disabled='disabled'> <br>
+			Zip code: <input type="text" name="tbZipCode" id='tbZipCode' disabled='disabled'> <br>
+			Interests: <input type="text" name="tbInterests" id='tbInterests' disabled='disabled'> <br>
+			<button type="button" name='btnAdd' id='btnAdd'>Edit</button>
+			<button type="button" name='btnSave' id='btnSave' >Save</button> <br>	
 		</div>
 	</div>
 	<div class ='profile_stat'>
@@ -96,5 +101,32 @@
 		$('#tab_3').css({'background':'#fff', 'color': '#444', 'border-bottom':'1px solid #fff'});
 		$('#tab_1, #tab_2, #tab_3').css({'background':'#f0f0f0', 'color': '#888', 'border-bottom':'1px solid #E0E0E0'});
 	});
+	
+	$('#btnSave').hide();
+	
+	$('#btnAdd').click(function(){
+		$(this).hide();
+		$('#btnSave').show();
+		$('#tbName').removeProp('disabled');
+		$('#tbSurName').removeProp('disabled');
+		$('#tbEmail').removeProp('disabled');
+		$('#tbDofB').removeProp('disabled');
+		$('#tbGender').removeProp('disabled');
+		$('#tbZipCode').removeProp('disabled');
+		$('#tbInterests').removeProp('disabled');
+	});
+	
+	$('#btnSave').click(function(){
+		$(this).hide();
+		$('#btnAdd').show();
+		$('#tbName').prop('disabled','disabled');
+		$('#tbSurName').prop('disabled','disabled');
+		$('#tbEmail').prop('disabled','disabled');
+		$('#tbDofB').prop('disabled','disabled');
+		$('#tbGender').prop('disabled','disabled');
+		$('#tbZipCode').prop('disabled','disabled');
+		$('#tbInterests').prop('disabled','disabled');
+	});
+			
 	
 </script>

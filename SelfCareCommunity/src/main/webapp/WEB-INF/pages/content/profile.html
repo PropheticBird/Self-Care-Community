@@ -3,6 +3,7 @@
 <head>
 		<link rel="stylesheet" type="text/css" href="../resources/styles/style.css">
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script src="../resources/script/profile.js"></script>
 </head>
 
 <body>
@@ -75,32 +76,32 @@
 		$('.tabs_context').css('display','none');
 		$('#tab_con_1').css('display','block');
 		
-		$('#tab_1').css({'background':'#fff', 'color': '#444', 'border-bottom':'1px solid #fff'});
-		$('#tab_2, #tab_3, #tab_4').css({'background':'#f0f0f0', 'color': '#888', 'border-bottom':'1px solid #E0E0E0'});
+		$('#tab_1').removeClass().addClass("current");
+		$('#tab_2, #tab_3, #tab_4').removeClass().addClass("another_tab");
 	});
 
 	$('#tab_2').bind( "click", function() {
 		$('.tabs_context').css('display','none');
 		$('#tab_con_2').css('display','block');
 		
-		$('#tab_2').css({'background':'#fff', 'color': '#444', 'border-bottom':'1px solid #fff'});
-		$('#tab_1, #tab_3, #tab_4').css({'background':'#f0f0f0', 'color': '#888', 'border-bottom':'1px solid #E0E0E0'});
+		$('#tab_2').removeClass().addClass("current");
+		$('#tab_1, #tab_3, #tab_4').removeClass().addClass("another_tab");
 	});
 	
 	$('#tab_3').bind( "click", function() {
 		$('.tabs_context').css('display','none');
 		$('#tab_con_3').css('display','block');
 		
-		$('#tab_3').css({'background':'#fff', 'color': '#444', 'border-bottom':'1px solid #fff'});
-		$('#tab_1, #tab_2, #tab_4').css({'background':'#f0f0f0', 'color': '#888', 'border-bottom':'1px solid #E0E0E0'});
+		$('#tab_3').removeClass().addClass("current");
+		$('#tab_1, #tab_2, #tab_4').removeClass().addClass("another_tab");
 	});
 	
 	$('#tab_4').bind( "click", function() {
 		$('.tabs_context').css('display','none');
 		$('#tab_con_4').css('display','block');
 		
-		$('#tab_3').css({'background':'#fff', 'color': '#444', 'border-bottom':'1px solid #fff'});
-		$('#tab_1, #tab_2, #tab_3').css({'background':'#f0f0f0', 'color': '#888', 'border-bottom':'1px solid #E0E0E0'});
+		$('#tab_4').removeClass().addClass("current");
+		$('#tab_1, #tab_2, #tab_3').removeClass().addClass("another_tab");
 	});
 	
 	$('#btnSave').hide();

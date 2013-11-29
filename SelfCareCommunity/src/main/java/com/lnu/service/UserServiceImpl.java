@@ -35,14 +35,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         personalCredentialsDao.savePersonalCredentials(credentials);
     }
 
-    @Override
+    
     @Transactional
     public Persons getUserProfile(String username) {
         PersonCredentials credentials = personalCredentialsDao.findByUserName(username);
         return personsDao.getPersonById(credentials.getId());
     }
 
-    @Override
+    
     @Transactional
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         PersonCredentials user = personalCredentialsDao.findByUserName(userName);

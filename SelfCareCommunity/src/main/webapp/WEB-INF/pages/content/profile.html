@@ -107,13 +107,13 @@
 	$('#btnAdd').click(function(){
 		$(this).hide();
 		$('#btnSave').show();
-		$('#tbName').removeProp('disabled');
-		$('#tbSurName').removeProp('disabled');
-		$('#tbEmail').removeProp('disabled');
-		$('#tbDofB').removeProp('disabled');
-		$('#tbGender').removeProp('disabled');
-		$('#tbZipCode').removeProp('disabled');
-		$('#tbInterests').removeProp('disabled');
+		$('#tbName').prop('disabled', false);
+		$('#tbSurName').prop('disabled', false);
+		$('#tbEmail').prop('disabled', false);
+		$('#tbDofB').prop('disabled', false);
+		$('#tbGender').prop('disabled', false);
+		$('#tbZipCode').prop('disabled', false);
+		$('#tbInterests').prop('disabled', false);
 	});
 	
 	$('#btnSave').click(function(){

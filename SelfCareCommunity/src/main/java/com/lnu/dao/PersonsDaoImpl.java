@@ -15,7 +15,7 @@ public class PersonsDaoImpl implements PersonsDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Override
+    
     public Persons getPersonById(Long id) {
         return (Persons) sessionFactory.getCurrentSession().get(Persons.class,id);
     }

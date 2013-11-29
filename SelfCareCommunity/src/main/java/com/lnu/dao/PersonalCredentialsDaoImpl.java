@@ -16,12 +16,11 @@ public class PersonalCredentialsDaoImpl implements PersonalCredentialsDao{
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Override
     public void savePersonalCredentials(PersonCredentials user) {
         sessionFactory.getCurrentSession().save(user);
     }
 
-    @Override
+   
     public PersonCredentials findByUserName(String userName) {
         Query query = sessionFactory.getCurrentSession().createQuery("from PersonCredentials where userName=:userName");
         query.setString("userName",userName);

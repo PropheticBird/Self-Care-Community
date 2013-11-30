@@ -31,7 +31,7 @@ function GetUserData () {
 		tbName.value = data.name;
 		tbSurName.value = data.surname;
 		tbEmail.value = data.email;
-		tbDofB.value = data.birthdate;
+		tbDofB.value = data.birthDate;
 		tbGender.value = data.gender;
 		tbZipCode.value = data.zipCode;
 		tbInterests.value = data.interests;

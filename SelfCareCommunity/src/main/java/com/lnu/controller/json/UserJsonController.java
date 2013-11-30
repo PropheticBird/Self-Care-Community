@@ -20,6 +20,7 @@ import javax.annotation.Resource;
 @Controller
 public class UserJsonController {
 
+    public static final String HIDE_PASSWORD = "******";
     @Resource(name = "userService")
     UserService userService;
 
@@ -27,6 +28,8 @@ public class UserJsonController {
     @RequestMapping(value = "/service/currentuserdetails", method = RequestMethod.GET)
     public Persons getUserData() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        return userService.getUserProfile(auth.getName());
+        Persons userProfile = userService.getUserProfile(auth.getName());
+        userProfile.getPersonCredentials().setPassword(HIDE_PASSWORD);
+        return userProfile;
     }
 }

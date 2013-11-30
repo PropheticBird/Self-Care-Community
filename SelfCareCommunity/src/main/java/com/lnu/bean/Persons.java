@@ -2,10 +2,7 @@ package com.lnu.bean;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "PERSONS")
@@ -38,6 +35,10 @@ public class Persons {
 	
 	@Column(name = "person_zip_code")
 	private Integer zipCode;
+
+    @OneToOne
+    @JoinColumn(name="person_id_FK")
+    private PersonCredentials personCredentials;
 	
 	// Getter and Setter methods
 	
@@ -111,5 +112,13 @@ public class Persons {
     
     public void setZipCode(Integer zipCode) {
     	this.zipCode = zipCode;
-    }  	
+    }
+
+    public PersonCredentials getPersonCredentials() {
+        return personCredentials;
+    }
+
+    public void setPersonCredentials(PersonCredentials personCredentials) {
+        this.personCredentials = personCredentials;
+    }
 }

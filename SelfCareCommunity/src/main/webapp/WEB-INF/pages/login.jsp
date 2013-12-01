@@ -5,11 +5,17 @@
   <head>
     <title>Sign</title>
     <meta content="width=device-width, initial-scale=1.0">
+    
     <link href="resources/styles/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="resources/styles/header.css">
+    <link rel="stylesheet" type="text/css" href="resources/styles/master.css">
+    <link rel="stylesheet" type="text/css" href="resources/styles/menu.css">
+    <link href="resources/styles/login.css" rel="stylesheet" media="screen">
+    
     <script src="resources/scripts/jquery.js"></script>
     <script src="resources/scripts/jquery.validate.min.js"></script>
     <script src="resources/scripts/bootstrap.min.js"></script>
-    <link href="resources/styles/login.css" rel="stylesheet" media="screen">
+    
     <script>
 
 $(function(){
@@ -63,10 +69,14 @@ $("#signUpForm").validate({
 </script>
 
   </head>
+  <div id="new-header">
+        <script>
+            $("#new-header").load("content/header.html");
+        </script>
+    </div>
   
-  <body>
 
-    <div class="container">
+    <div class="content-body">
       <c:if test="${error}">
     	<div class="alert alert-error">
   			<button type="button" class="close" data-dismiss="alert">&times;</button>

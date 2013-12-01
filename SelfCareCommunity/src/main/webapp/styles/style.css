@@ -1,4 +1,4 @@
-body{
+.work_area{
 font: 14px "Lucida Sans Unicode", "Helvetica", "Arial", "Verdana", sans-serif;
 color: #949ba5;
 }
@@ -14,6 +14,7 @@ box-shadow: 0px 0px 1px #444;
 position: relative;
 margin: 10px;
 float: left;
+z-index: -1;
 }
 .profile_main_info{
 position:relative;
@@ -88,4 +89,25 @@ width: 97%;
 	display:block;
 	padding: 10px;
 	border-top:1px solid #E0E0E0; 	
+}
+
+.profile_main_info_body div{
+	padding-top:2px;
+}
+.profile_main_info_body .left{
+	overflow: hidden;
+	
+}
+.profile_main_info_body .right{
+	 
+	float: right;
+    width: 420px;
+}
+
+.profile_main_info_body input{
+	width: 200px;
+}
+
+.margin-top-15{
+	margin-top: 15px;
 }

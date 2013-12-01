@@ -1,30 +1,153 @@
 <html>
 <title>Profile Page</title>
 <head>
+<link rel="stylesheet" type="text/css" href="../resources/styles/resetcss.css">
 		<link rel="stylesheet" type="text/css" href="../resources/styles/style.css">
+		<link rel="stylesheet" type="text/css" href="../resources/styles/buttons.css">
+		<link rel="stylesheet" type="text/css" href="../resources/styles/menu.css">
+		<link rel="stylesheet" type="text/css" href="../resources/styles/header.css">
+		<link rel="stylesheet" type="text/css" href="../resources/styles/master.css">
+		
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		
 		<script src="../resources/scripts/profile.js"></script>
 		<script src="../resources/scripts/Data_from_DB_Profile.js"></script>
+		
+		<script>
+		$(document).ready(function(){
+			
+			$('#tab_1').bind( "click", function() {
+				$('.tabs_context').css('display','none');
+				$('#tab_con_1').css('display','block');
+				
+				$('#tab_1').removeClass().addClass("current");
+				$('#tab_2, #tab_3, #tab_4').removeClass().addClass("another_tab");
+			});
+
+			$('#tab_2').bind( "click", function() {
+				$('.tabs_context').css('display','none');
+				$('#tab_con_2').css('display','block');
+				
+				$('#tab_2').removeClass().addClass("current");
+				$('#tab_1, #tab_3, #tab_4').removeClass().addClass("another_tab");
+			});
+			
+			$('#tab_3').bind( "click", function() {
+				$('.tabs_context').css('display','none');
+				$('#tab_con_3').css('display','block');
+				
+				$('#tab_3').removeClass().addClass("current");
+				$('#tab_1, #tab_2, #tab_4').removeClass().addClass("another_tab");
+			});
+			
+			$('#tab_4').bind( "click", function() {
+				$('.tabs_context').css('display','none');
+				$('#tab_con_4').css('display','block');
+				
+				$('#tab_4').removeClass().addClass("current");
+				$('#tab_1, #tab_2, #tab_3').removeClass().addClass("another_tab");
+			});
+			
+			$('#btnSave').hide();
+			
+			$('#btnAdd').click(function(){
+				$(this).hide();
+				$('#btnSave').show();
+				$('#tbUserName').prop('disabled', false);
+				$('#tbName').prop('disabled', false);
+				$('#tbSurName').prop('disabled', false);
+				$('#tbEmail').prop('disabled', false);
+				$('#tbDofB').prop('disabled', false);
+				$('#tbGender').prop('disabled', false);
+				$('#tbZipCode').prop('disabled', false);
+				$('#tbInterests').prop('disabled', false);
+			});
+			
+			$('#btnSave').click(function(){
+				$(this).hide();
+				$('#btnAdd').show();
+				$('#tbUserName').prop('disabled','disabled');
+				$('#tbName').prop('disabled','disabled');
+				$('#tbSurName').prop('disabled','disabled');
+				$('#tbEmail').prop('disabled','disabled');
+				$('#tbDofB').prop('disabled','disabled');
+				$('#tbGender').prop('disabled','disabled');
+				$('#tbZipCode').prop('disabled','disabled');
+				$('#tbInterests').prop('disabled','disabled');
+			});
+		});
+		
+		</script>
 </head>
 
+<div id="new-header">
+        <script>
+            $("#new-header").load("header.html");
+        </script>
+    </div>
+    
+    
 <body onload='GetUserData()'>
-<div class='work_area'>
+<div class='work_area content-body'>
 	<div class='profile_avatar'><img src= "../resources/img/avatar.png"></div>
 	<div class='profile_main_info'>
 		<div class='profile_head'>
 			<span class='profile_name'>User name(login)</span>
 		</div>
 		<div class='profile_main_info_body'>
-			Username: <input type="text" name="tbUserName" id='tbUserName' disabled='disabled'> <br>
-			Email: <input type="text" name="tbEmail" id='tbEmail' disabled='disabled'> <br>
-			Name: <input type="text" name="tbName" id='tbName' disabled='disabled'> <br>
-			Surname: <input type="text" name="tbSurName" id='tbSurName' disabled='disabled'> <br>
-			Date of birth: <input type="text" name="tbDofB" id='tbDofB' disabled='disabled'> <br>
-			Gender: <input type="text" name="tbGender" id='tbGender' disabled='disabled'> <br>
-			Zip code: <input type="text" name="tbZipCode" id='tbZipCode' disabled='disabled'> <br>
-			Interests: <input type="text" name="tbInterests" id='tbInterests' disabled='disabled'> <br>
-			<button type="button" name='btnAdd' id='btnAdd'>Edit</button>
-			<button type="button" name='btnSave' id='btnSave' >Save</button> <br>	
+		<div>
+		<div class="right">
+			<input type="text" name="tbUserName" id='tbUserName' disabled='disabled'>
+		</div>
+		<div class="left">Username:</div> 
+			
+		</div>
+		<div>
+			 <div class="right">
+			 	<input type="text" name="tbEmail" id='tbEmail' disabled='disabled'>
+			 </div>
+			<div class="left">Email:</div>
+		</div>
+		<div>
+			<div class="right">
+				<input type="text" name="tbName" id='tbName' disabled='disabled'>
+			</div>
+			<div class="left">Name:</div>
+		</div>
+		<div>
+			<div class="right">
+				<input type="text" name="tbSurName" id='tbSurName' disabled='disabled'>
+			</div>
+			<div class="left">Surname:</div>
+		</div>
+		<div>
+			<div class="right">
+				<input type="text" name="tbDofB" id='tbDofB' disabled='disabled'>
+			</div>
+			<div class="left">Date of birth:</div>
+		</div>
+		<div>
+			<div class="right">
+				<input type="text" name="tbGender" id='tbGender' disabled='disabled'>
+			</div>
+			<div class="left">Gender:</div>
+		</div>
+		<div>
+			<div class="right">
+				<input type="text" name="tbZipCode" id='tbZipCode' disabled='disabled'>
+			</div>
+			<div class="left">Zip code:</div>
+		</div>
+		<div>
+			<div class="right">
+				<input type="text" name="tbInterests" id='tbInterests' disabled='disabled'>
+			</div>
+			<div class="left">Interests:</div>
+		</div>
+		<div class=margin-top-15>
+			<button type="button" name='btnAdd' id='btnAdd' class="silver-flat-button">Edit</button>
+			<button type="button" name='btnSave' id='btnSave' class="clouds-flat-button">Save</button>
+			</div>
 		</div>
 	</div>
 	<div class ='profile_stat'>
@@ -72,66 +195,3 @@
 </div>
 </body>
 </html>
-<script>
-	$('#tab_1').bind( "click", function() {
-		$('.tabs_context').css('display','none');
-		$('#tab_con_1').css('display','block');
-		
-		$('#tab_1').removeClass().addClass("current");
-		$('#tab_2, #tab_3, #tab_4').removeClass().addClass("another_tab");
-	});
-
-	$('#tab_2').bind( "click", function() {
-		$('.tabs_context').css('display','none');
-		$('#tab_con_2').css('display','block');
-		
-		$('#tab_2').removeClass().addClass("current");
-		$('#tab_1, #tab_3, #tab_4').removeClass().addClass("another_tab");
-	});
-	
-	$('#tab_3').bind( "click", function() {
-		$('.tabs_context').css('display','none');
-		$('#tab_con_3').css('display','block');
-		
-		$('#tab_3').removeClass().addClass("current");
-		$('#tab_1, #tab_2, #tab_4').removeClass().addClass("another_tab");
-	});
-	
-	$('#tab_4').bind( "click", function() {
-		$('.tabs_context').css('display','none');
-		$('#tab_con_4').css('display','block');
-		
-		$('#tab_4').removeClass().addClass("current");
-		$('#tab_1, #tab_2, #tab_3').removeClass().addClass("another_tab");
-	});
-	
-	$('#btnSave').hide();
-	
-	$('#btnAdd').click(function(){
-		$(this).hide();
-		$('#btnSave').show();
-		$('#tbUserName').prop('disabled', false);
-		$('#tbName').prop('disabled', false);
-		$('#tbSurName').prop('disabled', false);
-		$('#tbEmail').prop('disabled', false);
-		$('#tbDofB').prop('disabled', false);
-		$('#tbGender').prop('disabled', false);
-		$('#tbZipCode').prop('disabled', false);
-		$('#tbInterests').prop('disabled', false);
-	});
-	
-	$('#btnSave').click(function(){
-		$(this).hide();
-		$('#btnAdd').show();
-		$('#tbUserName').prop('disabled','disabled');
-		$('#tbName').prop('disabled','disabled');
-		$('#tbSurName').prop('disabled','disabled');
-		$('#tbEmail').prop('disabled','disabled');
-		$('#tbDofB').prop('disabled','disabled');
-		$('#tbGender').prop('disabled','disabled');
-		$('#tbZipCode').prop('disabled','disabled');
-		$('#tbInterests').prop('disabled','disabled');
-	});
-			
-	
-</script>

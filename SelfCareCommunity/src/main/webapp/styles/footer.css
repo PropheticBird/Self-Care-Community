@@ -1,0 +1,26 @@
+.right-footer {
+    float: right;
+    width: 200px;
+    height: 140px;
+    
+    background-image: url(../img/logo.jpg);
+    background-position: right;
+    background-repeat: no-repeat;
+    background-color: rgb(255,251,196);
+}
+.left-footer {
+    overflow: hidden;
+    height: 100px;
+    
+    background-image: url(../img/logo-text.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-left:30px;
+    background-color: rgb(255,251,196);
+}
+
+#footer{
+	
+    
+    margin-bottom: 8px;
+}

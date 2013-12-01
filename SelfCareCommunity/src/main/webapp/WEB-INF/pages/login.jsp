@@ -76,7 +76,7 @@ $("#signUpForm").validate({
         </script>
     </div-->
   
-    <div class="content-body">
+    <div class="container">
       <c:if test="${error}">
     	<div class="alert alert-error">
   			<button type="button" class="close" data-dismiss="alert">&times;</button>

@@ -32,9 +32,9 @@ public class UserJsonController {
     }
 
     @RequestMapping(value="/service/currentuserdetails", method = RequestMethod.POST)
-    public String register(@RequestBody Persons person) {
+    public String register(@ModelAttribute Persons person) {
         userService.updateUser(getCurrentUserName(),person);
-        return "redirect:content/profile.html";
+        return "redirect:/content/profile.html";
     }
 
     private String getCurrentUserName() {

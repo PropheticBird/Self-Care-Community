@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.Arrays;
 
@@ -45,12 +46,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Transactional
-    public void updateUser(String userName, Persons person) {
+    public void updateUser(String userName, Persons newData) {
         PersonCredentials credentials = personalCredentialsDao.findByUserName(userName);
         Persons old = personsDao.getPersonForCredentials(credentials);
-        person.setId(old.getId());
-        person.setPersonCredentials(credentials);
-        personsDao.update(person);
+        old.updateData(newData);
+        personsDao.update(old);
     }
 
     @Transactional

@@ -122,4 +122,31 @@ public class Persons {
     public void setPersonCredentials(PersonCredentials personCredentials) {
         this.personCredentials = personCredentials;
     }
+
+	public void updateData(Persons newData) {
+		if(newData.birthDate!=null){
+			this.birthDate=newData.birthDate;
+		}
+		if(newData.name!=null){
+			this.name=newData.name;
+		}
+		if(newData.surname!=null){
+			this.surname=newData.surname;
+		}
+		if(newData.gender!=null){
+			this.gender=newData.gender;
+		}
+		if(newData.healthDesease!=null){
+			this.healthDesease=newData.healthDesease;
+		}
+		if(newData.interests!=null){
+			this.interests=newData.interests;
+		}
+		if(newData.profilePicture!=null){
+			this.profilePicture=newData.profilePicture;
+		}
+		if(newData.healthDesease!=null){
+			this.healthDesease=newData.healthDesease;
+		}	
+	}
 }

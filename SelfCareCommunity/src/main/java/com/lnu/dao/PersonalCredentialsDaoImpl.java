@@ -16,7 +16,7 @@ public class PersonalCredentialsDaoImpl implements PersonalCredentialsDao{
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void savePersonalCredentials(PersonCredentials user) {
+    public void createPersonalCredentials(PersonCredentials user) {
         sessionFactory.getCurrentSession().save(user);
     }
 

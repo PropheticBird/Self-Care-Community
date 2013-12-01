@@ -13,7 +13,7 @@
         <form-login login-page="/login"
                     default-target-url="/content/profile.html"
                     authentication-failure-url="/loginfailed" />
-        <logout logout-success-url="/logout" />
+        <logout logout-url="/logout" invalidate-session="true" logout-success-url="/login"/>
     </http>
 
 

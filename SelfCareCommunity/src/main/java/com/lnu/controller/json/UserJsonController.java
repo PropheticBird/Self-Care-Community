@@ -5,13 +5,12 @@ import com.lnu.service.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.lnu.bean.PersonCredentials;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * UserService: igor
@@ -27,9 +26,18 @@ public class UserJsonController {
     @ResponseBody
     @RequestMapping(value = "/service/currentuserdetails", method = RequestMethod.GET)
     public Persons getUserData() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Persons userProfile = userService.getUserProfile(auth.getName());
+        Persons userProfile = userService.getUserProfile(getCurrentUserName());
         userProfile.getPersonCredentials().setPassword(HIDE_PASSWORD);
         return userProfile;
+    }
+
+    @RequestMapping(value="/service/currentuserdetails", method = RequestMethod.POST)
+    public String register(@RequestBody Persons person) {
+        userService.updateUser(getCurrentUserName(),person);
+        return "redirect:content/profile.html";
+    }
+
+    private String getCurrentUserName() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 }

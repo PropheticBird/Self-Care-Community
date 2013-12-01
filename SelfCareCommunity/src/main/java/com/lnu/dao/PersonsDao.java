@@ -1,5 +1,6 @@
 package com.lnu.dao;
 
+import com.lnu.bean.PersonCredentials;
 import com.lnu.bean.Persons;
 
 /**
@@ -8,5 +9,9 @@ import com.lnu.bean.Persons;
  */
 public interface PersonsDao {
 
-    public Persons getPersonById(Long id);
+    void update(Persons person);
+
+    void createPerson(Persons person);
+
+    Persons getPersonForCredentials(PersonCredentials credentials);
 }

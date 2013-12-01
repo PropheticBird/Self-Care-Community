@@ -26,4 +26,6 @@ public interface UserService{
 
     public Persons getUserProfile(String username);
 
+    public void updateUser(String userName, Persons userData);
+
 }

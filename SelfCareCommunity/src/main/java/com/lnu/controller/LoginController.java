@@ -45,12 +45,6 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping(value="/logout", method = RequestMethod.GET)
-    public String logOut(ModelMap model) {
-        model.addAttribute("error", "false");
-        return "login";
-    }
-
     @RequestMapping(value="/register", method = RequestMethod.POST)
     public String register(HttpServletRequest request, @ModelAttribute PersonCredentials user) {
         userService.registerUser(user);

@@ -9,7 +9,7 @@ import com.lnu.bean.PersonCredentials;
 public interface PersonalCredentialsDao {
 
 
-    public void savePersonalCredentials(PersonCredentials user);
+    public void createPersonalCredentials(PersonCredentials user);
 
     public PersonCredentials findByUserName(String userName);
 }

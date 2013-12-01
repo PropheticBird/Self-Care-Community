@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class Persons {
 	
 	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "person_id_PK")
 	private Long id;
 	

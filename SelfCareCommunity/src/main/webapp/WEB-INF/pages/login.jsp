@@ -70,11 +70,11 @@ $("#signUpForm").validate({
 
   </head>
   <body>
-  <div id="new-header">
+  <!--div id="new-header">
         <script>
             $("#new-header").load("content/header.html");
         </script>
-    </div>
+    </div-->
   
     <div class="content-body">
       <c:if test="${error}">

@@ -33,7 +33,7 @@ public class LoginController {
     @Resource(name = "userService")
     UserService userService;
 
-    @RequestMapping(value="/login", method = RequestMethod.GET)
+    @RequestMapping(value={"/","/login"}, method = RequestMethod.GET)
     public String logIn(ModelMap model) {
          model.addAttribute("error", "false");
          return "login";

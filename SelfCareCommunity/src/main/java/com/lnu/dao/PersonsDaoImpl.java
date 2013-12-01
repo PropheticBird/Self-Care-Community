@@ -17,17 +17,17 @@ public class PersonsDaoImpl implements PersonsDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Override
+
     public void update(Persons person) {
         sessionFactory.getCurrentSession().update(person);
     }
 
-    @Override
+
     public void createPerson(Persons person) {
         sessionFactory.getCurrentSession().save(person);
     }
 
-    @Override
+
     public Persons getPersonForCredentials(PersonCredentials credentials) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Persons where personCredentials=:personCredentials");
         query.setParameter("personCredentials",credentials);

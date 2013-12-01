@@ -44,7 +44,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return personsDao.getPersonForCredentials(credentials);
     }
 
-    @Override
     @Transactional
     public void updateUser(String userName, Persons person) {
         PersonCredentials credentials = personalCredentialsDao.findByUserName(userName);

@@ -6,9 +6,9 @@
 		<link rel="stylesheet" type="text/css" href="../resources/styles/buttons.css">
 		
 		<link rel="stylesheet" type="text/css" href="../resources/styles/master.css">
-		
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-		
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 		<script src="../resources/scripts/profile.js"></script>
 		<script src="../resources/scripts/Data_from_DB_Profile.js"></script>
 		
@@ -74,6 +74,13 @@
 				$('#tbZipCode').prop('disabled','disabled');
 				$('#tbInterests').prop('disabled','disabled');
 			});
+			
+			$(function() {
+			    $('#tbDofB').datepicker();
+			    
+			 });
+			
+			
 		});
 		
 		</script>

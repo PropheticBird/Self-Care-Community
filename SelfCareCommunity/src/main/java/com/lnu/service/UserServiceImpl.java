@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         PersonCredentials credentials = personalCredentialsDao.findByUserName(userName);
         Persons old = personsDao.getPersonForCredentials(credentials);
         old.updateData(newData);
+        old.getPersonCredentials().setEmail(newData.getPersonCredentials().getEmail());
         personsDao.update(old);
     }
 

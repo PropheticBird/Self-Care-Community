@@ -54,35 +54,28 @@ function SaveEditedUserData() {
 	tbInterests = document.getElementById("tbInterests");
 	
 	//building the JSON object
-	var JSONobjCred = {"username": tbUserName.value, "email": tbEmail.value};
-	var JSONobj = { "name":tbName.value,
-			"surname":tbSurName.value, 
+
+	var JSONobj = {
+            personCredentials:{"email": tbEmail.value},
+            "name":tbName.value,
+			"surname":tbSurName.value,
+            "birthDate":tbDofB.value,
 			"gender": tbGender.value, 
-			"zipCode": tbZipCode.value, 
-			//'personCredentials':JSONobjCred,
+			"zipCode": tbZipCode.value,
 			"interests": tbInterests.value};
-	//var JSONobj = { "name":tbName.value};
-	
-	
-	//console.log($.post(url,JSONobj));
 
 	$.ajax({
         url: url,
         type: "POST",
-        data: JSONobj,
-        dataType:'json', 
+        data: JSON.stringify(JSONobj),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        async: false,
         success: function (result) {
-            switch (result) {
-                case true:
-                    window.alert(result);
-                    break;
-                default:
-                    window.alert(result);
-            }
+            console.log(result);
         },
         error: function (xhr, ajaxOptions, thrownError) {
-        alert(xhr.status);
-        alert(thrownError);
+            console.log(xhr.status+"  "+thrownError);
         }
     });
 }

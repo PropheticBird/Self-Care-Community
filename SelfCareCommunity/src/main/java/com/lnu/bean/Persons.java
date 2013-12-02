@@ -1,5 +1,10 @@
 package com.lnu.bean;
 
+import com.lnu.controller.json.converter.JsonDateDeserealizer;
+import com.lnu.controller.json.converter.JsonDateSerializer;
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import java.util.Date;
 
 import javax.persistence.*;
@@ -20,6 +25,8 @@ public class Persons {
 	private String surname;
 	
 	@Column(name = "person_birth_date")
+    @JsonSerialize(using = JsonDateSerializer.class)
+    @JsonDeserialize(using = JsonDateDeserealizer.class)
 	private Date birthDate;
 	
 	@Column(name = "person_gender")
@@ -124,14 +131,14 @@ public class Persons {
     }
 
 	public void updateData(Persons newData) {
-		if(newData.birthDate!=null){
+        if(newData.name!=null){
+            this.name=newData.name;
+        }
+        if(newData.surname!=null){
+            this.surname=newData.surname;
+        }
+        if(newData.birthDate!=null){
 			this.birthDate=newData.birthDate;
-		}
-		if(newData.name!=null){
-			this.name=newData.name;
-		}
-		if(newData.surname!=null){
-			this.surname=newData.surname;
 		}
 		if(newData.gender!=null){
 			this.gender=newData.gender;
@@ -145,8 +152,8 @@ public class Persons {
 		if(newData.profilePicture!=null){
 			this.profilePicture=newData.profilePicture;
 		}
-		if(newData.healthDesease!=null){
-			this.healthDesease=newData.healthDesease;
+		if(newData.zipCode!=null){
+			this.zipCode=newData.zipCode;
 		}	
 	}
 }

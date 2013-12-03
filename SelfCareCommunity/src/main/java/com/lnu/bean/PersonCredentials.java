@@ -9,7 +9,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "PERSON_CREDENTIALS")
 public class PersonCredentials {
-	
+
+    @Id
     @Column(name = "Login")
     private String login;
 
@@ -18,15 +19,19 @@ public class PersonCredentials {
 
     @Column(name = "Email")
     private String email;
-    
-    @Id
-    @Column(name = "Person_ID")
-    private Long personID;
-    
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="Person_ID")
     private Persons persons;
-    
+
+
+    public void updateData(PersonCredentials newCredentials) {
+        if(newCredentials.email!=null){
+            this.email = newCredentials.email;
+        }
+        this.persons.updateData(newCredentials.getPersons());
+    }
+
     public String getLogin() {
         return login;
     }
@@ -50,20 +55,12 @@ public class PersonCredentials {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    public Long getPersonID() {
-        return personID;
-    }
 
-    public void setPersonID(Long personID) {
-        this.personID = personID;
-    }
-    
     public Persons getPersons() {
         return persons;
     }
 
-    public void setPersonCredentials(Persons persons) {
+    public void setPersons(Persons persons) {
         this.persons = persons;
     }
 }

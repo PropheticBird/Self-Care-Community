@@ -25,16 +25,18 @@ public class UserJsonController {
 
     @ResponseBody
     @RequestMapping(value = "/service/currentuserdetails", method = RequestMethod.GET)
-    public Persons getUserData() {
-        Persons userProfile = userService.getUserProfile(getCurrentUserName());
-        userProfile.getPersonCredentials().setPassword(HIDE_PASSWORD);
+    public PersonCredentials getUserData() {
+        PersonCredentials userProfile = userService.getUserProfile(getCurrentUserName());
+        userProfile.setPassword(HIDE_PASSWORD);
         return userProfile;
     }
 
+    @ResponseBody
     @RequestMapping(value="/service/currentuserdetails", method = RequestMethod.POST)
-    public String register(@RequestBody Persons person) {
-        userService.updateUser(getCurrentUserName(),person);
-        return "redirect:/content/profile.html";
+    public String updateUser(@RequestBody PersonCredentials credentials) {
+        credentials.setLogin(getCurrentUserName());
+        userService.updateUser(credentials);
+        return "OK";
     }
 
     private String getCurrentUserName() {

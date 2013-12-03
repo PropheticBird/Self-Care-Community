@@ -48,7 +48,7 @@ public class LoginController {
     @RequestMapping(value="/register", method = RequestMethod.POST)
     public String register(HttpServletRequest request, @ModelAttribute PersonCredentials user) {
         userService.registerUser(user);
-        login(request,user.getUserName(),user.getPassword());
+        login(request,user.getLogin(),user.getPassword());
         return "redirect:content/profile.html";
     }
 

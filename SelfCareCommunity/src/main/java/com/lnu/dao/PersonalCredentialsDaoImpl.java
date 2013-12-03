@@ -3,6 +3,7 @@ package com.lnu.dao;
 import com.lnu.bean.PersonCredentials;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,15 +21,13 @@ public class PersonalCredentialsDaoImpl implements PersonalCredentialsDao{
         sessionFactory.getCurrentSession().save(user);
     }
 
-   
-    
-    
-    
-    
-   
     public PersonCredentials findByUserName(String userName) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from PersonCredentials where userName=:userName");
-        query.setString("userName",userName);
-        return (PersonCredentials) query.uniqueResult();
+        Session session = sessionFactory.getCurrentSession();
+        return (PersonCredentials) session.get(PersonCredentials.class,userName);
+    }
+
+    @Override
+    public void update(PersonCredentials credentials) {
+        sessionFactory.getCurrentSession().update(credentials);
     }
 }

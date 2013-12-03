@@ -24,8 +24,8 @@ public interface UserService{
 
     public void registerUser(PersonCredentials credentials );
 
-    public Persons getUserProfile(String username);
+    public PersonCredentials getUserProfile(String username);
 
-    public void updateUser(String userName, Persons userData);
+    public void updateUser(PersonCredentials credentials);
 
 }

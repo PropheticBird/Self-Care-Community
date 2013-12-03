@@ -21,14 +21,14 @@ function GetUserData () {
 		tbInterests = document.getElementById("tbInterests");
 		
 		//adding value to these texboxes
-		tbUserName.value = data.personCredentials.userName;
-		tbName.value = data.name;
-		tbSurName.value = data.surname;
-		tbEmail.value = data.personCredentials.email;
-		tbDofB.value = data.birthDate;
-		tbGender.value = data.gender;
-		tbZipCode.value = data.zipCode;
-		tbInterests.value = data.interests;
+		tbUserName.value = data.login;
+		tbName.value = data.persons.name;
+		tbSurName.value = data.persons.surname;
+		tbEmail.value = data.email;
+		tbDofB.value = data.persons.birthDate;
+		tbGender.value = data.persons.gender;
+		tbZipCode.value = data.persons.zipCode;
+		tbInterests.value = data.persons.interests;
 
 	}
 }
@@ -56,13 +56,15 @@ function SaveEditedUserData() {
 	//building the JSON object
 
 	var JSONobj = {
-            personCredentials:{"email": tbEmail.value},
+            "email": tbEmail.value,
+            "persons":{
             "name":tbName.value,
 			"surname":tbSurName.value,
             "birthDate":tbDofB.value,
 			"gender": tbGender.value, 
 			"zipCode": tbZipCode.value,
-			"interests": tbInterests.value};
+			"interest": tbInterests.value}
+    };
 
 	$.ajax({
         url: url,

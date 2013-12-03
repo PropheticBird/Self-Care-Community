@@ -1,22 +1,23 @@
-CREATE TABLE IF NOT EXISTS PERSON_CREDENTIALS (
-	person_credentials_id_PK int NOT NULL AUTO_INCREMENT,
-	person_credentials_username varchar(255) NOT NULL DEFAULT "",
-	person_credentials_password varchar(255) NOT NULL,
-	person_credentials_email varchar(255) NOT NULL,  
-	PRIMARY KEY ( person_credentials_id_PK )
+CREATE TABLE IF NOT EXISTS PERSONS (
+	ID int NOT NULL AUTO_INCREMENT, 
+	Name varchar(255),
+	Surname varchar(255),
+	Picture varchar(),
+	Picture_Small varchar(),
+	Date_of_birth DATE,
+	Gender boolean default 1,
+	Zip_Code INT,
+	Disease TEXT,
+	Interest TEXT, 
+	PRIMARY KEY ( ID )
 );
 
-CREATE TABLE IF NOT EXISTS PERSONS (
-	person_id_PK int NOT NULL AUTO_INCREMENT, 
-	person_name varchar(255),
-	person_surname varchar(255),
-	person_profile_picture varchar(255),
-	person_birth_date DATE,
-	person_gender varchar(255),
-	person_zip_code INT, 
-	person_health_desease TEXT,
-	person_interests TEXT,
-	person_id_FK int, 
-	PRIMARY KEY ( person_id_PK ),
-	FOREIGN KEY ( person_id_FK ) REFERENCES PERSON_CREDENTIALS(person_credentials_id_PK) 
+CREATE TABLE IF NOT EXISTS PERSON_CREDENTIALS (
+	Login varchar(50) NOT NULL,
+	Password varchar(30) NOT NULL,
+	Email varchar(50) NOT NULL,
+	Person_ID INT NOT NULL,
+	PRIMARY KEY ( Login ),
+	FOREIGN KEY ( Person_ID ) REFERENCES PERSONS(ID)
 );
+ 

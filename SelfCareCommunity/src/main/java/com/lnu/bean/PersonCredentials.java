@@ -9,35 +9,30 @@ import javax.persistence.*;
 @Entity
 @Table(name = "PERSON_CREDENTIALS")
 public class PersonCredentials {
+	
+    @Column(name = "Login")
+    private String login;
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name = "person_credentials_id_PK")
-    private Long id;
-
-    @Column(name = "person_credentials_username")
-    private String userName;
-
-    @Column(name = "person_credentials_password")
+    @Column(name = "Password")
     private String password;
 
-    @Column(name = "person_credentials_email")
+    @Column(name = "Email")
     private String email;
-
-    public Long getId() {
-        return id;
+    
+    @Id
+    @Column(name = "Person_ID")
+    private Long personID;
+    
+    @OneToOne
+    @JoinColumn(name="Person_ID")
+    private Persons persons;
+    
+    public String getLogin() {
+        return login;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {
@@ -55,6 +50,20 @@ public class PersonCredentials {
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    public Long getPersonID() {
+        return personID;
+    }
 
+    public void setPersonID(Long personID) {
+        this.personID = personID;
+    }
+    
+    public Persons getPersons() {
+        return persons;
+    }
 
+    public void setPersonCredentials(Persons persons) {
+        this.persons = persons;
+    }
 }

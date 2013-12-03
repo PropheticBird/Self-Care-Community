@@ -15,38 +15,37 @@ public class Persons {
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "person_id_PK")
+	@Column(name = "ID")
 	private Long id;
 	
-	@Column(name = "person_name")
+	@Column(name = "Name")
 	private String name;
 	
-	@Column(name = "person_surname")
+	@Column(name = "Surname")
 	private String surname;
 	
-	@Column(name = "person_birth_date")
+	@Column(name = "Date_of_birth")
     @JsonSerialize(using = JsonDateSerializer.class)
     @JsonDeserialize(using = JsonDateDeserealizer.class)
 	private Date birthDate;
 	
-	@Column(name = "person_gender")
-	private String gender;
+	@Column(name = "Gender")
+	private Boolean gender;
 	
-	@Column(name = "person_health_desease")
-	private String healthDesease;
+	@Column(name = "Disease")
+	private String disease;
 	
-	@Column(name = "person_interests")
-	private String interests;
+	@Column(name = "Interest")
+	private String interest;
 	
-	@Column(name = "person_profile_picture")
+	@Column(name = "Picture")
 	private String profilePicture;
 	
-	@Column(name = "person_zip_code")
+	@Column(name = "Picture_Small")
+	private String profilePictureSmall;
+	
+	@Column(name = "Zip_Code")
 	private Integer zipCode;
-
-    @OneToOne
-    @JoinColumn(name="person_id_FK")
-    private PersonCredentials personCredentials;
 	
 	// Getter and Setter methods
 	
@@ -82,28 +81,28 @@ public class Persons {
     	this.birthDate = birthDate;
     }
     
-    public String getGender() {
+    public Boolean getGender() {
     	return gender;
     }
     
-    public void setGender(String gender) {
+    public void setGender(Boolean gender) {
     	this.gender = gender;
     }
     
     public String getHealthDesease() {
-    	return healthDesease;
+    	return disease;
     }
     
-    public void setHealthDesease(String healthDesease) {
-    	this.healthDesease = healthDesease;
+    public void setHealthDesease(String disease) {
+    	this.disease= disease;
     }
     
     public String getInterests() {
-    	return interests;
+    	return interest;
     }
     
-    public void setInterests(String interests) {
-    	this.interests = interests;
+    public void setInterests(String interest) {
+    	this.interest = interest;
     }
     
     public String getProfilePicture() {
@@ -114,20 +113,20 @@ public class Persons {
     	this.profilePicture = profilePicture;
     }
     
+    public String getProfilePictureSmall() {
+    	return profilePictureSmall;
+    }
+    
+    public void setProfilePictureSmall(String profilePictureSmall) {
+    	this.profilePictureSmall = profilePictureSmall;
+    }
+    
     public Integer getZipCode() {
     	return zipCode;
     }
     
     public void setZipCode(Integer zipCode) {
     	this.zipCode = zipCode;
-    }
-
-    public PersonCredentials getPersonCredentials() {
-        return personCredentials;
-    }
-
-    public void setPersonCredentials(PersonCredentials personCredentials) {
-        this.personCredentials = personCredentials;
     }
 
 	public void updateData(Persons newData) {

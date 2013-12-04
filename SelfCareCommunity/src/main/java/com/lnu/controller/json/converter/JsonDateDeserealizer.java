@@ -1,5 +1,6 @@
 package com.lnu.controller.json.converter;
 
+import antlr.StringUtils;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.DeserializationContext;
@@ -22,6 +23,9 @@ public class JsonDateDeserealizer extends JsonDeserializer<Date> {
     public Date deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
         try {
             String date = jsonParser.getText();
+            if(date == null || date.equals("")){
+                return null;
+            }
             return formatter.parse(date);
         } catch (ParseException e) {
            throw new IOException("Incorrect date format");

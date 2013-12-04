@@ -1,8 +1,6 @@
 package com.lnu.controller.json;
 
-import com.lnu.bean.Persons;
 import com.lnu.service.UserService;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import com.lnu.bean.PersonCredentials;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * UserService: igor

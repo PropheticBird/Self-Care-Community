@@ -11,7 +11,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "PERSONS")
-public class Persons {
+public class Person {
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -41,7 +41,7 @@ public class Persons {
 	@Column(name = "Interest")
 	private String interest;
 
-    public void updateData(Persons newData) {
+    public void updateData(Person newData) {
         if(newData.name!=null){
             this.name=newData.name;
         }

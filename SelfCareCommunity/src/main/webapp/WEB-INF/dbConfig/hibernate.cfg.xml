@@ -3,6 +3,9 @@
 <hibernate-configuration>
     <session-factory>
         <mapping class="com.lnu.bean.PersonCredentials"/>
-        <mapping class="com.lnu.bean.Persons"/>
+        <mapping class="com.lnu.bean.Person"/>
+        <mapping class="com.lnu.bean.Category"/>
+        <mapping class="com.lnu.bean.Post"/>
+        <mapping class="com.lnu.bean.Thread"/>
     </session-factory>
 </hibernate-configuration>

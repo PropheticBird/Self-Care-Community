@@ -22,14 +22,14 @@ public class PersonCredentials {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="Person_ID")
-    private Persons persons;
+    private Person person;
 
 
     public void updateData(PersonCredentials newCredentials) {
         if(newCredentials.email!=null){
             this.email = newCredentials.email;
         }
-        this.persons.updateData(newCredentials.getPersons());
+        this.person.updateData(newCredentials.getPerson());
     }
 
     public String getLogin() {
@@ -56,11 +56,11 @@ public class PersonCredentials {
         this.email = email;
     }
 
-    public Persons getPersons() {
-        return persons;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setPersons(Persons persons) {
-        this.persons = persons;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }

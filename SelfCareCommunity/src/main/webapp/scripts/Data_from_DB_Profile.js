@@ -22,13 +22,13 @@ function GetUserData () {
 		
 		//adding value to these texboxes
 		tbUserName.value = data.login;
-		tbName.value = data.persons.name;
-		tbSurName.value = data.persons.surname;
+		tbName.value = data.person.name;
+		tbSurName.value = data.person.surname;
 		tbEmail.value = data.email;
-		tbDofB.value = data.persons.birthDate;
-		tbGender.value = data.persons.gender;
-		tbZipCode.value = data.persons.zipCode;
-		tbInterests.value = data.persons.interests;
+		tbDofB.value = data.person.birthDate;
+		tbGender.value = data.person.gender;
+		tbZipCode.value = data.person.zipCode;
+		tbInterests.value = data.person.interest;
 
 	}
 }
@@ -57,7 +57,7 @@ function SaveEditedUserData() {
 
 	var JSONobj = {
             "email": tbEmail.value,
-            "persons":{
+            "person":{
             "name":tbName.value,
 			"surname":tbSurName.value,
             "birthDate":tbDofB.value,

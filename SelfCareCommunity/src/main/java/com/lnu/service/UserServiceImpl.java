@@ -1,7 +1,7 @@
 package com.lnu.service;
 
 import com.lnu.bean.PersonCredentials;
-import com.lnu.bean.Persons;
+import com.lnu.bean.Person;
 import com.lnu.dao.PersonalCredentialsDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,8 +28,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Transactional
     public void registerUser(PersonCredentials credentials ){
-        Persons person = new Persons();
-        credentials.setPersons(person);
+        Person person = new Person();
+        credentials.setPerson(person);
         personalCredentialsDao.createPersonalCredentials(credentials);
     }
 

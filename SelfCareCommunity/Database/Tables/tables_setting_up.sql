@@ -17,7 +17,31 @@ CREATE TABLE IF NOT EXISTS PERSON_CREDENTIALS (
 	Password varchar(30) NOT NULL,
 	Email varchar(50) NOT NULL,
 	Person_ID INT NOT NULL,
-	PRIMARY KEY ( Login ),
-	FOREIGN KEY ( Person_ID ) REFERENCES PERSONS(ID)
+PRIMARY KEY ( Login ),
+FOREIGN KEY ( Person_ID ) REFERENCES PERSONS(ID)
 );
  
+CREATE TABLE IF NOT EXISTS CATEGORIES(
+	ID int primary key AUTO_INCREMENT,
+	Display_Name varchar(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS THREADS(
+	ID int primary key AUTO_INCREMENT,
+	Display_Name varchar (250) NOT NULL,
+	Author_ID int not null,
+	Category_ID int not null,
+FOREIGN KEY (Category_ID) REFERENCES CATEGORIES (ID),
+FOREIGN KEY ( Author_ID ) REFERENCES PERSONS(ID)
+);
+
+CREATE TABLE  IF NOT EXISTS POSTS(
+	ID int primary key AUTO_INCREMENT,
+	Author_ID int NOT NULL,
+	Thread_ID int not NULL,
+	Content TEXT,
+	Likes int,
+	Posted_Date DATE,
+FOREIGN KEY (Thread_ID) REFERENCES THREADS (ID),
+FOREIGN KEY ( Author_ID ) REFERENCES PERSONS(ID)
+);

@@ -4,6 +4,7 @@ import com.lnu.bean.*;
 import com.lnu.bean.Thread;
 import com.lnu.bean.view.NewPost;
 import com.lnu.bean.view.NewThread;
+import com.lnu.bean.view.Page;
 
 import java.util.List;
 import java.util.Set;
@@ -16,9 +17,9 @@ public interface ForumService {
 
     List<Category> listCategories();
 
-    List<Thread> listThreadsForCategory(Long categoryId);
+    Page<Thread> listThreadsForCategory(Long categoryId,Integer pageNumber);
 
-    List<Post> listPostsForThread(Long threadId);
+    Page<Post> listPostsForThread(Long threadId,Integer pageNumber);
 
     void createNewThread(Long categoryId, NewThread thread);
 

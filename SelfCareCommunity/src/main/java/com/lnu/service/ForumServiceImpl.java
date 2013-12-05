@@ -5,6 +5,7 @@ import com.lnu.bean.Thread;
 import com.lnu.bean.view.Author;
 import com.lnu.bean.view.NewPost;
 import com.lnu.bean.view.NewThread;
+import com.lnu.bean.view.Page;
 import com.lnu.controller.json.UserJsonController;
 import com.lnu.dao.ForumDao;
 import com.lnu.dao.PersonalCredentialsDao;
@@ -38,23 +39,28 @@ public class ForumServiceImpl implements ForumService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Thread> listThreadsForCategory(Long categoryId) {
-        List<Thread> threads = forumDao.findThreadsForCategory(categoryId);
+    public Page<Thread> listThreadsForCategory(Long categoryId, Integer pageNumber) {
+        List<Thread> threads = forumDao.findThreadsForCategory(categoryId,pageNumber);
+        Long count =  forumDao.countThreadsForCategory(categoryId);
         for(Thread thread: threads){
             thread.setAuthor(Author.createFromPerson(thread.getPerson()));
         }
-        return threads;
+        Boolean isLastPage =ForumDao.THREAD_PAGE_SIZE*pageNumber>=count;
+        return new Page<Thread>(isLastPage,threads);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<Post> listPostsForThread(Long threadId) {
-        List<Post> posts = forumDao.findPostsForThread(threadId);
+    public Page<Post> listPostsForThread(Long threadId, Integer pageNumber) {
+        List<Post> posts = forumDao.findPostsForThread(threadId,pageNumber);
+        Long count =  forumDao.countdPostsForThread(threadId);
         for(Post post: posts){
             post.setAuthor(Author.createFromPerson(post.getPerson()));
         }
-        return posts;
+        Boolean isLastPage =ForumDao.POST_PAGE_SIZE*pageNumber>=count;
+        return new Page<Post>(isLastPage,posts);
     }
+
 
     @Override
     @Transactional

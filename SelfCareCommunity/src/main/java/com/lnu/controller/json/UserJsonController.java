@@ -30,10 +30,9 @@ public class UserJsonController {
 
     @ResponseBody
     @RequestMapping(value="/service/currentuserdetails", method = RequestMethod.POST)
-    public String updateUser(@RequestBody PersonCredentials credentials) {
+    public void updateUser(@RequestBody PersonCredentials credentials) {
         credentials.setLogin(getCurrentUserName());
         userService.updateUser(credentials);
-        return "OK";
     }
 
     public static String getCurrentUserName() {

@@ -12,17 +12,24 @@ import java.util.Set;
  */
 public interface ForumDao {
 
+    public static final int POST_PAGE_SIZE=5;
+    public static final int THREAD_PAGE_SIZE=10;
+
     List<Category> findAllCategories();
 
     Category findCategoryById(Long categoryId);
 
-    List<Thread> findThreadsForCategory(Long categoryId);
+    List<Thread> findThreadsForCategory(Long categoryId,Integer pageNumber);
 
-    List<Post> findPostsForThread(Long threadId);
+    List<Post> findPostsForThread(Long threadId,Integer pageNumber);
 
     void saveThread(Thread thread);
 
     Thread getThreadById(Long threadId);
 
     void savePost(Post post);
+
+    Long countdPostsForThread(Long threadId);
+
+    Long countThreadsForCategory(Long categoryId);
 }

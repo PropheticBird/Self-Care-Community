@@ -36,18 +36,22 @@ public class ForumDaoImpl implements ForumDao {
     }
 
     @Override
-    public List<Thread> findThreadsForCategory(Long categoryId) {
+    public List<Thread> findThreadsForCategory(Long categoryId,Integer pageNumber) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("From Thread where category.id=:categoryId");
         query.setParameter("categoryId",categoryId);
+        query.setFirstResult((pageNumber-1)*THREAD_PAGE_SIZE);
+        query.setMaxResults(THREAD_PAGE_SIZE);
         return query.list();
     }
 
     @Override
-    public List<Post> findPostsForThread(Long threadId) {
+    public List<Post> findPostsForThread(Long threadId,Integer pageNumber) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("From Post where thread.id=:threadId");
+        Query query = session.createQuery("From Post where thread.id=:threadId order by postedDate");
         query.setParameter("threadId",threadId);
+        query.setFirstResult((pageNumber-1)*POST_PAGE_SIZE);
+        query.setMaxResults(POST_PAGE_SIZE);
         return query.list();
     }
 
@@ -67,5 +71,21 @@ public class ForumDaoImpl implements ForumDao {
     public void savePost(Post post) {
         Session session = sessionFactory.getCurrentSession();
         session.save(post);
+    }
+
+    @Override
+    public Long countdPostsForThread(Long threadId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select count(*) from Post where thread.id=:threadId");
+        query.setParameter("threadId",threadId);
+        return (Long) query.uniqueResult();
+    }
+
+    @Override
+    public Long countThreadsForCategory(Long categoryId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select count(*) from Thread where category.id=:categoryId");
+        query.setParameter("categoryId",categoryId);
+        return (Long) query.uniqueResult();
     }
 }

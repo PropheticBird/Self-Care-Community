@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>List</title>
+    <meta content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+	<link href="../resources/styles/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="../resources/scripts/bootstrap.min.js"></script>
+    <script src="../resources/scripts/jquery.js"></script>
+    <script src="../resources/scripts/jquery.loadTemplate-1.3.2.min.js"></script>
+    
+    
+    
+    <style>
+	.forum_info{
+	font-size: 18px;
+	color: #777;
+	}
+	.forum_category{
+	font-size: 16px;
+	
+
+	cursor:	pointer;
+	padding: 8px;
+	}
+	.category_name_t{
+	float: left;
+	
+	}
+	.category_posts_t{
+	float: right;
+	margin-right: 60px;
+	}
+	.category_last_t{
+	float: right;
+	margin-right: 0px;
+	width: 90px;
+	
+	}
+	.categ_header{
+		color: #777;
+		margin-bottom: 20px;
+		font-size: 18px;
+		border-bottom:1px solid #ccc;
+		padding:5px;
+	}
+	.grey_background{
+	background: #eee;
+	}
+    </style>
+
+
+ </head>
+ <body>
+
+   <div class="navbar">
+  	<div class="navbar-inner">
+    <a class="brand" href="#">SelfCareCommunity</a>
+    <ul class="nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Link</a></li>
+      <li><a href="#">Link</a></li>
+    </ul>
+  </div>
+</div>
+
+
+<div id="container" class="offset3">
+
+<div  class="span8">
+	
+	<p class='forum_info'>Welcome to SelfCareCommunitys Forum, a community for medical questions and answers.</p>
+	<p>Connect with others by symptom, side effect, syndrome, surgery, or disease. 
+	Although anyone can view answers, only registered members can ask medical questions. 
+	To get started, browse the topics below:</p>
+
+</div>
+
+<div id="threadList" class="span8">
+
+<div class='categ_header'>&nbsp<div class='category_name_t'>Name</div>  <div class='category_last_t'>Last post</div> <div class='category_posts_t'>Posts</div></div>
+
+<div class='forum_category grey_background'>&nbsp;<div class='category_name_t'>Coronary artery disease</div>  <div class='category_last_t'>12-04-2013</div> <div class='category_posts_t'>8</div></div>
+<div class='forum_category'>&nbsp;<div class='category_name_t'>Myocardial infarction</div>  <div class='category_last_t'>12-04-2013</div> <div class='category_posts_t'>7</div></div>
+<div class='forum_category grey_background'>&nbsp;<div class='category_name_t'>Heart failure</div>  <div class='category_last_t'>12-04-2013</div> <div class='category_posts_t'>7</div></div>
+<div class='forum_category'>&nbsp;<div class='category_name_t'>Myocarditis</div>  <div class='category_last_t'>12-04-2013</div> <div class='category_posts_t'>7</div></div>
+<div class='forum_category grey_background'>&nbsp;<div class='category_name_t'>Heart rhythm disorders</div>  <div class='category_last_t'>12-04-2013</div> <div class='category_posts_t'>7</div></div>
+<div class='forum_category'>&nbsp;<div class='category_name_t'>Birth born heart disease</div>  <div class='category_last_t'>12-04-2013</div> <div class='category_posts_t'>7</div></div>
+<div class='forum_category grey_background'>&nbsp;<div class='category_name_t'>To select food</div>  <div class='category_last_t'>12-04-2013</div> <div class='category_posts_t'>7</div></div>
+<div class='forum_category'>&nbsp;<div class='category_name_t'>Sport</div>  <div class='category_last_t'>12-04-2013</div> <div class='category_posts_t'>7</div></div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+ </body>
+</html>
+<script>
+$( document ).ready(function() {
+$('.forum_category').bind( "click", function() {
+alert($(this).children('.category_name_t').text());
+});
+});
+
+</script>

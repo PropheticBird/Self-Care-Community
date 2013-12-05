@@ -1,8 +1,7 @@
 package com.lnu.service;
 
 import com.lnu.bean.*;
-import com.lnu.bean.collection.CategoryCollection;
-
+import com.lnu.bean.Thread;
 import java.util.List;
 import java.util.Set;
 
@@ -14,5 +13,7 @@ public interface ForumService {
 
     List<Category> listCategories();
 
-    Set<com.lnu.bean.Thread> listThreadsForCategory(Long categoryId);
+    List<Thread> listThreadsForCategory(Long categoryId);
+
+    List<Post> listPostsForThread(Long threadId);
 }

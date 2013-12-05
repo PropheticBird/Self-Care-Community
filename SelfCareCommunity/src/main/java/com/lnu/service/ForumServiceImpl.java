@@ -29,8 +29,13 @@ public class ForumServiceImpl implements ForumService {
 
     @Override
     @Transactional(readOnly = true)
-    public Set<Thread> listThreadsForCategory(Long categoryId) {
-        Category category = forumDao.findCategoryById(categoryId);
-        return category.getThreads();
+    public List<Thread> listThreadsForCategory(Long categoryId) {
+        return forumDao.findThreadsForCategory(categoryId);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Post> listPostsForThread(Long threadId) {
+        return forumDao.findPostsForThread(threadId);
     }
 }

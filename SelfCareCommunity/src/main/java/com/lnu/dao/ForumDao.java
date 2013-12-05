@@ -1,9 +1,10 @@
 package com.lnu.dao;
 
-import com.lnu.bean.Category;
-import com.lnu.bean.collection.CategoryCollection;
+import com.lnu.bean.*;
+import com.lnu.bean.Thread;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * User: igor
@@ -14,4 +15,8 @@ public interface ForumDao {
     List<Category> findAllCategories();
 
     Category findCategoryById(Long categoryId);
+
+    List<Thread> findThreadsForCategory(Long categoryId);
+
+    List<Post> findPostsForThread(Long threadId);
 }

@@ -21,11 +21,6 @@ public class Category {
     @Column(name = "Display_Name")
     private String displayName;
 
-    @JsonIgnore
-    @OneToMany
-    @JoinColumn(name = "Category_ID")
-    private Set<Thread> threads;
-
     public Long getId() {
         return id;
     }
@@ -40,13 +35,5 @@ public class Category {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
-    }
-
-    public Set<Thread> getThreads() {
-        return threads;
-    }
-
-    public void setThreads(Set<Thread> threads) {
-        this.threads = threads;
     }
 }

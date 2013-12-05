@@ -4,6 +4,7 @@
     <session-factory>
         <mapping class="com.lnu.bean.PersonCredentials"/>
         <mapping class="com.lnu.bean.Person"/>
+        <mapping class="com.lnu.bean.Author"/>
         <mapping class="com.lnu.bean.Category"/>
         <mapping class="com.lnu.bean.Post"/>
         <mapping class="com.lnu.bean.Thread"/>

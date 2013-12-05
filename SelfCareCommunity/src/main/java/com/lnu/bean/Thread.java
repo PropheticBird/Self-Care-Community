@@ -1,6 +1,9 @@
 package com.lnu.bean;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * User: igor
@@ -20,7 +23,12 @@ public class Thread{
 
     @ManyToOne
     @JoinColumn(name = "Author_ID")
-    private PersonCredentials credentials;
+    private Author author;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "Category_ID")
+    private Category category;
 
     public Long getId() {
         return id;
@@ -38,11 +46,19 @@ public class Thread{
         this.displayName = displayName;
     }
 
-    public PersonCredentials getCredentials() {
-        return credentials;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setCredentials(PersonCredentials credentials) {
-        this.credentials = credentials;
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

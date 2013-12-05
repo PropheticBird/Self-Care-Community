@@ -1,6 +1,7 @@
 package com.lnu.controller.json;
 
 import com.lnu.bean.Category;
+import com.lnu.bean.Post;
 import com.lnu.bean.Thread;
 import com.lnu.service.ForumService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,15 @@ public class ForumJsonController {
 
     @ResponseBody
     @RequestMapping(value = "/service/category/{categoryId}/threads", method = RequestMethod.GET)
-    public Set<Thread> getThreadsForCategory(@PathVariable("categoryId") Long categoryId) {
+    public List<Thread> getThreadsForCategory(@PathVariable("categoryId") Long categoryId) {
         return forumService.listThreadsForCategory(categoryId);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/service/thread/{threadId}/posts", method = RequestMethod.GET)
+    public List<Post> getPostsForThread(@PathVariable("threadId") Long threadId) {
+        return forumService.listPostsForThread(threadId);
+    }
+
+
 }

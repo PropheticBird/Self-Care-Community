@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>List</title>
+    <meta content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="../resources/styles/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="../resources/scripts/bootstrap.min.js"></script>
+    <script src="../resources/scripts/jquery.js"></script>
+    <script src="../resources/scripts/jquery.loadTemplate-1.3.2.min.js"></script>
+    
+    
+    
+    <style>
+    body{
+       margin-bottom: 40px;
+    }
+    </style>
+    <script>
+    $(function(){
+
+	$("a").click(function(){
+		var link=$(this);
+		var url="/SelfCareCommunity/service/thread/"+link.attr('id')+"/posts";
+			//alert("1");
+			//alert(href);
+		$.ajax({
+			url: url,
+			type: "get",
+			dataType: "json",
+			success: function(data){
+			//alert("1");
+			//var obj=$.evalJSON(data);
+			//alert(data[0].id);
+			//alert(data[0].author.name)
+			$("#container").html("<div id='postList'></div>");
+			for(var i=0;i<data.length;i++){
+				
+				var id=data[i].id;
+				var author=data[i].author.name;
+				var content=data[i].content;
+				var date=data[i].postedDate;
+				var likes=data[i].likes;
+				
+				$("#postList").append("<div id='post"+id+"'></div>");
+				$("#post"+id).loadTemplate("template/post.html",
+				{
+					authorPic: '../resources/img/avatar.png',
+					author: author,
+					content: content,
+					date: date,
+					likes: likes+" likes"
+				});
+			}
+			$("#postList").append("<div id='addPost'></div>");
+			$("#addPost").loadTemplate("template/addPost.html",{
+				threadID: link.attr('id')
+			});
+			}
+			});
+		return false;
+
+	});
+	
+	/*
+	$("#btnReply").click(function(){
+		alert("1");
+		return false;
+	});
+	*/
+	});
+
+   </script>
+
+ </head>
+ <body>
+
+   <div class="navbar">
+  	<div class="navbar-inner">
+    <a class="brand" href="#">SelfCareCommunity</a>
+    <ul class="nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Link</a></li>
+      <li><a href="#">Link</a></li>
+    </ul>
+  </div>
+</div>
+
+
+<div id="container" class="offset3">
+
+<h3>Category1</h3>
+
+<div id="threadList" class="span8">
+
+<!-- 
+<hr />
+
+<div class="row">
+<div class="media">
+  <div class="span1">
+    <img class="media-object" src="img/avatar.png">
+  </div>
+  <div class="span7">
+  <div class="media-body">
+    <h6 class="media-heading"><small>Username</small></h6>
+    <div class="media">
+      <a href="#">topic213321312321321321</a>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<hr />
+
+<div class="row">
+<div class="media">
+  <div class="span1">
+    <img class="media-object" src="img/avatar.png">
+  </div>
+  <div class="span7">
+  <div class="media-body">
+    <h6 class="media-heading"><small>Username</small></h6>
+    <div class="media">
+      <a href="#">topic213321312321321321</a>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<hr />
+
+<div class="row">
+<div class="media">
+  <div class="span1">
+    <img class="media-object" src="img/avatar.png">
+  </div>
+  <div class="span7">
+  <div class="media-body">
+    <h6 class="media-heading"><small>Username</small></h6>
+    <div class="media">
+      <a href="#">topic213321312321321321</a>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<hr />
+-->
+
+
+<table class="table table-hover">
+   <thead>
+    <tr>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="span5"><a href="" id="1">topic1</a></td>
+      <td class="span2"><small>username</small></td>
+      <td class="span1"><small>10</small></td>
+    </tr>
+    <tr>
+      <td class="span5"><a href="#">topic2</a></td>
+      <td class="span2"><small>username</small></td>
+      <td class="span1"><small>10</small></td>
+    </tr>
+    <tr>
+      <td class="span5"><a href="#">topic3</a></td>
+      <td class="span2"><small>username</small></td>
+      <td class="span1"><small>10</small></td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<div class="pagination pagination-centered">
+  <ul>
+    <li><a href="#">&laquo;</a></li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">&raquo;</a></li>
+  </ul>
+</div>
+
+</div>
+
+ </body>
+</html>

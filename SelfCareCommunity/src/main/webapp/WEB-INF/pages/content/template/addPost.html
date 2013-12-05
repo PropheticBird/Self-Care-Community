@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="US-ASCII">
+<title>addPost</title>
+</head>
+<script>
+$(function(){
+	
+	$("#btnPost").click(function(){
+		var id=$("#threadID").html();
+		var content=$.trim($("#content").val());
+		var url="/SelfCareCommunity/service/thread/"+id+"/newpost";
+		//alert(url);
+		if(content.length==0)
+			return false;
+		else{
+			$.ajax({
+				  url: "/SelfCareCommunity/service/thread/1/newpost",
+				  type: "POST",
+				  dataType: "json",
+				  data: {post:"21321"},
+				  success: function(data){
+					  alert(data);
+				  }
+			});
+			return false;
+		}
+	});
+	
+});
+</script>
+<body>
+
+<div class="row">
+    <div class="span9">
+    	<form id="addPost">
+    		<span id="threadID" data-content="threadID" style="display:none"></span>
+        	<h4>Reply to this topic</h4>
+            <textarea class="field span9" rows="6" id="content" required></textarea>
+            <div class="pull-right">
+            <button id="btnPost" class="btn btn-info" type="submit">Submit</button>
+            </div>
+        </form>
+   </div>
+</div>
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.lnu.bean;
 
+import com.lnu.bean.view.Author;
 import com.lnu.controller.json.converter.JsonDateDeserealizer;
 import com.lnu.controller.json.converter.JsonDateSerializer;
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -22,9 +23,10 @@ public class Post{
     @Column(name = "ID")
     private Long id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "Author_ID")
-    private Author author;
+    private Person person;
 
     @JsonIgnore
     @ManyToOne
@@ -42,6 +44,10 @@ public class Post{
     @Column(name = "Posted_Date")
     private Date postedDate;
 
+    @Transient
+    private Author author;
+
+
     public Long getId() {
         return id;
     }
@@ -50,12 +56,12 @@ public class Post{
         this.id = id;
     }
 
-    public Author getAuthor() {
-        return author;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public Thread getThread() {
@@ -88,5 +94,13 @@ public class Post{
 
     public void setPostedDate(Date postedDate) {
         this.postedDate = postedDate;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 }

@@ -2,6 +2,9 @@ package com.lnu.service;
 
 import com.lnu.bean.*;
 import com.lnu.bean.Thread;
+import com.lnu.bean.view.NewPost;
+import com.lnu.bean.view.NewThread;
+
 import java.util.List;
 import java.util.Set;
 
@@ -16,4 +19,8 @@ public interface ForumService {
     List<Thread> listThreadsForCategory(Long categoryId);
 
     List<Post> listPostsForThread(Long threadId);
+
+    void createNewThread(Long categoryId, NewThread thread);
+
+    void createNewPost(Long threadId, NewPost post);
 }

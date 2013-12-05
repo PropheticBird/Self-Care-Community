@@ -32,7 +32,7 @@ public class ForumDaoImpl implements ForumDao {
     @Override
     public Category findCategoryById(Long categoryId) {
         Session session = sessionFactory.getCurrentSession();
-        return (Category) session.get(Category.class,categoryId);
+        return (Category) session.load(Category.class, categoryId);
     }
 
     @Override
@@ -49,5 +49,23 @@ public class ForumDaoImpl implements ForumDao {
         Query query = session.createQuery("From Post where thread.id=:threadId");
         query.setParameter("threadId",threadId);
         return query.list();
+    }
+
+    @Override
+    public void saveThread(Thread thread) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(thread);
+    }
+
+    @Override
+    public Thread getThreadById(Long threadId) {
+        Session session = sessionFactory.getCurrentSession();
+        return (Thread) session.load(Thread.class, threadId);
+    }
+
+    @Override
+    public void savePost(Post post) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(post);
     }
 }

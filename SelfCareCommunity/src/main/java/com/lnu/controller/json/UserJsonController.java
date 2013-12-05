@@ -36,7 +36,7 @@ public class UserJsonController {
         return "OK";
     }
 
-    private String getCurrentUserName() {
+    public static String getCurrentUserName() {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 }

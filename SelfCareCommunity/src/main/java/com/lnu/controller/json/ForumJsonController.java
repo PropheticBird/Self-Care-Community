@@ -3,13 +3,12 @@ package com.lnu.controller.json;
 import com.lnu.bean.Category;
 import com.lnu.bean.Post;
 import com.lnu.bean.Thread;
+import com.lnu.bean.view.NewPost;
+import com.lnu.bean.view.NewThread;
 import com.lnu.service.ForumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Set;
@@ -37,9 +36,23 @@ public class ForumJsonController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/service/category/{categoryId}/newthread", method = RequestMethod.POST)
+    public String newThreadInCategory(@PathVariable("categoryId") Long categoryId, @RequestBody NewThread thread) {
+        forumService.createNewThread(categoryId,thread);
+        return "OK";
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/service/thread/{threadId}/posts", method = RequestMethod.GET)
     public List<Post> getPostsForThread(@PathVariable("threadId") Long threadId) {
         return forumService.listPostsForThread(threadId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/service/thread/{threadId}/newpost", method = RequestMethod.POST)
+    public String newPostInThread(@PathVariable("threadId") Long threadId, @RequestBody NewPost post) {
+        forumService.createNewPost(threadId,post);
+        return "OK";
     }
 
 

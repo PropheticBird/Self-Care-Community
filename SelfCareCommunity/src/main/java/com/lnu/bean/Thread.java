@@ -1,9 +1,9 @@
 package com.lnu.bean;
 
+import com.lnu.bean.view.Author;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.Set;
 
 /**
  * User: igor
@@ -21,14 +21,18 @@ public class Thread{
     @Column(name = "Display_Name")
     private String displayName;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "Author_ID")
-    private Author author;
+    private Person person;
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "Category_ID")
     private Category category;
+
+    @Transient
+    private Author author;
 
     public Long getId() {
         return id;
@@ -60,5 +64,13 @@ public class Thread{
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }

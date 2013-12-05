@@ -19,4 +19,10 @@ public interface ForumDao {
     List<Thread> findThreadsForCategory(Long categoryId);
 
     List<Post> findPostsForThread(Long threadId);
+
+    void saveThread(Thread thread);
+
+    Thread getThreadById(Long threadId);
+
+    void savePost(Post post);
 }

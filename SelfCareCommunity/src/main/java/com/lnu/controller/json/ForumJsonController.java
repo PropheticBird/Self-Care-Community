@@ -6,6 +6,7 @@ import com.lnu.bean.Thread;
 import com.lnu.bean.view.NewPost;
 import com.lnu.bean.view.NewThread;
 import com.lnu.bean.view.Page;
+import com.lnu.bean.view.Result;
 import com.lnu.service.ForumService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +41,13 @@ public class ForumJsonController {
 
     @ResponseBody
     @RequestMapping(value = "/service/category/{categoryId}/newthread", method = RequestMethod.POST)
-    public void newThreadInCategory(@PathVariable("categoryId") Long categoryId, @RequestBody NewThread thread) {
-        forumService.createNewThread(categoryId,thread);
+    public Result newThreadInCategory(@PathVariable("categoryId") Long categoryId, @RequestBody NewThread thread) {
+        try {
+            forumService.createNewThread(categoryId,thread);
+        }catch (Exception e){
+            return Result.FAIL;
+        }
+        return Result.OK;
     }
 
     @ResponseBody
@@ -51,10 +57,14 @@ public class ForumJsonController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/service/thread/{threadId}/newpost", method = RequestMethod.POST,
-    		produces = MediaType.APPLICATION_JSON_VALUE)
-    public void newPostInThread(@PathVariable("threadId") Long threadId, @RequestBody NewPost post) {
-        forumService.createNewPost(threadId,post);
+    @RequestMapping(value = "/service/thread/{threadId}/newpost", method = RequestMethod.POST)
+    public Result newPostInThread(@PathVariable("threadId") Long threadId, @RequestBody NewPost post) {
+        try{
+            forumService.createNewPost(threadId,post);
+        }catch (Exception e){
+            return Result.FAIL;
+        }
+        return Result.OK;
     }
 
 

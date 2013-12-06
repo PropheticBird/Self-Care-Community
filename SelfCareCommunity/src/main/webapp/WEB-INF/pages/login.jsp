@@ -20,12 +20,6 @@
 
 $(function(){
 
-$("#signInForm").validate({
-   //submitHandler: function(form){
-    //alert(form['user'].value);
-    //}  
-});
-
 $("#signUpForm").validate({
     rules: {
       userName: {
@@ -77,10 +71,10 @@ $("#signUpForm").validate({
     </div-->
   
     <div class="container">
-      <c:if test="${error}">
+      <c:if test="${not empty error}">
     	<div class="alert alert-error">
   			<button type="button" class="close" data-dismiss="alert">&times;</button>
-  			<strong>Try again</strong> Your login attempt was not successful
+  			<strong>Try again</strong>  ${error}
 		</div>
   	 </c:if>
        <ul id="tab"class="nav nav-tabs">
@@ -91,7 +85,7 @@ $("#signUpForm").validate({
           <div class="tab-pane fade in active" id="signIn">
           <form class="form" id="signInForm" action="<c:url value='j_spring_security_check'/>"  method="post">
           <fieldset>
-            <input type="text" class="form-control" placeholder="User name or Email" name="j_username" id="user" required>
+            <input type="text" class="form-control" placeholder="User name" name="j_username" id="user" required>
             <input type="password" class="form-control" placeholder="Password" id="password" name="j_password" required>
             <!--<label class="checkbox">
               <input type="checkbox" value="remember-me"> Remember me

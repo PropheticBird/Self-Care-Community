@@ -16,14 +16,25 @@ $(function(){
 			return false;
 		else{
 			$.ajax({
-				  url: "/SelfCareCommunity/service/thread/1/newpost",
+				  url: url,
 				  type: "POST",
 				  dataType: "json",
-				  data: {content:"21321"},
-				  success: function(data){
-					  alert(data);
+				  contentType: 'application/json; charset=utf-8',
+				  data: JSON.stringify({ "content":content}),
+				  success: function(){
+					  //alert("1");
+					  //$("#postSuccess").alert();
+					  //$("#postSuccess").show();
+
+				  },
+				  error: function(xhr, ajaxOptions, thrownError){
+					  //console.log(xhr.status+"  "+thrownError);
+					  //$("#postFail").alert();
+					  //$("#postFail").show();
 				  }
+				  
 			});
+			$("#postSuccess").show();
 			return false;
 		}
 	});
@@ -33,6 +44,19 @@ $(function(){
 <body>
 
 <div class="row">
+	
+	<div class="span5 offet2">
+	<div id="postSuccess"class="alert alert-success fade in hide" data-alert="alert">
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<strong>Post success!</strong> 
+	</div>
+	
+	<div id="postFail" class="alert alert-error fade in hide" data-alert="alert">
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<strong>Post fail!</strong> 
+	</div>
+	</div>
+	
     <div class="span9">
     	<form id="addPost">
     		<span id="threadID" data-content="threadID" style="display:none"></span>

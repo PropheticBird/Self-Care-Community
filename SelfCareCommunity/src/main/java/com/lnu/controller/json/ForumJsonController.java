@@ -7,7 +7,9 @@ import com.lnu.bean.view.NewPost;
 import com.lnu.bean.view.NewThread;
 import com.lnu.bean.view.Page;
 import com.lnu.service.ForumService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,7 +51,8 @@ public class ForumJsonController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/service/thread/{threadId}/newpost", method = RequestMethod.POST)
+    @RequestMapping(value = "/service/thread/{threadId}/newpost", method = RequestMethod.POST,
+    		produces = MediaType.APPLICATION_JSON_VALUE)
     public void newPostInThread(@PathVariable("threadId") Long threadId, @RequestBody NewPost post) {
         forumService.createNewPost(threadId,post);
     }

@@ -37,32 +37,22 @@ $( document ).ready(function() {
     $('#btnAdd').click(function(){
         $(this).hide();
         $('#btnSave').show();
-        $('#tbUserName').prop('disabled', false);
-        $('#tbName').prop('disabled', false);
-        $('#tbSurName').prop('disabled', false);
-        $('#tbEmail').prop('disabled', false);
-        $('#tbDofB').prop('disabled', false);
-        $('#tbGender').prop('disabled', false);
-        $('#tbZipCode').prop('disabled', false);
-        $('#tbInterests').prop('disabled', false);
+        $('.profile_main_info_body').toggle();
     });
 
     $('#btnSave').click(function(){
         $(this).hide();
         $('#btnAdd').show();
-        $('#tbUserName').prop('disabled','disabled');
-        $('#tbName').prop('disabled','disabled');
-        $('#tbSurName').prop('disabled','disabled');
-        $('#tbEmail').prop('disabled','disabled');
-        $('#tbDofB').prop('disabled','disabled');
-        $('#tbGender').prop('disabled','disabled');
-        $('#tbZipCode').prop('disabled','disabled');
-        $('#tbInterests').prop('disabled','disabled');
+        $('.profile_main_info_body').toggle();
     });
 
     $(function() {
-        $('#tbDofB').datepicker();
-
+    	 $( "#tbDofB" ).datepicker({
+    		  yearRange: "1930:2012",
+    	      changeMonth: true,
+    	      changeYear: true
+    	 });
     });
+
 });
 	

@@ -8,6 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="../resources/styles/master.css">
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 		<script src="../resources/scripts/profile.js"></script>
 		<script src="../resources/scripts/Data_from_DB_Profile.js"></script>
@@ -28,60 +29,72 @@
 			<span class='profile_name'>User name(login)</span>
 		</div>
 		<div class='profile_main_info_body'>
-		<div>
-		<div class="right">
-			<input type="text" name="tbUserName" id='tbUserName' disabled='disabled'>
-		</div>
-		<div class="left">Username:</div> 
-			
-		</div>
-		<div class="margin-top-5">
-			 <div class="right">
-			 	<input type="text" name="tbEmail" id='tbEmail' disabled='disabled'>
-			 </div>
-			<div class="left">Email:</div>
-		</div>
-		<div class="margin-top-5">
-			<div class="right">
-				<input type="text" name="tbName" id='tbName' disabled='disabled'>
+			<div class="margin-top-5">
+				Username: <label for="lblUsername" id="lblUsername"></label>
 			</div>
-			<div class="left">Name:</div>
-		</div>
-		<div class="margin-top-5">
-			<div class="right">
-				<input type="text" name="tbSurName" id='tbSurName' disabled='disabled'>
+			<div class="margin-top-5">
+				Name: <label for="lblName" id="lblName">-</label>
 			</div>
-			<div class="left">Surname:</div>
-		</div>
-		<div class="margin-top-5">
-			<div class="right">
-				<input type="text" name="tbDofB" id='tbDofB' disabled='disabled'>
+			<div class="margin-top-5">
+				Surname: <label for="lblSurname" id="lblSurname">-</label>
 			</div>
-			<div class="left">Date of birth:</div>
-		</div>
-		<div class="margin-top-5">
-			<div class="right">
-				<input type="text" name="tbGender" id='tbGender' disabled='disabled'>
+			<div class="margin-top-5">
+				Email: <label for="lblEmail" id="lblEmail">-</label>
 			</div>
-			<div class="left">Gender:</div>
-		</div>
-		<div class="margin-top-5">
-			<div class="right">
-				<input type="text" name="tbZipCode" id='tbZipCode' disabled='disabled'>
+			<div class="margin-top-5">
+				Date of birth: <label for="lblDofB" id="lblDofB">-</label>
 			</div>
-			<div class="left">Zip code:</div>
-		</div>
-		<div class="margin-top-5">
-			<div class="right">
-				<input type="text" name="tbInterests" id='tbInterests' disabled='disabled'>
+			<div class="margin-top-5">
+				<label for="male">Gender: Male</label><input type="radio" name="sex" id="radioMale" value="0" disabled="disabled"/>
+				<label for="female">Female</label><input type="radio" name="sex" id="radioFemale" value="1" disabled="disabled"/>
 			</div>
-			<div class="left">Interests:</div>
-		</div>
-		<div class="margin-top-5">
-			<button type="button" name='btnAdd' id='btnAdd' class="silver-flat-button">Edit</button>
-			<button type="button" name='btnSave' id='btnSave' class="clouds-flat-button" onclick="SaveEditedUserData()">Save</button>
+			<div class="margin-top-5">
+				Zip code: <label for="lblZipCode" id="lblZipCode"></label>
+			</div>
+			<div class="margin-top-5">
+				Heart Disease: <label for="lblHeartDisease" id="lblHeartDisease"></label>
+			</div>
+			<div class="margin-top-5">
+				Interests: <label for="lblInterests" id="lblInterests"></label>
+			</div>
+			<div class="margin-top-5">
+				<button type="button" name='btnAdd' id='btnAdd' class="silver-flat-button" onclick="EditUserData()">Edit</button>
 			</div>
 		</div>
+		<div class='profile_main_info_body' style="display: none">
+			<div class="margin-top-5">
+				Username: <input type="text" name="tbUserName" id='tbUserName' disabled="disabled">
+			</div>
+			<div class="margin-top-5">
+				Name: <input type="text" name="tbName" id='tbName'>
+			</div>
+			<div class="margin-top-5">
+				Surname: <input type="text" name="tbSurName" id='tbSurName'>
+			</div>
+			<div class="margin-top-5">
+				Email: <input type="text" name="tbEmail" id='tbEmail'>
+			</div>
+			<div class="margin-top-5">
+				Date of Birth: <input type="text" name="tbDofB" id='tbDofB'>
+			</div>
+			<div class="margin-top-5">
+				<label for="male">Gender: Male<input type="radio" name="sex" id="radioMale1" value="0"></label>
+				<label for="female">Female<input type="radio" name="sex" id="radioFemale1" value="1"></label>
+			</div>
+			<div class="margin-top-5">
+				Zip code: <input type="text" name="tbZipCode" id='tbZipCode'>
+			</div>
+			<div class="margin-top-5">
+				Heart Disease: <input type="text" name="tbHeartDisease" id='tbHeartDisease'>
+			</div>
+			<div class="margin-top-5">
+				Interests: <input type="text" name="tbInterests" id='tbInterests'>
+			</div>
+				<div class="margin-top-5">
+				<button type="button" name='btnSave' id='btnSave' class="clouds-flat-button" onclick="SaveEditedUserData()">Save</button>
+			</div>
+		</div>
+		
 	</div>
 	<div class ='profile_stat'>
 		<ul class='sub_tabs'>

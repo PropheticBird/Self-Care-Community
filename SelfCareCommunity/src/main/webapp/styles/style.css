@@ -45,7 +45,7 @@ margin-top:10px;
 }
 .profile_stat{
 position: absolute;
-margin: 300px 10px 10px 10px;
+margin: 410px 10px 10px 10px;
 width: 97%;
 }
 .sub_tabs{
@@ -118,3 +118,9 @@ width: 97%;
 .margin-top-5{
 	margin-top: 5px;
 }
+
+label{
+	margin-right: -80px;
+}
+
+

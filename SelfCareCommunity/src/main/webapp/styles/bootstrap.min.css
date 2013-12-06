@@ -12,32 +12,18 @@
 	color: #777;
 	}
 	.forum_category{
+	background: #f4f4f4;
+	 vertical-align: center;
+   text-align: center;
 	font-size: 16px;
-	
-
+	width: 280px;
+	border: 1px solid #777;
 	cursor:	pointer;
-	padding: 8px;
+	float:left;
+	padding: 12px;
+	margin: 2px;
 	}
-	.category_name_t{
-	float: left;
-	
+	.forum_category a{
+	color: #777;
+	 text-decoration: none;
 	}
-	.category_posts_t{
-	float: right;
-	margin-right: 60px;
-	}
-	.category_last_t{
-	float: right;
-	margin-right: 0px;
-	width: 90px;
-	
-	}
-	.categ_header{
-		color: #777;
-		margin-bottom: 20px;
-		font-size: 18px;
-		border-bottom:1px solid #ccc;
-		padding:5px;
-	}
-	.grey_background{
-	background: #eee;

@@ -2,6 +2,7 @@ package com.lnu.bean;
 
 import com.lnu.bean.view.Author;
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 
@@ -33,6 +34,9 @@ public class Thread{
 
     @Transient
     private Author author;
+
+    @Formula(value = "(select count(*) from posts where posts.thread_id=id)")
+    private Long postCount;
 
     public Long getId() {
         return id;
@@ -72,5 +76,13 @@ public class Thread{
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public Long getPostCount() {
+        return postCount;
+    }
+
+    public void setPostCount(Long postCount) {
+        this.postCount = postCount;
     }
 }

@@ -21,19 +21,20 @@
 
 	$("a").click(function(){
 		var link=$(this);
-		var url="/SelfCareCommunity/service/thread/"+link.attr('id')+"/posts";
+		var url="/SelfCareCommunity/service/thread/"+link.attr('id')+"/posts/page/1";
 			//alert("1");
 			//alert(href);
 		$.ajax({
 			url: url,
 			type: "get",
 			dataType: "json",
-			success: function(data){
+			success: function(result){
 			//alert("1");
 			//var obj=$.evalJSON(data);
 			//alert(data[0].id);
 			//alert(data[0].author.name)
 			$("#container").html("<div id='postList'></div>");
+			data=result.data;
 			for(var i=0;i<data.length;i++){
 				
 				var id=data[i].id;

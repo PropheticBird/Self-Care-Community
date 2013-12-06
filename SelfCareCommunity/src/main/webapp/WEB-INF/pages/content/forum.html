@@ -8,9 +8,7 @@
     <script src="../resources/scripts/bootstrap.min.js"></script>
     <script src="../resources/scripts/jquery.js"></script>
     <script src="../resources/scripts/jquery.loadTemplate-1.3.2.min.js"></script>
-    
-    
-    
+     
     <style>
     body{
        margin-bottom: 40px;
@@ -32,7 +30,7 @@
         
     	//alert(params['id']);
     	
-    	getThreads(params['id'],1);
+    	getThreads(params['categoryId'],1);
     	
     	function getThreads(id,pageNum){
     		    		
@@ -49,9 +47,9 @@
     					var id=data[i].id;
     					var author=data[i].author.name;
     					var displayName=data[i].displayName;
-    					var postNum=10;
+    					var postNum="10";
     			
-    					$("#threadList").append("<tr id='thread"+id+"'></tr>");
+    					$("#threadList").append("<div id='thread"+id+"'></div>");
     					$("#thread"+id).loadTemplate("template/thread.html",
     					{
 	    					author: author,
@@ -59,6 +57,7 @@
 	    					displayName:displayName,
 	    					postNum:postNum
     					});
+    					
     			}			
     			}
     			});
@@ -85,16 +84,11 @@
 
 <div id="container" class="span9 offset3">
 
-<h3>Category1</h3>
+<h3 id="title">Category1</h3>
 
-<table class="table table-hover">
-   <thead>
-    <tr>
-    </tr>
-  </thead>
-  <tbody id="threadList">
-  </tbody>
-</table>
+
+  <div id="threadList">
+  </div>
 
 </div>
 

@@ -18,24 +18,12 @@
     </style>
     
     <script>
-    var prmstr = window.location.search.substr(1);
-    var prmarr = prmstr.split ("&");
-    var params = {};
-
-    for ( var i = 0; i < prmarr.length; i++) {
-        var tmparr = prmarr[i].split("=");
-        params[tmparr[0]] = decodeURIComponent(tmparr[1]);
-    }
-   
-	
-	//alert(params['id']);
-	getPosts(params['id'],1);
-	//alert(params['displayName']);
-	
-	
-	function getPosts(id,pageNum){
-		var url="/SelfCareCommunity/service/thread/"+id+"/posts/page/"+pageNum;
-
+    var currentPage=0;
+    var prePage=0;
+    var restPages=0;
+    var threadId;
+    
+    function getPosts(url){
 		$.ajax({
 			url: url,
 			type: "get",
@@ -65,18 +53,85 @@
 			}
 			});
 		}	
-
+	
+	function page(item){
+		//alert(item.parent().attr("class"));
+		//alert(item.innerHTML);
+		getPosts(item.href);
+		prePage=currentPage;
+		currentPage=parseInt(item.innerHTML);
+		$("#page"+prePage).parent().attr("class","");
+		$("#page"+currentPage).parent().attr("class","active");
+		if(currentPage==1)
+			$("#pagePre").parent().attr("class","active");
+		else
+		{
+			$("#pagePre").parent().attr("class","");
+			$("#pagePre").attr("href","/SelfCareCommunity/service/thread/"+threadId+"/posts/page/"+(currentPage-1));
+			$("#pageNext").attr("href","/SelfCareCommunity/service/thread/"+threadId+"/posts/page/"+(currentPage+1));
+		}
+		
+		
+	}
 	
 	$(function(){
 		
+		
+		 var prmstr = window.location.search.substr(1);
+		    var prmarr = prmstr.split ("&");
+		    var params = {};
+
+		    for ( var i = 0; i < prmarr.length; i++) {
+		        var tmparr = prmarr[i].split("=");
+		        params[tmparr[0]] = decodeURIComponent(tmparr[1]);
+		    }
+		   
+			
+			//alert(params['id']);
+			getPosts("/SelfCareCommunity/service/thread/"+params['id']+"/posts/page/1");
+			//alert(params['displayName']);
+			//alert(params['postCount']);
+			var postCount=parseInt(params['postCount']);
+			var n=parseInt(postCount/5)+1;
+			restPages=n-5;
+			currentPage=1;
+			prePage=1;
+			threadId=params['id'];
+			//alert(n);
+			//alert($("#page1").attr("href"))
+			$("#pagePre").parent().attr("class","active");
+			$("#page1").parent().attr("class","active");
+			if(restPages<0)
+			{
+				for(var i=1;i<=n;i++){
+					$("#page"+i).attr("href", "/SelfCareCommunity/service/thread/"+params['id']+"/posts/page/"+i);
+					//alert($("#page"+i).attr("href"));
+				}
+				for(var i=n+1;i<=5;i++){
+					$("#page"+i).hide();
+				}
+				$("#pageNext").attr("href","/SelfCareCommunity/service/thread/"+params['id']+"/posts/page/2");
+			}
+			else{
+				for(var i=1;i<=5;i++){
+					$("#page"+i).attr("href", "/SelfCareCommunity/service/thread/"+params['id']+"/posts/page/"+i);
+				}
+				$("#pageNext").attr("href","/SelfCareCommunity/service/thread/"+params['id']+"/posts/page/2");
+			}
+
+		
+			
 		$("#threadId").text(params['id']);
 		$("#title").text(params['displayName']);
 		
-		$(".page").click(function(){
-			//alert($(".page").attr("href"));
-			
+		/*
+		$("a.page").click(function(){
+			alert($("#page1").attr("href"));
+			getPosts($("a.page").attr("href"));
 			return false;
-		});
+		});*/
+		
+
 		
 		$("#btnPost").click(function(){
 			var id=$("#threadId").html();
@@ -138,7 +193,13 @@
 	
 	<div class="pagination">
   	  <ul id="page" class="pull-right">
-  	      <li><a href="/SelfCareCommunity/service/thread/1/posts/page/1" class="page">1</a></li>
+  	  	<li class=""><a href="" onclick="page(this);return false;" id="pagePre">&laquo;</a></li>
+    	<li class=""><a href="" onclick="page(this);return false;" id="page1">1</a></li>
+    	<li class=""><a href=""  onclick="page(this);return false;" id="page2">2</a></li>
+    	<li class=""><a href=""  onclick="page(this);return false;" id="page3">3</a></li>
+     	<li class=""><a href=""  onclick="page(this);return false;" id="page4">4</a></li>
+     	<li class=""><a href="" onclick="page(this);return false;"  id="page5">5</a></li>
+    	<li class=""><a href="" onclick="page(this);return false;"  id="pageNext">&raquo;</a></li>
   	  </ul>
 	</div>
 	

@@ -24,17 +24,17 @@ $(function(){
 				  success: function(){
 					  //alert("1");
 					  //$("#postSuccess").alert();
-					  //$("#postSuccess").show();
+					  $("#postSuccess").show();
 
 				  },
 				  error: function(xhr, ajaxOptions, thrownError){
 					  //console.log(xhr.status+"  "+thrownError);
 					  //$("#postFail").alert();
-					  //$("#postFail").show();
+					  $("#postFail").show();
 				  }
 				  
 			});
-			$("#postSuccess").show();
+			//$("#postSuccess").show();
 			return false;
 		}
 	});
@@ -58,8 +58,8 @@ $(function(){
 	</div>
 	
     <div class="span9">
-    	<form id="addPost">
-    		<span id="threadID" data-content="threadID" style="display:none"></span>
+    	<form>
+    		<span id="threadId" data-content="threadId" style="display:none"></span>
         	<h4>Reply to this topic</h4>
             <textarea class="field span9" rows="6" id="content" required></textarea>
             <div class="pull-right">

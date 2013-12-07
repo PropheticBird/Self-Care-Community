@@ -14,11 +14,7 @@
        margin-bottom: 40px;
     }
     </style>
-    <script>
-    
-    
-    $(function(){
-    	
+    <script>    	
     	var prmstr = window.location.search.substr(1);
         var prmarr = prmstr.split ("&");
         var params = {};
@@ -47,24 +43,63 @@
     					var id=data[i].id;
     					var author=data[i].author.name;
     					var displayName=data[i].displayName;
-    					var postNum="10";
+    					var postCount=data[i].postCount;
     			
     					$("#threadList").append("<div id='thread"+id+"'></div>");
     					$("#thread"+id).loadTemplate("template/thread.html",
     					{
 	    					author: author,
-	    					url: "/SelfCareCommunity/content/view.html?id="+id,
+	    					url: "/SelfCareCommunity/content/view.html?id="+id+"&displayName="+displayName+"&postCount="+postCount,
 	    					displayName:displayName,
-	    					postNum:postNum
-    					});
-    					
+	    					postCount:postCount
+    					});		
     			}			
     			}
     			});
-    	}
-   
-	});
+    		}
+    	
+    	$(function(){
+    		
+    		$("#categoryId").text(params['categoryId']);    		
+    		
+    		$("#btnThread").click(function(){
+    			
+    			var id=$("#categoryId").text();
+    			var topic=$.trim($("#topic").val());
+    			var content=$.trim($("#content").val());
+    			    			
+    			var url="/SelfCareCommunity/service/category/"+id+"/newthread";
+    			//alert(url);
+    			if(content.length==0 || topic.length==0)
+    				return false;
+    			else{
+    				$.ajax({
+    					  url: url,
+    					  type: "POST",
+    					  dataType: "json",
+    					  contentType: 'application/json; charset=utf-8',
+    					  data: JSON.stringify({ "topic":topic, "content":content}),
+    					  success: function(){
+    						  //alert("1");
+    						  //$("#postSuccess").alert();
+    						  $("#postSuccess").show();
 
+    					  },
+    					  error: function(xhr, ajaxOptions, thrownError){
+    						  //console.log(xhr.status+"  "+thrownError);
+    						  //$("#postFail").alert();
+    						  $("#postFail").show();
+    					  }
+    					  
+    				});
+    				//$("#postSuccess").show();
+    				return false;
+    			}
+    			
+    			
+    		});
+    	});
+    	
    </script>
 
  </head>
@@ -81,16 +116,40 @@
   </div>
 </div>
 
-
 <div id="container" class="span9 offset3">
-
-<h3 id="title">Category1</h3>
-
-
-  <div id="threadList">
-  </div>
-
+	<h3 id="title">Category1</h3>
+	<div id="threadList">
+	</div>
+	
+	<div id="addThread">
+	<div class="row">
+	
+	<div class="span5 offet2">
+	<div id="postSuccess"class="alert alert-success fade in hide" data-alert="alert">
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<strong>Post success!</strong> 
+	</div>
+	
+	<div id="postFail" class="alert alert-error fade in hide" data-alert="alert">
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<strong>Post fail!</strong> 
+	</div>
+	</div>
+	
+    <div class="span9">
+     	 <form>
+          	  <span id="categoryId" style="display:none"></span>
+              <h4>Add a topic</h4>
+                 <input type="text" class="span6" id="topic" placeholder="Type something about the topic">
+                 <textarea class="field span9" rows="6" id="content"></textarea>
+                 <div class="pull-right">
+                 <button id="btnThread"class="btn btn-info" type="submit">Submit</button></div>
+          </form>
+   </div>
+</div>
+	</div>
 </div>
 
- </body>
+
+</body>
 </html>

@@ -16,6 +16,7 @@
        margin-bottom: 40px;
     }
     </style>
+    
     <script>
     var prmstr = window.location.search.substr(1);
     var prmarr = prmstr.split ("&");
@@ -23,11 +24,14 @@
 
     for ( var i = 0; i < prmarr.length; i++) {
         var tmparr = prmarr[i].split("=");
-        params[tmparr[0]] = tmparr[1];
+        params[tmparr[0]] = decodeURIComponent(tmparr[1]);
     }
-    
+   
+	
 	//alert(params['id']);
 	getPosts(params['id'],1);
+	//alert(params['displayName']);
+	
 	
 	function getPosts(id,pageNum){
 		var url="/SelfCareCommunity/service/thread/"+id+"/posts/page/"+pageNum;
@@ -38,7 +42,7 @@
 			dataType: "json",
 			success: function(result){
 
-			$("#container").html("<div id='postList'></div>");
+			$("#postList").html("");
 				data=result.data;
 				for(var i=0;i<data.length;i++){
 			
@@ -58,13 +62,56 @@
 						likes: likes+" likes"
 					});
 			}
-			$("#postList").append("<div id='addPost'></div>");
-			$("#addPost").loadTemplate("template/addPost.html",{
-			threadID: id
-			});
 			}
 			});
-	}
+		}	
+
+	
+	$(function(){
+		
+		$("#threadId").text(params['id']);
+		$("#title").text(params['displayName']);
+		
+		$(".page").click(function(){
+			//alert($(".page").attr("href"));
+			
+			return false;
+		});
+		
+		$("#btnPost").click(function(){
+			var id=$("#threadId").html();
+			var content=$.trim($("#content").val());
+			var url="/SelfCareCommunity/service/thread/"+id+"/newpost";
+			//alert(url);
+			if(content.length==0)
+				return false;
+			else{
+				$.ajax({
+					  url: url,
+					  type: "POST",
+					  dataType: "json",
+					  contentType: 'application/json; charset=utf-8',
+					  data: JSON.stringify({ "content":content}),
+					  success: function(){
+						  //alert("1");
+						  //$("#postSuccess").alert();
+						  $("#postSuccess").show();
+
+					  },
+					  error: function(xhr, ajaxOptions, thrownError){
+						  //console.log(xhr.status+"  "+thrownError);
+						  //$("#postFail").alert();
+						  $("#postFail").show();
+					  }
+					  
+				});
+				//$("#postSuccess").show();
+				return false;
+			}
+		});
+		
+	});
+	
   	 </script>
 
  </head>
@@ -85,7 +132,45 @@
 
 
 <div id="container" class="span9 offset3">
+	<h3 id="title"></h3>
+	<div id="postList">
+	</div>
 	
+	<div class="pagination">
+  	  <ul id="page" class="pull-right">
+  	      <li><a href="/SelfCareCommunity/service/thread/1/posts/page/1" class="page">1</a></li>
+  	  </ul>
+	</div>
+	
+	<div id="addPost">
+	<div class="row">
+
+	<div class="span5 offet2">
+	<div id="postSuccess"class="alert alert-success fade in hide" data-alert="alert">
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<strong>Post success!</strong> 
+	</div>
+	
+	<div id="postFail" class="alert alert-error fade in hide" data-alert="alert">
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<strong>Post fail!</strong> 
+	</div>
+	</div>
+	
+    <div class="span9">
+    	<form>
+    		<span id="threadId" style="display:none"></span>
+        	<h4>Reply to this topic</h4>
+            <textarea class="field span9" rows="6" id="content" required></textarea>
+            <div class="pull-right">
+            <button id="btnPost" class="btn btn-info" type="submit">Submit</button>
+            </div>
+        </form>
+   </div>
+</div>
+	</div>
+	
+
 </div>
 
 

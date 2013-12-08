@@ -17,7 +17,7 @@
 		$.getJSON(url, function(data) {
 			var categories='';
 			for(var i=0; i<data.length;i++){
-				categories+="<div class='forum_category'><a href='forum.html?categoryId="+ data[i].id +"&threadCount="+data[i].threadCount+"'>"+ data[i].displayName+' ('+data[i].threadCount+')' +'</a></div>';
+				categories+="<div class='forum_category'><a href='forum.html?categoryId="+ data[i].id +"&threadCount="+data[i].threadCount+"&categName="+data[i].displayName+"'>"+ data[i].displayName+' ('+data[i].threadCount+')' +'</a></div>';
 				
 			}
 			$('#threadList').html(categories);

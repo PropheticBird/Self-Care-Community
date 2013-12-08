@@ -1,6 +1,7 @@
 package com.lnu.bean;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -21,6 +22,9 @@ public class Category {
     @Column(name = "Display_Name")
     private String displayName;
 
+    @Formula(value = "(select count(*) from threads where threads.category_id=id)")
+    private Long threadCount;
+
     public Long getId() {
         return id;
     }
@@ -35,5 +39,13 @@ public class Category {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
+    }
+
+    public Long getThreadCount() {
+        return threadCount;
+    }
+
+    public void setThreadCount(Long threadCount) {
+        this.threadCount = threadCount;
     }
 }

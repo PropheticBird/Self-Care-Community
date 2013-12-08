@@ -51,10 +51,34 @@ public class ForumJsonController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/service/post/{postId}/like", method = RequestMethod.PUT)
+    public Result like(@PathVariable("postId") Long postId) {
+        try {
+            forumService.like(postId,true);
+        }catch (Exception e){
+            return Result.FAIL;
+        }
+        return Result.OK;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/service/post/{postId}/like", method = RequestMethod.DELETE)
+    public Result newThreadInCategory(@PathVariable("postId") Long postId) {
+        try {
+            forumService.like(postId,false);
+        }catch (Exception e){
+            return Result.FAIL;
+        }
+        return Result.OK;
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/service/thread/{threadId}/posts/page/{pageNumber}", method = RequestMethod.GET)
     public Page<Post> getPostsForThread(@PathVariable("threadId") Long threadId,@PathVariable("pageNumber") Integer pageNumber) {
         return forumService.listPostsForThread(threadId,pageNumber);
     }
+
+
 
     @ResponseBody
     @RequestMapping(value = "/service/thread/{threadId}/newpost", method = RequestMethod.POST)

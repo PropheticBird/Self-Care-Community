@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * User: igor
@@ -87,5 +86,17 @@ public class ForumDaoImpl implements ForumDao {
         Query query = session.createQuery("select count(*) from Thread where category.id=:categoryId");
         query.setParameter("categoryId",categoryId);
         return (Long) query.uniqueResult();
+    }
+
+    @Override
+    public Post findPostById(Long postId) {
+        Session session = sessionFactory.getCurrentSession();
+        return (Post) session.get(Post.class,postId);
+    }
+
+    @Override
+    public void updatePost(Post post) {
+        Session session = sessionFactory.getCurrentSession();
+        session.update(post);
     }
 }

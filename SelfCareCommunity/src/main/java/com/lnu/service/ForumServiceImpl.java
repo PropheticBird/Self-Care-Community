@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 /**
  * User: igor
@@ -93,5 +92,18 @@ public class ForumServiceImpl implements ForumService {
         newPostBean.setContent(postView.getContent());
         newPostBean.setPerson(authorPerson);
         forumDao.savePost(newPostBean);
+    }
+
+    @Override
+    @Transactional
+    public void like(Long postId, boolean increaseLikes) {
+        Post post = forumDao.findPostById(postId);
+        if(increaseLikes){
+            post.setLikes(post.getLikes()+1);
+        } else {
+            post.setLikes(post.getLikes()-1);
+        }
+
+        forumDao.updatePost(post);
     }
 }

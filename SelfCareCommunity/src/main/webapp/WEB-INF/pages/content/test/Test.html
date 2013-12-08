@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple page with one button to test web services</title>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<body>
+
+<div>
+    <button id = "send">
+        Submit
+
+    </button>
+</div>
+
+<script>
+        $("#send").click(function(){
+            var url="/SelfCareCommunity/service/post/1/like";
+
+            $.ajax({
+                url: url,
+                type: "DELETE",
+                //  dataType: "json",
+                //  contentType: 'application/json; charset=utf-8',
+                //  data: JSON.stringify({ "content":content}),
+                success: function(data){
+                    console.log(data.result);
+                },
+                error: function(xhr, ajaxOptions, thrownError){
+                    console.log(xhr.status+"  "+thrownError);
+
+                }
+            });
+            return false;
+    });
+</script>
+</body>
+</html>

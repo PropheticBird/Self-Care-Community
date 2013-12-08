@@ -24,4 +24,6 @@ public interface ForumService {
     void createNewThread(Long categoryId, NewThread thread);
 
     void createNewPost(Long threadId, NewPost post);
+
+    void like(Long postId, boolean b);
 }

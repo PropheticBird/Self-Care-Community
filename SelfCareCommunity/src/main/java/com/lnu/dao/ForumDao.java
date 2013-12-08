@@ -32,4 +32,8 @@ public interface ForumDao {
     Long countdPostsForThread(Long threadId);
 
     Long countThreadsForCategory(Long categoryId);
+
+    Post findPostById(Long postId);
+
+    void updatePost(Post post);
 }

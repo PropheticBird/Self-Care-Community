@@ -22,8 +22,8 @@
 			}
 			$('#threadList').html(categories);
 			$('.forum_category').bind( "click", function() {
-				var url = $(this).children('a').location.href; 
-				$(this).location.href = url; 
+				var url = $(this).children('a').attr('href'); 
+				location.href = url;
 			});
 			$('.forum_category').hover(function() {
 				$('.forum_category').css('border',' 1px solid #777');
@@ -67,29 +67,4 @@
 </div>
 
  </body>
-<script>
-$( document ).ready(function() {
-	
-	var url = '../service/categories';
-	$.getJSON(url, function(data) {
-		var categories='';
-		for(var i=0; i<data.length;i++){
-			categories+="<div class='forum_category'><a href='forum.html?categoryId="+ data[i].id +"'>"+ data[i].displayName+'</a></div>';
-			
-		}
-		$('#threadList').html(categories);
-		$('.forum_category').bind( "click", function() {
-			var url = $(this).children('a').attr('href'); 
-			location.href = url;
-		});
-		$('.forum_category').hover(function() {
-			$('.forum_category').css('border',' 1px solid #777');
-			$(this).css('border',' 1px solid #0000ff');
-			
-		});
-	});
-	
-});
-
-</script>
 </html>

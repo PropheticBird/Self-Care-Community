@@ -24,10 +24,9 @@
         
         for ( var i = 0; i < prmarr.length; i++) {
             var tmparr = prmarr[i].split("=");
-            params[tmparr[0]] = tmparr[1];
+            params[tmparr[0]] = decodeURIComponent(tmparr[1]);
         }
-        
-       
+                
         function page(item){
         	console.log(item.id);
         	
@@ -123,6 +122,9 @@
     		}
     	
     	$(function(){
+    		
+            $("#title").text(params['categName']);
+
 	    	idCat= params['categoryId']; // used for getting the category id from URL
 			
 	    	var threadCount=params['threadCount'];	
@@ -190,13 +192,13 @@
     					  success: function(){
     						  //alert("1");
     						  //$("#postSuccess").alert();
-    						  $("#postSuccess").show();
+    						  $("#threadSuccess").show();
 
     					  },
     					  error: function(xhr, ajaxOptions, thrownError){
     						  //console.log(xhr.status+"  "+thrownError);
     						  //$("#postFail").alert();
-    						  $("#postFail").show();
+    						  $("#threadFail").show();
     					  }
     					  
     				});
@@ -225,8 +227,10 @@
   </div>
 </div>
 
-<div id="container" class="span9 offset3">
-	<h3 id="title">Category1 - Threads</h3>
+<div id="container" style="display:none" class="span9 offset3">
+
+	<h3 id="title"></h3>
+	
 	<div id="threadList">
 	</div>
 	
@@ -234,13 +238,13 @@
 	<div class="row">
 	
 	<div class="span5 offet2">
-		<div id="postSuccess"class="alert alert-success fade in hide" data-alert="alert">
-	  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<div id="threadSuccess"class="alert alert-success fade in hide" data-alert="alert">
+	  		<button type="button" class="close" data-dismiss="alert" onclick="$(this).parent().hide()">&times;</button>
 	  		<strong>Post success!</strong> 
 		</div>
 	
-		<div id="postFail" class="alert alert-error fade in hide" data-alert="alert">
-	  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<div id="threadFail" class="alert alert-error fade in hide" data-alert="alert">
+	  		<button type="button" class="close" data-dismiss="alert" onclick="$(this).parent().hide()">&times;</button>
 	  		<strong>Post fail!</strong> 
 		</div>
 	</div>

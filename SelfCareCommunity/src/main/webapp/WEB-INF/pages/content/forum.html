@@ -14,20 +14,7 @@
        margin-bottom: 40px;
     }
     </style>
-    <script>    	
-    	var prmstr = window.location.search.substr(1);
-        var prmarr = prmstr.split ("&");
-        var params = {};
-
-        for ( var i = 0; i < prmarr.length; i++) {
-            var tmparr = prmarr[i].split("=");
-            params[tmparr[0]] = tmparr[1];
-        }
-        
-    	//alert(params['id']);
-    	
-    	getThreads(params['categoryId'],1);
-    	
+    <script>    	 	    	
     	function getThreads(id,pageNum){
     		    		
     		var url="/SelfCareCommunity/service/category/"+id+"/threads/page/"+pageNum;
@@ -53,12 +40,28 @@
 	    					displayName:displayName,
 	    					postCount:postCount
     					});		
-    			}			
+    			}
+    				
+    	        	$("#container").show();
     			}
     			});
     		}
     	
     	$(function(){
+    		
+    		
+    		var prmstr = window.location.search.substr(1);
+            var prmarr = prmstr.split ("&");
+            var params = {};
+
+            for ( var i = 0; i < prmarr.length; i++) {
+                var tmparr = prmarr[i].split("=");
+                params[tmparr[0]] = tmparr[1];
+            }
+            
+        	//alert(params['id']);
+        	
+        	getThreads(params['categoryId'],1);
     		
     		$("#categoryId").text(params['categoryId']);    		
     		
@@ -116,7 +119,7 @@
   </div>
 </div>
 
-<div id="container" class="span9 offset3">
+<div id="container" style="display:none;" class="span9 offset3">
 	<h3 id="title">Category1</h3>
 	<div id="threadList">
 	</div>

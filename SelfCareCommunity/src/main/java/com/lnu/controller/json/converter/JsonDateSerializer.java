@@ -16,7 +16,7 @@ import java.util.Date;
  */
 public class JsonDateSerializer extends JsonSerializer<Date> {
 
-    private SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+    private SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
     @Override
     public void serialize(Date date, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {

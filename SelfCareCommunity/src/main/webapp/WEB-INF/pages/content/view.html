@@ -38,17 +38,17 @@
         
       	 var url="/SelfCareCommunity/service/post/"+id+"/like";
       	 
-      	
+      	//alert($(item).parent().parent().find("p")[1].innerHTML);
       	 if(identify=="1"){
       		 $.ajax({
       			 url:url,
       			 type:"PUT",
       			 success:function(result){
       
-      				var like=$(item).parent().parent().find("p")[2];
+      				var like=$(item).parent().parent().find("p")[1];
       				var likeContent=like.innerHTML;
       				var num=parseInt(likeContent.replace(/[^\d]/g,''))+1;
-      				$(item).parent().parent().find("p")[2].innerHTML=num+" likes";	 
+      				$(item).parent().parent().find("p")[1].innerHTML=num+" recommends";	 
       						 
       			 }
       		 });
@@ -58,15 +58,17 @@
       			 url:url,
       			 type:"DELETE",
       			 success:function(result){
-      				var like=$(item).parent().parent().find("p")[2];
+      				var like=$(item).parent().parent().find("p")[1];
       				var likeContent=like.innerHTML;
       				var num=parseInt(likeContent.replace(/[^\d]/g,''));
      				if(num>0)
      					num=num-1;
-     				$(item).parent().parent().find("p")[2].innerHTML=num+" likes";	   			 
+     				$(item).parent().parent().find("p")[1].innerHTML=num+" likes";	   			 
      			}
       		 });
       	 }
+      	 
+      	$(item).attr("disabled","true");
       	 
        }
     
@@ -106,7 +108,7 @@
 						author: author,
 						content: content,
 						date: date,
-						likes: likes+" likes",
+						likes: likes+" recommends",
 						postId: data[i].id
 					});
 			}
@@ -236,8 +238,7 @@
         </script>
 </div>
 
-
-<div id="container" style="display:none" class="span9 offset3">
+<div id="container" style="display:none" class="span10 offset3">
 	<h3 id="title"></h3>
 	<div id="postList">
 	</div>
@@ -263,11 +264,11 @@
 	</div>
 	</div>
 	
-    <div class="span9">
+    <div class="span10">
     	<form>
     		<span id="threadId" style="display:none"></span>
         	<h4>Reply to this topic</h4>
-            <textarea class="field span9" rows="6" id="content" required></textarea>
+            <textarea class="field span10" rows="6" id="content" required></textarea>
             <div class="pull-right">
             <button id="btnPost" class="btn btn-info" type="submit">Submit</button>
             </div>

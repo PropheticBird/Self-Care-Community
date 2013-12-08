@@ -28,8 +28,6 @@
         }
                 
         function page(item){
-        	console.log(item.id);
-        	
         	
         	if (item.id=='pageNext'){
         		getThreads(currentPage+1);
@@ -45,22 +43,7 @@
         		currentPage=parseInt(item.innerHTML);
         		getThreads(item.innerHTML);
         	}
-        		
         	
-        	
-        	/*if () { // in case next page is pressed
-        		getThreads(currentPage+1);
-        		prePage=currentPage;
-        		currentPage++;
-        	}
-        	else{
-        		currentPage=parseInt(item.innerHTML);
-        	
-        	}
-        		*/
-        	
-    		
-    		
     		$("#page"+prePage).parent().attr("class","");
     		$("#page"+currentPage).parent().attr("class","active");
     		
@@ -129,7 +112,7 @@
 			
 	    	var threadCount=params['threadCount'];	
     		var n=parseInt(threadCount/10)+1;
-    		window.alert(threadCount);
+    		
 			prePage=1;
 			
 			$("#pagePre").parent().attr("class","active");
@@ -139,13 +122,12 @@
 				element = '<li><a onclick="page(this);return false;"id="pagePre">&laquo</a></li>';
 				$("#page").append(element);
 				for(var i=1;i<=n;i++){
-					console.log(i);
+					
 					element = '<li><a onclick="page(this);return false;"id="page'+i+'">'+i+'</a></li>';
 					$("#page").append(element);
 				}
 				element = '<li><a onclick="page(this);return false;"id="pageNext">&raquo;</a></li>';
 				$("#page").append(element);
-				
 							
 			}
 			else{
@@ -155,20 +137,6 @@
 			}
 	    	
 	    	getThreads(idCat);
-    		
-    	/*	
-    		var prmstr = window.location.search.substr(1);
-            var prmarr = prmstr.split ("&");
-            var params = {};
-
-            for ( var i = 0; i < prmarr.length; i++) {
-                var tmparr = prmarr[i].split("=");
-                params[tmparr[0]] = tmparr[1];
-            }*/
-            
-        	//alert(params['id']);
-        	
-        	getThreads(params['categoryId'],1);
     		
     		$("#categoryId").text(idCat);    		
     		

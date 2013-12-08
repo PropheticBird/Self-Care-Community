@@ -21,6 +21,7 @@
     var currentPage=0;
     var prePage=0;
     var restPages=0;
+    var lastPage=false; // this variable is FALSE if it is not the last page and it is TRUE if it is THE LAST PAGE
     var threadId;
     
     
@@ -67,6 +68,20 @@
 			type: "get",
 			dataType: "json",
 			success: function(result){
+			lastPage = result.last;
+			if (lastPage==true){
+				$("#pageNext").hide();
+			} else {
+				$("#pageNext").show();
+					
+			} 
+			if (currentPage==1){
+				$("#pagePre").hide();
+			} else {
+				$("#pagePre").show();
+					
+			}
+			
 			
 			$("#postList").html("");
 				data=result.data;
@@ -94,8 +109,6 @@
 		}	
 	
 	function page(item){
-		//alert(item.parent().attr("class"));
-		//alert(item.innerHTML);
 		getPosts(item.href);
 		prePage=currentPage;
 		currentPage=parseInt(item.innerHTML);
@@ -109,13 +122,9 @@
 			$("#pagePre").attr("href","/SelfCareCommunity/service/thread/"+threadId+"/posts/page/"+(currentPage-1));
 			$("#pageNext").attr("href","/SelfCareCommunity/service/thread/"+threadId+"/posts/page/"+(currentPage+1));
 		}
-		
-		
 	}
 	
 	$(function(){
-		
-		
 		 var prmstr = window.location.search.substr(1);
 		    var prmarr = prmstr.split ("&");
 		    var params = {};
@@ -130,7 +139,9 @@
 			getPosts("/SelfCareCommunity/service/thread/"+params['id']+"/posts/page/1");
 			//alert(params['displayName']);
 			//alert(params['postCount']);
+			
 			var postCount=parseInt(params['postCount']);
+		
 			var n=parseInt(postCount/5)+1;
 			restPages=n-5;
 			currentPage=1;
@@ -144,7 +155,7 @@
 			{
 				for(var i=1;i<=n;i++){
 					$("#page"+i).attr("href", "/SelfCareCommunity/service/thread/"+params['id']+"/posts/page/"+i);
-					//alert($("#page"+i).attr("href"));
+				
 				}
 				for(var i=n+1;i<=5;i++){
 					$("#page"+i).hide();
@@ -157,8 +168,7 @@
 				}
 				$("#pageNext").attr("href","/SelfCareCommunity/service/thread/"+params['id']+"/posts/page/2");
 			}
-
-		
+			
 			
 		$("#threadId").text(params['id']);
 		$("#title").text(params['displayName']);
@@ -226,7 +236,6 @@
 
 <div id="container" style="display:none" class="span9 offset3">
 	<h3 id="title"></h3>
-	
 	<div id="postList">
 	</div>
 	
@@ -234,6 +243,7 @@
   	  <ul id="page" class="pull-right">
   	  	<li class=""><a href="" onclick="page(this);return false;" id="pagePre">&laquo;</a></li>
     	<li class=""><a href="" onclick="page(this);return false;" id="page1">1</a></li>
+    	
     	<li class=""><a href=""  onclick="page(this);return false;" id="page2">2</a></li>
     	<li class=""><a href=""  onclick="page(this);return false;" id="page3">3</a></li>
      	<li class=""><a href=""  onclick="page(this);return false;" id="page4">4</a></li>

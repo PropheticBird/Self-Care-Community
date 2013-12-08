@@ -9,45 +9,64 @@
     <script src="../resources/scripts/jquery.js"></script>
     <script src="../resources/scripts/jquery.loadTemplate-1.3.2.min.js"></script>
  
-  </head>
- <body>
+ 
+	<script>
+	$( document ).ready(function() {
+		
+		var url = '../service/categories';
+		$.getJSON(url, function(data) {
+			var categories='';
+			for(var i=0; i<data.length;i++){
+				categories+="<div class='forum_category'><a href='forum.html?categoryId="+ data[i].id +"&threadCount="+data[i].threadCount+"'>"+ data[i].displayName+' ('+data[i].threadCount+')' +'</a></div>';
+				
+			}
+			$('#threadList').html(categories);
+			$('.forum_category').bind( "click", function() {
+				var url = $(this).children('a').location.href; 
+				$(this).location.href = url; 
+			});
+			$('.forum_category').hover(function() {
+				$('.forum_category').css('border',' 1px solid #777');
+				$(this).css('border',' 1px solid #0000ff');
+				
+			});
+		});
+		
+	});
+	
+	</script>
+</head>
+<body>
 
    <div class="navbar">
-  	<div class="navbar-inner">
-    <a class="brand" href="#">SelfCareCommunity</a>
-    <ul class="nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Link</a></li>
-      <li><a href="#">Link</a></li>
-    </ul>
-  </div>
-</div>
+	  	<div class="navbar-inner">
+	    <a class="brand" href="#">SelfCareCommunity</a>
+	    <ul class="nav">
+	      <li class="active"><a href="#">Home</a></li>
+	      <li><a href="#">Link</a></li>
+	      <li><a href="#">Link</a></li>
+	    </ul>
+	 	 </div>
+	</div>
 
 
 <div id="container" class="offset3">
 
-<div  class="span8">
-	
-	<p class='forum_info'>Welcome to SelfCareCommunitys Forum, a community for medical questions and answers.</p>
-	<p>Connect with others by symptom, side effect, syndrome, surgery, or disease. 
-	Although anyone can view answers, only registered members can ask medical questions. 
-	To get started, browse the topics below:</p>
+	<div  class="span8">
+		
+		<p class='forum_info'>Welcome to SelfCareCommunitys Forum, a community for medical questions and answers.</p>
+		<p>Connect with others by symptom, side effect, syndrome, surgery, or disease. 
+		Although anyone can view answers, only registered members can ask medical questions. 
+		To get started, browse the topics below:</p>
+	</div>
 
-</div>
-
-<div id="threadList" class="span8">
-
-
-</div>
-
-
-</div>
+	<div id="threadList" class="span8">
+	</div>
 
 
 </div>
 
  </body>
-</html>
 <script>
 $( document ).ready(function() {
 	
@@ -73,3 +92,4 @@ $( document ).ready(function() {
 });
 
 </script>
+</html>

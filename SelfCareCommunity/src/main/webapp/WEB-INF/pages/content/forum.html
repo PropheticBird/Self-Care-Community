@@ -14,17 +14,92 @@
        margin-bottom: 40px;
     }
     </style>
-    <script>    	 	    	
-    	function getThreads(id,pageNum){
+    <script>    
+    
+    	var prmstr = window.location.search.substr(1);
+        var prmarr = prmstr.split ("&");
+        var params = {};
+		var idCat = 0; 
+        var currentPage=1;
+        
+        for ( var i = 0; i < prmarr.length; i++) {
+            var tmparr = prmarr[i].split("=");
+            params[tmparr[0]] = tmparr[1];
+        }
+        
+       
+        function page(item){
+        	console.log(item.id);
+        	
+        	
+        	if (item.id=='pageNext'){
+        		getThreads(currentPage+1);
+        		currentPage++;
+            		
+        	}
+			if (item.id=='pagePre'){
+				getThreads(currentPage-1);
+        		currentPage--;
+        	}
+        	
+        	if ($.isNumeric(item.innerHTML)){
+        		currentPage=parseInt(item.innerHTML);
+        		getThreads(item.innerHTML);
+        	}
+        		
+        	
+        	
+        	/*if () { // in case next page is pressed
+        		getThreads(currentPage+1);
+        		prePage=currentPage;
+        		currentPage++;
+        	}
+        	else{
+        		currentPage=parseInt(item.innerHTML);
+        	
+        	}
+        		*/
+        	
+    		
+    		
+    		$("#page"+prePage).parent().attr("class","");
+    		$("#page"+currentPage).parent().attr("class","active");
+    		
+    	
+    		if(currentPage==1)
+    			$("#pagePre").parent().attr("class","active");
+    		else
+    		{
+    			$("#pagePre").parent().attr("class","");
+    			$("#pagePre").attr("href","/SelfCareCommunity/service/category/"+idCat+"/threads/page/"+(currentPage-1));
+    			$("#pageNext").attr("href","/SelfCareCommunity/service/category/"+idCat+"/threads/page/"+(currentPage+1));
+    		}
+    	}
+    		 	    	
+    	function getThreads(pageNum){
     		    		
-    		var url="/SelfCareCommunity/service/category/"+id+"/threads/page/"+pageNum;
+    		var url="/SelfCareCommunity/service/category/"+idCat+"/threads/page/"+pageNum;
 
     		$.ajax({
     			url: url,
     			type: "get",
     			dataType: "json",
-    			success: function(result){    					
+    			success: function(result){    
+    				lastPage = result.last;
     				data=result.data;
+    				if (lastPage==true){
+    					$("#pageNext").hide();
+    				} else {
+    					$("#pageNext").show();
+    						
+    				} 
+    				if (pageNum==1){
+    					$("#pagePre").hide();
+    				} else {
+    					$("#pagePre").show();
+    						
+    				}
+    				$("#threadList").html("");
     				for(var i=0;i<data.length;i++){
     			
     					var id=data[i].id;
@@ -48,6 +123,36 @@
     		}
     	
     	$(function(){
+	    	idCat= params['categoryId']; // used for getting the category id from URL
+			
+	    	var threadCount=params['threadCount'];	
+    		var n=parseInt(threadCount/10)+1;
+    		window.alert(threadCount);
+			prePage=1;
+			
+			$("#pagePre").parent().attr("class","active");
+			$("#page1").parent().attr("class","active");
+			
+			if(n>1)	{
+				element = '<li><a onclick="page(this);return false;"id="pagePre">&laquo</a></li>';
+				$("#page").append(element);
+				for(var i=1;i<=n;i++){
+					console.log(i);
+					element = '<li><a onclick="page(this);return false;"id="page'+i+'">'+i+'</a></li>';
+					$("#page").append(element);
+				}
+				element = '<li><a onclick="page(this);return false;"id="pageNext">&raquo;</a></li>';
+				$("#page").append(element);
+				
+							
+			}
+			else{
+				element = '<li><a onclick="page(this);return false;"id="page1">1</a></li>';
+				$("#page").append(element);
+				
+			}
+	    	
+	    	getThreads(idCat);
     		
     		
     		var prmstr = window.location.search.substr(1);
@@ -63,7 +168,7 @@
         	
         	getThreads(params['categoryId'],1);
     		
-    		$("#categoryId").text(params['categoryId']);    		
+    		$("#categoryId").text(idCat);    		
     		
     		$("#btnThread").click(function(){
     			
@@ -101,6 +206,7 @@
     			
     			
     		});
+    		
     	});
     	
    </script>
@@ -119,8 +225,8 @@
   </div>
 </div>
 
-<div id="container" style="display:none;" class="span9 offset3">
-	<h3 id="title">Category1</h3>
+<div id="container" class="span9 offset3">
+	<h3 id="title">Category1 - Threads</h3>
 	<div id="threadList">
 	</div>
 	
@@ -128,15 +234,21 @@
 	<div class="row">
 	
 	<div class="span5 offet2">
-	<div id="postSuccess"class="alert alert-success fade in hide" data-alert="alert">
-  		<button type="button" class="close" data-dismiss="alert">&times;</button>
-  		<strong>Post success!</strong> 
+		<div id="postSuccess"class="alert alert-success fade in hide" data-alert="alert">
+	  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+	  		<strong>Post success!</strong> 
+		</div>
+	
+		<div id="postFail" class="alert alert-error fade in hide" data-alert="alert">
+	  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+	  		<strong>Post fail!</strong> 
+		</div>
 	</div>
 	
-	<div id="postFail" class="alert alert-error fade in hide" data-alert="alert">
-  		<button type="button" class="close" data-dismiss="alert">&times;</button>
-  		<strong>Post fail!</strong> 
-	</div>
+	<div class="pagination">
+  	  <ul id="page" class="pull-right">
+  	  	
+  	  </ul>
 	</div>
 	
     <div class="span9">

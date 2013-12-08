@@ -9,7 +9,13 @@
  </head>
  
  <script>
- 
+ $(function(){
+		$('a[data-toggle=tooltip]').mouseover(function() { 
+
+			 $(this).tooltip('show'); 
+
+			  }); 	
+ })
  </script>
 <body>
   
@@ -45,8 +51,8 @@
         </div>
         
         <div class="btn-group btn-group-vertical">
-              <button type="button" class="btn" data-alt="postId" onclick="like(this,1)"><i class="icon-chevron-up"></i></button>
-              <button type="button" class="btn" data-alt="postId" onclick="like(this,0)"><i class="icon-chevron-down"></i></button>
+              <button type="button" class="btn" data-alt="postId" onclick="like(this,1)"><a href="#" data-toggle="tooltip" data-placement="right" title="like"><i class="icon-chevron-up"></i></a></button>
+              <button type="button" class="btn" data-alt="postId" onclick="like(this,0)"><a href="#" data-toggle="tooltip" data-placement="right" title="unlike"><i class="icon-chevron-down"></i></a></button>
         </div>
         
      </div>

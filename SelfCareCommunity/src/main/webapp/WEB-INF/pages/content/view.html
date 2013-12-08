@@ -47,7 +47,13 @@
       
       				var like=$(item).parent().parent().find("p")[1];
       				var likeContent=like.innerHTML;
-      				var num=parseInt(likeContent.replace(/[^\d]/g,''))+1;
+      				var num=parseInt(likeContent.replace(/[^\d]/g,''));
+      				if(likeContent.indexOf("-")>=0){
+      					num=0-num;
+          				//alert(num);
+      				}
+      				num=num+1;
+      				//alert(likeContent.replace(/[^(\d | '-')]/g,''));
       				$(item).parent().parent().find("p")[1].innerHTML=num+" recommends";	 
       						 
       			 }
@@ -61,9 +67,12 @@
       				var like=$(item).parent().parent().find("p")[1];
       				var likeContent=like.innerHTML;
       				var num=parseInt(likeContent.replace(/[^\d]/g,''));
-     				if(num>0)
-     					num=num-1;
-     				$(item).parent().parent().find("p")[1].innerHTML=num+" likes";	   			 
+      				if(likeContent.indexOf("-")>=0){
+      					num=0-num;
+          				//alert(num);
+      				}
+      				num=num-1;
+      				$(item).parent().parent().find("p")[1].innerHTML=num+" recommends";	   			 
      			}
       		 });
       	 }

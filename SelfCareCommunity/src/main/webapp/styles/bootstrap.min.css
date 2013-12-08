@@ -12,18 +12,23 @@
 	color: #777;
 	}
 	.forum_category{
-	background: #f4f4f4;
-	 vertical-align: center;
-   text-align: center;
+	background: -webkit-linear-gradient(#fff, #d9d9d9); /* For Safari */
+	background: -o-linear-gradient(#fff, #d9d9d9); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(#fff, #d9d9d9); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#fff, #d9d9d9); /* Standard syntax */
+	
+	vertical-align: center;
+   	text-align: center;
 	font-size: 16px;
 	width: 280px;
-	border: 1px solid #777;
+	border: 1px solid #ddd;
 	cursor:	pointer;
 	float:left;
 	padding: 12px;
 	margin: 2px;
+	border-radius: 7px;
 	}
 	.forum_category a{
-	color: #777;
+	color: rgb(73, 175, 205);
 	 text-decoration: none;
 	}

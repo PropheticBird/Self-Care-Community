@@ -111,16 +111,21 @@ width: 97%;
 
 /*General styles for all pages*/
 
-.margin-top-15{
-	margin-top: 15px;
+
+.param_name{
+float:left;
+	width: 100px;
 }
-
-.margin-top-5{
-	margin-top: 5px;
+.param_value{
+	width:370px;
+	float:left;
+	margin-left:50px;
+	
 }
-
-label{
-	margin-right: -80px;
+.general_div_info{
+	padding: auto;
+	position: relative;
+	width:100%;
+	margin-top:5px;
 }
-
-
+#radioMale, #radioFemale{ margin-top:-2px;margin-left: 10px;}

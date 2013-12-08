@@ -8,6 +8,24 @@
     <script src="../resources/scripts/bootstrap.min.js"></script>
  </head>
  
+ <script>
+ function like(item){
+	 //alert($(item).attr("alt"));
+	 //alert(item.children("span")[0].val());
+	 //return false;
+	 var id=$(item).attr("alt");
+	 var url="/SelfCareCommunity/service/post/"+id+"/like";
+	 
+ }
+ 
+ function unLike(this){
+	 
+ }
+ 
+ $(function(){
+	
+ });
+ </script>
 <body>
   
 
@@ -19,7 +37,7 @@
             </div>
         </div>
 
-        <div class="span8">
+        <div class="span7">
         	<div class="media-body">
                 <h5 class="media-heading" data-content="author"></h5>
                 <p data-content="content"></p>
@@ -32,8 +50,21 @@
             <div class="span2">
             	<p data-content="likes" class="muted"></p>
             </div>
+            
+            <!--  
+            <div class="span1">
+            	<a href="#" onclick="like(this);return false;"><span data-content="likeLink" style="display:none"></span><i class="icon-thumbs-up"></i>like</a>
+            </div>-->
+            
             </div>     
         </div>
+        
+     
+        <div class="btn-group btn-group-vertical">
+              <button type="button" class="btn" data-alt="postId" onclick="like(this)"><i class="icon-chevron-up"></i></button>
+              <button type="button" class="btn" data-alt="postId" onclick="notLike(this)"><i class="icon-chevron-down"></i></button>
+        </div>
+        
      </div>
 </div>
 

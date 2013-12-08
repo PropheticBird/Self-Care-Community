@@ -59,7 +59,7 @@
     	}
     		 	    	
     	function getThreads(pageNum){
-    		    		
+    		    
     		var url="/SelfCareCommunity/service/category/"+idCat+"/threads/page/"+pageNum;
 
     		$.ajax({
@@ -82,6 +82,7 @@
     						
     				}
     				$("#threadList").html("");
+
     				for(var i=0;i<data.length;i++){
     			
     					var id=data[i].id;
@@ -89,6 +90,7 @@
     					var displayName=data[i].displayName;
     					var postCount=data[i].postCount;
     			
+
     					$("#threadList").append("<div id='thread"+id+"'></div>");
     					$("#thread"+id).loadTemplate("template/thread.html",
     					{
@@ -136,7 +138,7 @@
 				
 			}
 	    	
-	    	getThreads(idCat);
+	    	getThreads(1);
     		
     		$("#categoryId").text(idCat);    		
     		

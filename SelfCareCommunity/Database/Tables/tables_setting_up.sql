@@ -41,7 +41,7 @@ CREATE TABLE  IF NOT EXISTS POSTS(
 	Thread_ID int not NULL,
 	Content TEXT,
 	Likes int,
-	Posted_Date DATE,
+	Posted_Date DATETIME,
 FOREIGN KEY (Thread_ID) REFERENCES THREADS (ID),
 FOREIGN KEY ( Author_ID ) REFERENCES PERSONS(ID)
 );

@@ -9,22 +9,7 @@
  </head>
  
  <script>
- function like(item){
-	 //alert($(item).attr("alt"));
-	 //alert(item.children("span")[0].val());
-	 //return false;
-	 var id=$(item).attr("alt");
-	 var url="/SelfCareCommunity/service/post/"+id+"/like";
-	 
- }
  
- function unLike(this){
-	 
- }
- 
- $(function(){
-	
- });
  </script>
 <body>
   
@@ -48,7 +33,7 @@
             	<p data-content="date" class="muted"></p>
             </div>
             <div class="span2">
-            	<p data-content="likes" class="muted"></p>
+            	<p data-content="likes" class="likes muted"></p>
             </div>
             
             <!--  
@@ -59,10 +44,9 @@
             </div>     
         </div>
         
-     
         <div class="btn-group btn-group-vertical">
-              <button type="button" class="btn" data-alt="postId" onclick="like(this)"><i class="icon-chevron-up"></i></button>
-              <button type="button" class="btn" data-alt="postId" onclick="notLike(this)"><i class="icon-chevron-down"></i></button>
+              <button type="button" class="btn" data-alt="postId" onclick="like(this,1)"><i class="icon-chevron-up"></i></button>
+              <button type="button" class="btn" data-alt="postId" onclick="like(this,0)"><i class="icon-chevron-down"></i></button>
         </div>
         
      </div>

@@ -23,23 +23,60 @@
     var restPages=0;
     var threadId;
     
+    
+    function like(item,identify){
+   	 //alert($(item).attr("alt"));
+   	 //alert(item.children("span")[0].val());
+   	 //return false;
+   	 var id=parseInt($(item).attr("alt"));
+   	 
+     //alert($(".likes")[id-1].innerHTML);     
+   	 var url="/SelfCareCommunity/service/post/"+id+"/like";
+   	 if(identify=="1"){
+   		 $.ajax({
+   			 url:url,
+   			 type:"PUT",
+   			 success:function(result){
+   				 var likes=$(".likes")[(id-1)%5].innerHTML;
+   				 var num=parseInt(likes.replace(/[^\d]/g,''))+1;
+   				 $(".likes")[(id-1)%5].innerHTML=num+" likes";
+   			 }
+   		 });
+   	 }
+   	 else{
+   		 $.ajax({
+   			 url:url,
+   			 type:"DELETE",
+   			 success:function(result){
+   				var likes=$(".likes")[(id-1)%5].innerHTML;
+  				var num=parseInt(likes.replace(/[^\d]/g,''));
+  				if(num>0)
+  					num=num-1;
+  				$(".likes")[(id-1)%5].innerHTML=num+" likes";
+   			 }
+   		 });
+   	 }
+   	 
+    }
+    
+    
+    
     function getPosts(url){
 		$.ajax({
 			url: url,
 			type: "get",
 			dataType: "json",
 			success: function(result){
-
+			
 			$("#postList").html("");
 				data=result.data;
 				for(var i=0;i<data.length;i++){
-			
 					var id=data[i].id;
 					var author=data[i].author.name;
 					var content=data[i].content;
 					var date=data[i].postedDate;
 					var likes=data[i].likes;
-			
+								
 					$("#postList").append("<div id='post"+id+"'></div>");
 					$("#post"+id).loadTemplate("template/post.html",
 					{
@@ -189,6 +226,7 @@
 
 <div id="container" class="span9 offset3">
 	<h3 id="title"></h3>
+	
 	<div id="postList">
 	</div>
 	

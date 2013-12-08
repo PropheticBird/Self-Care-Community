@@ -26,36 +26,48 @@
     
     
     function like(item,identify){
-   	
-   	 var id=parseInt($(item).attr("alt"));
-   	
-   	 var url="/SelfCareCommunity/service/post/"+id+"/like";
-   	 if(identify=="1"){
-   		 $.ajax({
-   			 url:url,
-   			 type:"PUT",
-   			 success:function(result){
-   				 var likes=$(".likes")[(id-1)%5].innerHTML;
-   				 var num=parseInt(likes.replace(/[^\d]/g,''))+1;
-   				 $(".likes")[(id-1)%5].innerHTML=num+" likes";
-   			 }
-   		 });
-   	 }
-   	 else{
-   		 $.ajax({
-   			 url:url,
-   			 type:"DELETE",
-   			 success:function(result){
-   				var likes=$(".likes")[(id-1)%5].innerHTML;
-  				var num=parseInt(likes.replace(/[^\d]/g,''));
-  				if(num>0)
-  					num=num-1;
-  				$(".likes")[(id-1)%5].innerHTML=num+" likes";
-   			 }
-   		 });
-   	 }
-   	 
-    }
+        //alert($(item).parent().parent().find("p")[2].innerHTML)
+      	 //alert($(item).attr("alt"));
+      	 //alert(item.children("span")[0].val());
+      	 //return false;
+      	 //alert($(item).attr("alt"));
+      	 var id=parseInt($(item).attr("alt"));
+      	 
+        //alert($(".likes")[0].attr("alt"));
+        
+      	 var url="/SelfCareCommunity/service/post/"+id+"/like";
+      	 
+      	
+      	 if(identify=="1"){
+      		 $.ajax({
+      			 url:url,
+      			 type:"PUT",
+      			 success:function(result){
+      
+      				var like=$(item).parent().parent().find("p")[2];
+      				var likeContent=like.innerHTML;
+      				var num=parseInt(likeContent.replace(/[^\d]/g,''))+1;
+      				$(item).parent().parent().find("p")[2].innerHTML=num+" likes";	 
+      						 
+      			 }
+      		 });
+      	 }
+      	 else{
+      		 $.ajax({
+      			 url:url,
+      			 type:"DELETE",
+      			 success:function(result){
+      				var like=$(item).parent().parent().find("p")[2];
+      				var likeContent=like.innerHTML;
+      				var num=parseInt(likeContent.replace(/[^\d]/g,''));
+     				if(num>0)
+     					num=num-1;
+     				$(item).parent().parent().find("p")[2].innerHTML=num+" likes";	   			 
+     			}
+      		 });
+      	 }
+      	 
+       }
     
     function getPosts(pagNum){
     	var url = "/SelfCareCommunity/service/thread/"+threadId+"/posts/page/"+pagNum;

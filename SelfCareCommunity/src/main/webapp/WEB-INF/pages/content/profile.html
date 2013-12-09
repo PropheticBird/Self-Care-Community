@@ -1,12 +1,10 @@
 <html>
 <title>Profile Page</title>
 <head>
-<link rel="stylesheet" type="text/css" href="../resources/styles/resetcss.css">
-		<link rel="stylesheet" type="text/css" href="../resources/styles/style.css">
-		<link rel="stylesheet" type="text/css" href="../resources/styles/buttons.css">
-		
-		<link rel="stylesheet" type="text/css" href="../resources/styles/master.css">
-		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="../resources/styles/style.css">
+        <link href="../resources/styles/bootstrap.min.css" rel="stylesheet" media="screen">
+        <script src="../resources/scripts/bootstrap.min.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -59,44 +57,48 @@
 				<div class='param_name'>Interests:</div> <div class='param_value' for="lblInterests" id="lblInterests"></div>
 			</div>
 			<div class='general_div_info'>&nbsp;
-				<button type="button" name='btnAdd' id='btnAdd' class="silver-flat-button" onclick="EditUserData()">Edit</button>
+				<button type="button" name='btnEdit' id='btnEdit' class="btn btn-large btn-block btn-info paddedButton" onclick="EditUserData()">Edit</button>
 			</div>
 		</div>
 		<div class='profile_main_info_body' style="display: none">
 			<div class='general_div_info'>&nbsp;
-				<div class='param_name'>Username:</div> <input type="text" name="tbUserName" id='tbUserName' disabled="disabled">
+				<div class='param_name'>Username:</div> <input class="editInfo" type="text" name="tbUserName" id='tbUserName' disabled="disabled">
 			</div>
 			<div class='general_div_info'>&nbsp;
-				<div class='param_name'>Name:</div> <input type="text" name="tbName" id='tbName'>
+				<div class='param_name'>Name:</div> <input class="editInfo" type="text" name="tbName" id='tbName'>
 			</div>
 			<div class='general_div_info'>&nbsp;
-				<div class='param_name'>Surname:</div> <input type="text" name="tbSurName" id='tbSurName'>
+				<div class='param_name'>Surname:</div> <input class="editInfo" type="text" name="tbSurName" id='tbSurName'>
 			</div>
 			<div class='general_div_info'>&nbsp;
-				<div class='param_name'>Email:</div> <input type="text" name="tbEmail" id='tbEmail'>
+				<div class='param_name'>Email:</div> <input class="editInfo" type="text" name="tbEmail" id='tbEmail'>
 			</div>
 			<div class='general_div_info'>&nbsp;
-				<div class='param_name'>Date of Birth:</div> <input type="text" name="tbDofB" id='tbDofB'>
+				<div class='param_name'>Date of Birth:</div> <input class="editInfo" type="text" name="tbDofB" id='tbDofB'>
 			</div>
 			<div class='general_div_info'>&nbsp;
 				<div class='param_name'>Gender:</div>
-				<div class='param_value' for="Male">Male <input type="radio" name="sex" id="radioMale1" value="0" />
-				Female <input type="radio" name="sex" id="radioFemale1" value="1" /></div>
+				<div style="display: inline">
+                    Male <input type="radio" name="sex" id="radioMale1" value="0" />
+				    Female <input type="radio" name="sex" id="radioFemale1" value="1" />
+                </div>
+                &nbsp;
 			</div>
 			<div class='general_div_info'>&nbsp;
-				<div class='param_name'>Zip code: </div><input type="text" name="tbZipCode" id='tbZipCode'>
+				<div class='param_name'>Zip code: </div> <input  style="margin-top: 0px;" class="editInfo" type="text" name="tbZipCode" id='tbZipCode'>
 			</div>
 			<div class='general_div_info'>&nbsp;
-				<div class='param_name'>Heart Disease:</div> <input type="text" name="tbHeartDisease" id='tbHeartDisease'>
+				<div class='param_name'>Heart Disease:</div> <input class="editInfo" type="text" name="tbHeartDisease" id='tbHeartDisease'>
 			</div>
 			<div class='general_div_info'>&nbsp;
-				<div class='param_name'>Interests:</div> <input type="text" name="tbInterests" id='tbInterests'>
+				<div class='param_name'>Interests:</div> <input class="editInfo" type="text" name="tbInterests" id='tbInterests'>
 			</div>
+
 			<div class='general_div_info'>&nbsp;
-				<button type="button" name='btnSave' id='btnSave' class="clouds-flat-button" onclick="SaveEditedUserData()">Save</button>
+				<button type="button" name='btnSave' id='btnSave' class="btn btn-large btn-block btn-info" onclick="SaveEditedUserData()">Save</button>
+                <button type="button" name='btnCancel' id='btnCancel' class="btn btn-large btn-block btn-info" onclick="CancelEdit()">Cancel</button>
 			</div>
 		</div>
-		
 	</div>
 
 </div>

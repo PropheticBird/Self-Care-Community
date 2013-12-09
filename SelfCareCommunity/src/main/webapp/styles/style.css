@@ -104,8 +104,11 @@ width: 97%;
     width: 420px;
 }
 
-.profile_main_info_body input{
+input[type="text"].editInfo{
 	width: 200px;
+    height: 30px;
+    margin-top: -7px;
+
 }
 
 
@@ -120,12 +123,15 @@ float:left;
 	width:370px;
 	float:left;
 	margin-left:50px;
+    margin-bottom: 8px;
 	
 }
 .general_div_info{
-	padding: auto;
-	position: relative;
+	display: block;
 	width:100%;
 	margin-top:5px;
 }
+.paddedButton{ padding: 10px;}
 #radioMale, #radioFemale{ margin-top:-2px;margin-left: 10px;}
+
+#editCanselButton { width: 95px;}

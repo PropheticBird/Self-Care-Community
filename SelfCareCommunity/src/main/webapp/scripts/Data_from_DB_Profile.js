@@ -1,4 +1,3 @@
-
 var radioValue;
 function GetUserData () {
 	var url = window.location.href;

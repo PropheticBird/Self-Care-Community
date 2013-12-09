@@ -11,10 +11,6 @@ var interests;
 var url = composeUrl();
 
 function loadUserData() {
-
-    $("#content").hide();
-    $("#loading").show();
-
 	$.getJSON(url, function(data) {
 		mainfunction(data);
 	});
@@ -32,8 +28,6 @@ function loadUserData() {
         interests = data.person.interest;
 
         updateView();
-        $("#content").show();
-        $("#loading").hide();
 	}
 }
 function updateView(){

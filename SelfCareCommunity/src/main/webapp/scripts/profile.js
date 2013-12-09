@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-
     $('#btnEdit, #btnCancel, #btnSave').click(function(){
         $('.profile_main_info_body').toggle();
     });

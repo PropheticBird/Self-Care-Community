@@ -122,6 +122,9 @@ input[type="text"].editInfo {
     margin-top: -7px;
 
 }
+textarea.editInfo{
+    width: 420px;
+}
 
 /*General styles for all pages*/
 

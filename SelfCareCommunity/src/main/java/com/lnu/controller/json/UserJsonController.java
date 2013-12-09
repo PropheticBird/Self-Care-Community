@@ -1,5 +1,6 @@
 package com.lnu.controller.json;
 
+import com.lnu.bean.view.Result;
 import com.lnu.service.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -30,9 +31,14 @@ public class UserJsonController {
 
     @ResponseBody
     @RequestMapping(value="/service/currentuserdetails", method = RequestMethod.POST)
-    public void updateUser(@RequestBody PersonCredentials credentials) {
+    public Result updateUser(@RequestBody PersonCredentials credentials) {
+        try{
         credentials.setLogin(getCurrentUserName());
         userService.updateUser(credentials);
+        }catch (Exception e){
+            return Result.FAIL;
+        }
+        return Result.OK;
     }
 
     public static String getCurrentUserName() {

@@ -1,140 +1,93 @@
-var radioValue;
-function GetUserData () {
-	var url = window.location.href;
-	var relativePath = "/SelfCareCommunity/service/currentuserdetails";
-	var arr = url.split("/");
-	var hostName = arr[0] + "//" + arr[2];
-	var url = hostName + relativePath ;
-	
+var username;
+var name;
+var surname;
+var email;
+var dateOfBirth;
+var gender;
+var zipCode;
+var heartDesease;
+var interests;
+
+var url = composeUrl();
+
+function loadUserData() {
+
+    $("#content").hide();
+    $("#loading").show();
+
 	$.getJSON(url, function(data) {
 		mainfunction(data);
 	});
 	
 	function mainfunction(data) {
+        //load values to variables
+        username = data.login;
+        name = data.person.name;
+        surname = data.person.surname;
+        email = data.email;
+        dateOfBirth = data.person.birthDate.substr(0,9);
+        gender = data.person.gender;
+        zipCode = data.person.zipCode;
+        heartDesease = data.person.disease;
+        interests = data.person.interest;
 
-		//Getting label objects
-		lblUsername = document.getElementById("lblUsername");
-		lblName = document.getElementById("lblName");
-		lblSurname = document.getElementById("lblSurname");
-		lblEmail = document.getElementById("lblEmail");
-		lblDofB = document.getElementById("lblDofB");
-		radioMale = document.getElementById("radioMale");
-		radioFemale = document.getElementById("radioFemale");
-		lblZipCode = document.getElementById("lblZipCode");
-		lblHeartDisease = document.getElementById("lblHeartDisease");
-		lblInterests = document.getElementById("lblInterests");
-		
-		//adding text to these labels
-		lblUsername.innerHTML = data.login;
-		lblName.innerHTML = data.person.name;
-		lblSurname.innerHTML = data.person.surname;
-		lblEmail.innerHTML = data.email;
-		lblDofB.innerHTML = data.person.birthDate;
-		lblZipCode.innerHTML = data.person.zipCode;
-		lblHeartDisease.innerHTML = data.person.disease;
-		lblInterests.innerHTML = data.person.interest;
-		
-		radioValue = data.person.gender;
-		//set radio button checked
-		if(radioValue == 0){
-			radioMale.checked=true;
-		}
-		else{
-			radioFemale.checked=true;
-		}
-		
+        updateView();
+        $("#content").show();
+        $("#loading").hide();
 	}
 }
-function EditUserData () {
-	var url = window.location.href;
-	var relativePath = "/SelfCareCommunity/service/currentuserdetails";
-	var arr = url.split("/");
-	var hostName = arr[0] + "//" + arr[2];
-	var url = hostName + relativePath ;
-	
-	$.getJSON(url, function(data) {
-		mainfunction(data);
-	});
-	
-	function mainfunction(data) {
-
-		
-		 //getting textbox objects
-			tbUserName = document.getElementById("tbUserName");
-			tbName = document.getElementById("tbName");
-			tbSurName = document.getElementById("tbSurName");
-			tbEmail = document.getElementById("tbEmail");
-			tbDofB = document.getElementById("tbDofB");
-			radioMale = document.getElementById("radioMale1");
-			radioFemale = document.getElementById("radioFemale1");
-			tbZipCode = document.getElementById("tbZipCode");
-			tbHeartDisease = document.getElementById("tbHeartDisease");
-			tbInterests = document.getElementById("tbInterests");
-			
-			tbUserName.value = data.login;
-			tbName.value = data.person.name;
-			tbSurName.value = data.person.surname;
-			tbEmail.value = data.email;
-			tbDofB.value = data.person.birthDate;
-			tbZipCode.value = data.person.zipCode;
-			tbHeartDisease.value = data.person.disease;
-			tbInterests.value = data.person.interest;
-			
-			//set radio button checked
-			if(radioValue == 0){
-				radioMale1.checked=true;
-			}
-			else{
-				radioFemale1.checked=true;
-			}
-	}
+function updateView(){
+    //set values for  ordinal view and edit view at the same time
+    document.getElementById("lblUserName").innerHTML = username;
+    document.getElementById("tbName").value = document.getElementById("lblName").innerHTML=name;
+    document.getElementById("tbSurName").value = document.getElementById("lblSurName").innerHTML = surname;
+    document.getElementById("tbEmail").value = document.getElementById("lblEmail").innerHTML = email;
+    document.getElementById("tbDofB").value = document.getElementById("lblDofB").innerHTML = dateOfBirth;
+    if(gender == 1){
+        document.getElementById("lblGender").innerHTML = "Male";
+        document.getElementById("radioMale").checked = true;
+    } else {
+        document.getElementById("lblGender").innerHTML = "Female";
+        document.getElementById("radioFemale").checked = true;
+    }
+    document.getElementById("tbZipCode").value = document.getElementById("lblZipCode").innerHTML = zipCode;
+    document.getElementById("tbHeartDisease").innerHTML = document.getElementById("lblHeartDisease").innerHTML = heartDesease;
+    document.getElementById("tbInterests").innerHTML = document.getElementById("lblInterests").innerHTML = interests;
 }
 
+function updateVariables(){
+    name = document.getElementById("tbName").value;
+    surname = document.getElementById("tbSurName").value;
+    email = document.getElementById("tbEmail").value;
+    dateOfBirth = document.getElementById("tbDofB").value;
+    if(document.getElementById("radioMale").checked){
+        gender = 1
+    }
+    else{
+        gender = 0;
+    }
+    zipCode = document.getElementById("tbZipCode").value;
+    heartDesease = document.getElementById("tbHeartDisease").value;
+    interests = document.getElementById("tbInterests").value;
+}
 
-function SaveEditedUserData() {
-	var url = window.location.href;
-	var relativePath = "/SelfCareCommunity/service/currentuserdetails";
-	var arr = url.split("/");
-	var hostName = arr[0] + "//" + arr[2];
-	var url = hostName + relativePath ;
-	
-	// get the current values within the elements
-	tbUserName = document.getElementById("tbUserName");
-	tbName = document.getElementById("tbName");
-	tbSurName = document.getElementById("tbSurName");
-	tbEmail = document.getElementById("tbEmail");
-	tbDofB = document.getElementById("tbDofB");
-	radioMale = document.getElementById("radioMale1");
-	radioFemale = document.getElementById("radioFemale1");
-	tbZipCode = document.getElementById("tbZipCode");
-	tbHeartDisease = document.getElementById("tbHeartDisease");
-	tbInterests = document.getElementById("tbInterests");
-	console.log("RadioMale: "+radioMale.checked);
-	console.log("RadioFeMale: "+radioFemale.value);
+function saveUserData() {
 
-	//Get correct value for radio button
-	if(radioMale.checked){
-		radioValue = radioMale.value;
-	}
-	else{
-		radioValue = radioFemale.value;
-	}
+    updateVariables();
 
 	//building the JSON object
 	var JSONobj = {
-            "email": tbEmail.value,
+            "email": email,
             "person":{
-            "name":tbName.value,
-			"surname":tbSurName.value,
-            "birthDate":tbDofB.value,
-			"gender": radioValue, 
-			"zipCode": tbZipCode.value,
-			"disease": tbHeartDisease.value,
-			"interest": tbInterests.value
-            	}
+                "name":name,
+                "surname":surname,
+                "birthDate":dateOfBirth,
+                "gender": gender,
+                "zipCode": zipCode,
+                "disease": heartDesease,
+                "interest": interests
+            }
     };
-
-	
 	$.ajax({
         url: url,
         type: "POST",
@@ -144,12 +97,19 @@ function SaveEditedUserData() {
         async: false,
         success: function (result) {
             console.log(result);
-            GetUserData();
+            updateView();
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.status+"  "+thrownError);
-            GetUserData(); //Works but have to fix.
+            updateView();
         }
     });
 	
+}
+
+function composeUrl(){
+    var relativePath = "/SelfCareCommunity/service/currentuserdetails";
+    var arr = window.location.href.split("/");
+    var hostName = arr[0] + "//" + arr[2];
+    return hostName + relativePath
 }

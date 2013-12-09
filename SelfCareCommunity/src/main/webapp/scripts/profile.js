@@ -1,10 +1,6 @@
 $( document ).ready(function() {
 
-    $('#btnEdit').click(function(){
-        $('.profile_main_info_body').toggle();
-    });
-
-    $('#btnSave').click(function(){
+    $('#btnEdit, #btnCancel, #btnSave').click(function(){
         $('.profile_main_info_body').toggle();
     });
 
@@ -16,5 +12,14 @@ $( document ).ready(function() {
     	 });
     });
 
+});
+$(document).ajaxStart(function () {
+    $("#content").hide();
+    $("#loading").show();
+});
+
+$(document).ajaxComplete(function () {
+    $("#content").show();
+    $("#loading").hide();
 });
 	

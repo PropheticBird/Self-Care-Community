@@ -1,137 +1,158 @@
-.work_area{
-font: 14px "Lucida Sans Unicode", "Helvetica", "Arial", "Verdana", sans-serif;
-color: #949ba5;
-}
-.work_area{
-position: relative;
-margin: 0 auto;
-margin-top: 20px;
-width: 725px;
-height: 95%;
-box-shadow: 0px 0px 1px #444;
-}
-.profile_avatar{
-position: relative;
-margin: 10px;
-float: left;
-z-index: -1;
-}
-.profile_main_info{
-position:relative;
-margin: 10px;
-float: left;
-width:530px;
-height: 100%;
-}
-.profile_head{
-position: relative;
-
-height: 28px;
-border-bottom: 1px solid #646b85;
-color: #646b85;
-}
-.profile_name{
-float: left;
-font-size: 20px;
-color: #ebba23;
-}
-.profile_status{
-float: right;
-font-size: 15px;
-margin-right: 10px;
-}
-.profile_main_info_body{
-margin-top:10px;
-}
-.profile_stat{
-position: absolute;
-margin: 410px 10px 10px 10px;
-width: 97%;
-}
-.sub_tabs{
-	margin:0px 10px; 
-	padding:0; 
-	text-align:left;
-	
-}
-.sub_tabs li{
-	list-style:none; 
-	display:inline; 
-	margin:0 2px;
-	padding:0;
-
+.work_area {
+    font: 14px "Lucida Sans Unicode", "Helvetica", "Arial", "Verdana", sans-serif;
+    color: #949ba5;
 }
 
-.sub_tabs li a{
-	padding:3px 6px; 
-	font-size:14px; 
-	text-decoration:none; 
-	cursor: pointer;
-	border:1px solid #E0E0E0;
-	background:#f0f0f0; 
-	
-	
-}
-.sub_tabs li a.current { 
-	background:#fff; 
-	color:#646b85; 
-	border-bottom:1px solid #fff; 
+.work_area {
+    position: relative;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 725px;
+    height: 95%;
+    box-shadow: 0px 0px 1px #444;
 }
 
-.sub_tabs li a.another_tab{
-	background:#f0f0f0;
-	color: #888;
-	border-bottom:1px solid #E0E0E0;
+.profile_avatar {
+    position: relative;
+    margin: 10px;
+    float: left;
+    z-index: -1;
 }
 
-.tabs_context { 
-	margin-top:3px; 
-	display:block;
-	padding: 10px;
-	border-top:1px solid #E0E0E0; 	
+.profile_main_info {
+    position: relative;
+    margin: 10px;
+    float: left;
+    width: 530px;
+    height: 100%;
 }
 
-.profile_main_info_body div{
-	padding-top:2px;
+.profile_head {
+    position: relative;
+
+    height: 28px;
+    border-bottom: 1px solid #646b85;
+    color: #646b85;
 }
-.profile_main_info_body .left{
-	overflow: hidden;
-	
+
+.profile_name {
+    float: left;
+    font-size: 20px;
+    color: #ebba23;
 }
-.profile_main_info_body .right{
-	 
-	float: right;
+
+.profile_status {
+    float: right;
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.profile_main_info_body {
+    margin-top: 10px;
+}
+
+.profile_stat {
+    position: absolute;
+    margin: 410px 10px 10px 10px;
+    width: 97%;
+}
+
+.sub_tabs {
+    margin: 0px 10px;
+    padding: 0;
+    text-align: left;
+
+}
+
+.sub_tabs li {
+    list-style: none;
+    display: inline;
+    margin: 0 2px;
+    padding: 0;
+
+}
+
+.sub_tabs li a {
+    padding: 3px 6px;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid #E0E0E0;
+    background: #f0f0f0;
+
+}
+
+.sub_tabs li a.current {
+    background: #fff;
+    color: #646b85;
+    border-bottom: 1px solid #fff;
+}
+
+.sub_tabs li a.another_tab {
+    background: #f0f0f0;
+    color: #888;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.tabs_context {
+    margin-top: 3px;
+    display: block;
+    padding: 10px;
+    border-top: 1px solid #E0E0E0;
+}
+
+.profile_main_info_body div {
+    padding-top: 2px;
+}
+
+.profile_main_info_body .left {
+    overflow: hidden;
+
+}
+
+.profile_main_info_body .right {
+
+    float: right;
     width: 420px;
 }
 
-input[type="text"].editInfo{
-	width: 200px;
+input[type="text"].editInfo {
+    width: 200px;
     height: 30px;
     margin-top: -7px;
 
 }
 
-
 /*General styles for all pages*/
 
-
-.param_name{
-float:left;
-	width: 100px;
+.param_name {
+    float: left;
+    width: 100px;
 }
-.param_value{
-	width:370px;
-	float:left;
-	margin-left:50px;
+
+.param_value {
+    width: 370px;
+    float: left;
+    margin-left: 50px;
     margin-bottom: 8px;
-	
-}
-.general_div_info{
-	display: block;
-	width:100%;
-	margin-top:5px;
-}
-.paddedButton{ padding: 10px;}
-#radioMale, #radioFemale{ margin-top:-2px;margin-left: 10px;}
 
-#editCanselButton { width: 95px;}
+}
+
+.general_div_info {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.paddedButton {
+    padding: 10px;
+}
+
+#radioMale, #radioFemale {
+    margin-top: -2px;
+    margin-left: 10px;
+}
+
+#editCanselButton {
+    width: 95px;
+}

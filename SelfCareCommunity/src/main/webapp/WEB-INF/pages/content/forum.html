@@ -89,7 +89,7 @@
     					var author=data[i].author.name;
     					var displayName=data[i].displayName;
     					var postCount=data[i].postCount;
-    					
+    					var lastPostDate=data[i].lastPostDate;
 
     					$("#threadList").append("<div id='thread"+id+"'></div>");
     					$("#thread"+id).loadTemplate("template/thread.html",
@@ -98,7 +98,7 @@
 	    					url: "/SelfCareCommunity/content/view.html?id="+id+"&displayName="+displayName+"&postCount="+postCount,
 	    					displayName:displayName,
 	    					postCount:postCount,
-	    					date: "12/06/2013"
+	    					date: lastPostDate
     					});		
     			}
     				
@@ -205,11 +205,11 @@
       		<h4>Author</h4>
       		</div>
       		<div class="span2 muted">
-      		<h4>Reply number</h4>
+      		<h4>Post number</h4>
       		</div>
       		
       		<div class="span2 muted">
-      		<h4>Last reply</h4>
+      		<h4>Last post</h4>
       		</div>
 	</div>
 	<hr />

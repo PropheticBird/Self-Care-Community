@@ -27,18 +27,11 @@
     
     
     function like(item,identify){
-        //alert($(item).parent().parent().find("p")[2].innerHTML)
-      	 //alert($(item).attr("alt"));
-      	 //alert(item.children("span")[0].val());
-      	 //return false;
-      	 //alert($(item).attr("alt"));
-      	 var id=parseInt($(item).attr("alt"));
-      	 
-        //alert($(".likes")[0].attr("alt"));
         
+      	 var id=parseInt($(item).attr("alt"));
+      	
       	 var url="/SelfCareCommunity/service/post/"+id+"/like";
       	 
-      	//alert($(item).parent().parent().find("p")[1].innerHTML);
       	 if(identify=="1"){
       		 $.ajax({
       			 url:url,
@@ -235,6 +228,36 @@
 		});	
 	});
 	
+	
+// zoom functionality	
+	var CurrentWidth = 0;	
+	var CurrentHeight = 0;	
+	var zoom=0;
+
+	function ZoomOut(){
+		 if (zoom > 10) {
+			 zoom = zoom - 10; 
+		 	$('.posts').css('zoom', '1'+zoom+'%')
+		 } 
+			 
+		if (zoom == 10) {
+			zoom = 0;
+		 	$('body').css('zoom', '100%')
+		 	 document.getElementById("zoomOut").setAttribute("style","display:none");  
+		}
+
+	 }
+	 
+	 function ZoomIn (){
+		 document.getElementById("zoomOut").setAttribute("style","display:block"); 
+		 if (zoom <= 80) {
+			 zoom = zoom + 10; 
+		 	$('#postList').css('zoom', '1'+zoom+'%');
+		 	
+		 } else
+			 window.alert("You cannot Zoom In more");
+			
+	 }
   	 </script>
 
  </head>
@@ -247,17 +270,23 @@
         </script>
 </div>
 
-<div id="container" style="display:none" class="span10 offset3">
-	<h3 id="title"></h3>
-	<div id="postList">
+	<div >
+	  <h3 id="title"style="position:relative;float:left;margin-left:3cm;"></h3>
+	  <div class="zoom-buttons" style="float:right;position:relative;margin-right:13cm;">
+        	<img id="zoomIn" src="../resources/styles/icons/1386539999_34629.ico" style="display:block; float:right" onclick="ZoomIn();" width="50px" height="50px"/>
+      		<img id="zoomOut" src="../resources/styles/icons/1386540011_34630.ico" style="display:none; float:right" onclick="ZoomOut();" width="50px" height="50px" />
+        </div>
+    </div>
+	<br><br><br>
+	<div id="postList" class="posts" style="width: 100%;margin-left:3cm;">
 	</div>
 	
 	<div class="pagination">
   	  <ul id="page" class="pull-right">
-  	  	
   	  </ul>
 	</div>
 	
+	<br><br><br>
 	<div id="addPost">
 	<div class="row">
 
@@ -285,10 +314,6 @@
    </div>
 </div>
 	</div>
-	
-
-</div>
-
 
 
  </body>

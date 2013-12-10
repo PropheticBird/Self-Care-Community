@@ -1,10 +1,15 @@
 package com.lnu.bean;
 
 import com.lnu.bean.view.Author;
+import com.lnu.controller.json.converter.JsonDateDeserealizer;
+import com.lnu.controller.json.converter.JsonDateSerializer;
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * User: igor
@@ -34,6 +39,11 @@ public class Thread{
 
     @Transient
     private Author author;
+
+    @JsonSerialize(using = JsonDateSerializer.class)
+    @JsonDeserialize(using = JsonDateDeserealizer.class)
+    @Formula(value = "(select max(posts.posted_date) from posts where posts.thread_id=id)")
+    private Date lastPostDate;
 
     @Formula(value = "(select count(*) from posts where posts.thread_id=id)")
     private Long postCount;
@@ -84,5 +94,12 @@ public class Thread{
 
     public void setPostCount(Long postCount) {
         this.postCount = postCount;
+    }
+    public Date getLastPostDate() {
+        return lastPostDate;
+    }
+
+    public void setLastPostDate(Date lastPostDate) {
+        this.lastPostDate = lastPostDate;
     }
 }

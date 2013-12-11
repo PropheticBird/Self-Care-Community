@@ -21,7 +21,7 @@ public interface ForumService {
 
     Page<Post> listPostsForThread(Long threadId,Integer pageNumber);
 
-    void createNewThread(Long categoryId, NewThread thread);
+    Long createNewThread(Long categoryId, NewThread thread);
 
     void createNewPost(Long threadId, NewPost post);
 

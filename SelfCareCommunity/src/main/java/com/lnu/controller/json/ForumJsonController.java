@@ -3,10 +3,7 @@ package com.lnu.controller.json;
 import com.lnu.bean.Category;
 import com.lnu.bean.Post;
 import com.lnu.bean.Thread;
-import com.lnu.bean.view.NewPost;
-import com.lnu.bean.view.NewThread;
-import com.lnu.bean.view.Page;
-import com.lnu.bean.view.Result;
+import com.lnu.bean.view.*;
 import com.lnu.service.ForumService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,12 +39,18 @@ public class ForumJsonController {
     @ResponseBody
     @RequestMapping(value = "/service/category/{categoryId}/newthread", method = RequestMethod.POST)
     public Result newThreadInCategory(@PathVariable("categoryId") Long categoryId, @RequestBody NewThread thread) {
+        Long id;
         try {
-            forumService.createNewThread(categoryId,thread);
+            id = forumService.createNewThread(categoryId, thread);
+            if(id == null){
+                throw new Exception();
+            }
         }catch (Exception e){
             return Result.FAIL;
         }
-        return Result.OK;
+        InsertionResult result= InsertionResult.OK;
+        result.setId(id);
+        return result;
     }
 
     @ResponseBody

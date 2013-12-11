@@ -63,7 +63,7 @@ public class ForumServiceImpl implements ForumService {
 
     @Override
     @Transactional
-    public void createNewThread(Long categoryId, NewThread threadView) {
+    public Long createNewThread(Long categoryId, NewThread threadView) {
         Person authorPerson = userDao.findByUserName(UserJsonController.getCurrentUserName()).getPerson();
         Category category = forumDao.findCategoryById(categoryId);
         Thread newThreadBean = new Thread();
@@ -78,6 +78,7 @@ public class ForumServiceImpl implements ForumService {
         newPostBean.setThread(newThreadBean);
         forumDao.saveThread(newThreadBean);
         forumDao.savePost(newPostBean);
+        return newThreadBean.getId();
     }
 
     @Override

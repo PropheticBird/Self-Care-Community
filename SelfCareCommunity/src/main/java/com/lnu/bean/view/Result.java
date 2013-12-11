@@ -11,7 +11,7 @@ public class Result {
 
     private String result;
 
-    private Result(String result) {
+    protected Result(String result) {
         this.result = result;
     }
 

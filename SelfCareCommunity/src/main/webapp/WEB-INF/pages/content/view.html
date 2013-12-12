@@ -120,13 +120,13 @@
 		}	
 	
 	function page(item){
+		
 		prePage=currentPage;
 		
 		if (item.id=='pageNext'){
 			currentPage++;
 			getPosts(currentPage);
-    		
-        		
+    			
     	}
 		if (item.id=='pagePre'){
 			currentPage--;
@@ -134,14 +134,18 @@
     		
     	}
     	
-    	if ($.isNumeric(item.innerHTML)){
-    		currentPage=parseInt(item.innerHTML);
-    		getPosts(item.innerHTML);
-    	}
+    	if ($.isNumeric(item.innerText)){
+    		currentPage=parseInt(item.innerText);
+    		getPosts(item.innerText);
+    	} 
     	
-		
 		$("#page"+prePage).parent().attr("class","");
+		$("#page"+prePage+"span").attr("class","");
+		
+		
 		$("#page"+currentPage).parent().attr("class","active");
+		$("#page"+currentPage+"span").attr("class","label label-info");
+		
 		if(currentPage==1)
 			$("#pagePre").parent().attr("class","active");
 		else
@@ -173,14 +177,16 @@
 			prePage=1;
 		
 		
-			$("#pagePre").parent().attr("class","active");
-			$("#page1").parent().attr("class","active");
 			if(n>1)
 			{
 				element = '<li><a onclick="page(this);return false;"id="pagePre">&laquo</a></li>';
 				$("#page").append(element);
-				for(var i=1;i<=n;i++){
-					element = '<li><a onclick="page(this);return false;"id="page'+i+'">'+i+'</a></li>';
+				
+				element = '<li><a onclick="page(this);return false;"id="page1"><span id="page1span" class="label label-info">1</span></a></li>';
+				$("#page").append(element);
+				
+				for(var i=2;i<=n;i++){										
+					element = '<li><a onclick="page(this);return false;"id="page'+i+'"><span id="page'+i+'span" >'+i+'</span></a></li>';
 					$("#page").append(element);
 				}
 				element = '<li><a onclick="page(this);return false;"id="pageNext">&raquo;</a></li>';
@@ -191,6 +197,8 @@
 				$("#page").append(element);	
 			}
 			
+			$("#pagePre").parent().attr("class","active");
+			$("#page1").parent().attr("class","active");
 			
 		$("#threadId").text(threadId);
 		$("#title").text(params['displayName']);
@@ -199,7 +207,7 @@
 			var id=$("#threadId").html();
 			var content=$.trim($("#content").val());
 			var url="/SelfCareCommunity/service/thread/"+id+"/newpost";
-			//alert(url);
+			
 			if(content.length==0)
 				return false;
 			else{
@@ -210,19 +218,14 @@
 					  contentType: 'application/json; charset=utf-8',
 					  data: JSON.stringify({ "content":content}),
 					  success: function(){
-						  //alert("1");
-						  //$("#postSuccess").alert();
 						  $("#postSuccess").show();
 
 					  },
 					  error: function(xhr, ajaxOptions, thrownError){
-						  //console.log(xhr.status+"  "+thrownError);
-						  //$("#postFail").alert();
 						  $("#postFail").show();
 					  }
 					  
 				});
-				//$("#postSuccess").show();
 				return false;
 			}
 		});	
@@ -242,7 +245,7 @@
 			 
 		if (zoom == 10) {
 			zoom = 0;
-		 	$('body').css('zoom', '100%')
+		 	$('.posts').css('zoom', '100%')
 		 	 document.getElementById("zoomOut").setAttribute("style","display:none");  
 		}
 
@@ -252,8 +255,11 @@
 		 document.getElementById("zoomOut").setAttribute("style","display:block"); 
 		 if (zoom <= 80) {
 			 zoom = zoom + 10; 
-		 	$('#postList').css('zoom', '1'+zoom+'%');
-		 	
+			 $('.posts').css('zoom', '1'+zoom+'%');
+			 //
+			 width = $("#postList").width();
+				width = width + 50;
+			 $("#postList").width(width + "px");
 		 } else
 			 window.alert("You cannot Zoom In more");
 			
@@ -270,50 +276,53 @@
         </script>
 </div>
 
-	<div >
-	  <h3 id="title"style="position:relative;float:left;margin-left:3cm;"></h3>
-	  <div class="zoom-buttons" style="float:right;position:relative;margin-right:13cm;">
-        	<img id="zoomIn" src="../resources/styles/icons/1386539999_34629.ico" style="display:block; float:right" onclick="ZoomIn();" width="50px" height="50px"/>
-      		<img id="zoomOut" src="../resources/styles/icons/1386540011_34630.ico" style="display:none; float:right" onclick="ZoomOut();" width="50px" height="50px" />
-        </div>
+	<div id="container" style="display:none;" class="span11 offset3">
+			  <h3 id="title"style="position:relative;float:left;"></h3>
+			  
+			  
+			  <div class="zoom-buttons" style="float:right;position:relative;">
+		        	<img id="zoomIn" src="../resources/styles/icons/1386539999_34629.ico" style="display:block; float:right" onclick="ZoomIn();" width="50px" height="50px"/>
+		      		<img id="zoomOut" src="../resources/styles/icons/1386540011_34630.ico" style="display:none; float:right" onclick="ZoomOut();" width="50px" height="50px" />
+		        </div>
+		   
+			<br><br><br>
+			<div class="pagination pagination-large">
+				
+				<div class="pagination pagination-centered">
+			  	  <ul id="page" > </ul>
+				</div>
+			</div>
+			<div id="postList" class="posts">
+			</div>
+			
+			
+		
+			<div id="addPost">
+		
+		
+			<div id="postSuccess"class="alert alert-success fade in hide" data-alert="alert">
+		  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		  		<strong>Post success!</strong> 
+			</div>
+			
+			<div id="postFail" class="alert alert-error fade in hide" data-alert="alert">
+		  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		  		<strong>Post fail!</strong> 
+			</div>
+		
+			
+		    <div class="span10">
+		    	<form>
+		    		<span id="threadId" style="display:none"></span>
+		        	<h4>Reply to this topic</h4>
+		            <textarea class="field span10" rows="6" id="content" required></textarea>
+		            <div class="pull-right">
+		            <button id="btnPost" class="btn btn-info" type="submit">Submit</button>
+		            </div>
+		        </form>
+		   </div>
+		</div>
     </div>
-	<br><br><br>
-	<div id="postList" class="posts" style="width: 100%;margin-left:3cm;">
-	</div>
-	
-	<div class="pagination">
-  	  <ul id="page" class="pull-right">
-  	  </ul>
-	</div>
-	
-	<br><br><br>
-	<div id="addPost">
-	<div class="row">
-
-	<div class="span5 offet2">
-	<div id="postSuccess"class="alert alert-success fade in hide" data-alert="alert">
-  		<button type="button" class="close" data-dismiss="alert">&times;</button>
-  		<strong>Post success!</strong> 
-	</div>
-	
-	<div id="postFail" class="alert alert-error fade in hide" data-alert="alert">
-  		<button type="button" class="close" data-dismiss="alert">&times;</button>
-  		<strong>Post fail!</strong> 
-	</div>
-	</div>
-	
-    <div class="span10">
-    	<form>
-    		<span id="threadId" style="display:none"></span>
-        	<h4>Reply to this topic</h4>
-            <textarea class="field span10" rows="6" id="content" required></textarea>
-            <div class="pull-right">
-            <button id="btnPost" class="btn btn-info" type="submit">Submit</button>
-            </div>
-        </form>
-   </div>
-</div>
-	</div>
 
 
  </body>

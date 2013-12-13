@@ -4,12 +4,14 @@
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
         <link rel="stylesheet" type="text/css" href="../resources/styles/style.css">
         <link href="../resources/styles/bootstrap.min.css" rel="stylesheet" media="screen">
+        
         <script src="../resources/scripts/bootstrap.min.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		
 		<script src="../resources/scripts/profile.js"></script>
-		<script src="../resources/scripts/Data_from_DB_Profile.js"></script>
+		<script src="../resources/scripts/profile_data.js"></script>
 </head>
 
 <div id="new-header">
@@ -71,7 +73,7 @@
 			</div>
 			<div class='general_div_info'>&nbsp;
 				<div class='param_name'>Gender:</div>
-				<div style="display: inline">
+				<div style="display: inline" class='gender'>
                     Male <input type="radio" name="sex" id="radioMale" value="1" />
 				    Female <input type="radio" name="sex" id="radioFemale" value="0" />
                 </div>
@@ -88,7 +90,7 @@
 			</div>
 
 			<div class='general_div_info'>&nbsp;
-				<button type="button" name='btnSave' id='btnSave' class="btn btn-large btn-block btn-info" onclick="saveUserData()">Save</button>
+				<button type="button" name='btnSave' id='btnSave' class="btn btn-large btn-block btn-info" onclick="updateData()">Save</button>
                 <button type="button" name='btnCancel' id='btnCancel' class="btn btn-large btn-block btn-info">Cancel</button>
 			</div>
 		</div>

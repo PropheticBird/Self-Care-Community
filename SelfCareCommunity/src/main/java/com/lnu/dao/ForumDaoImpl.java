@@ -47,7 +47,7 @@ public class ForumDaoImpl implements ForumDao {
     @Override
     public List<Post> findPostsForThread(Long threadId,Integer pageNumber) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("From Post where thread.id=:threadId order by postedDate DESC");
+        Query query = session.createQuery("From Post where thread.id=:threadId order by postedDate");
         query.setParameter("threadId",threadId);
         query.setFirstResult((pageNumber-1)*POST_PAGE_SIZE);
         query.setMaxResults(POST_PAGE_SIZE);

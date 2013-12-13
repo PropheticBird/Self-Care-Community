@@ -15,6 +15,9 @@
     body{
        margin-bottom: 40px;
     }
+    .page_num{
+    cursor: pointer;
+    }
     </style>
     
     <script>
@@ -173,6 +176,7 @@
 			var postCount=parseInt(params['postCount']);
 			var n=parseInt(postCount/5)+1;
 			
+			
 			currentPage=1;
 			prePage=1;
 		
@@ -186,7 +190,7 @@
 				$("#page").append(element);
 				
 				for(var i=2;i<=n;i++){										
-					element = '<li><a onclick="page(this);return false;"id="page'+i+'"><span id="page'+i+'span" >'+i+'</span></a></li>';
+					element = '<li><a onclick="page(this);return false;"id="page'+i+'" class="page_num"><span id="page'+i+'span" >'+i+'</span></a></li>';
 					$("#page").append(element);
 				}
 				element = '<li><a onclick="page(this);return false;"id="pageNext">&raquo;</a></li>';
@@ -219,7 +223,9 @@
 					  data: JSON.stringify({ "content":content}),
 					  success: function(){
 						  $("#postSuccess").show();
-
+						  
+						 var lastpage=parseInt(params['postCount']/5+1);
+						 getPosts(lastpage);
 					  },
 					  error: function(xhr, ajaxOptions, thrownError){
 						  $("#postFail").show();

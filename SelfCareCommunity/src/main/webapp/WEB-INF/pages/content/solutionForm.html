@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Answer</title>
+    <meta content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+
+
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+        <link href="../resources/styles/bootstrap.min.css" rel="stylesheet" media="screen">
+        
+        <script src="../resources/scripts/bootstrap.min.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+    <script>
+
+$(function(){
+
+$( "#date").datepicker({
+          yearRange: "1930:2012",
+            changeMonth: true,
+            changeYear: true
+       });
+
+});
+</script>
+
+  </head>
+  <body>
+
+ <div id="new-header">
+        <script>
+            $("#new-header").load("header.html");
+        </script>
+</div>
+
+    <div id="container" class="span6 offset3">
+       
+<form>
+  <fieldset>
+    <legend><h3>Please recoder your solution</h3></legend>
+
+    <label>When you have this solution</label>
+    <input type="text" id="date">
+
+     <label>Where you live</label>
+     <input type="text" placeholder="">
+
+     <label>How you have this solution</label>
+    <textarea rows="6" class="span6"></textarea>
+
+     <label>Why you have this solution</label>
+    <textarea rows="6" class="span6"></textarea>
+
+     <label>What your current solution</label>
+    <textarea rows="6" class="span6"></textarea>
+
+    <div class="pull-right">
+    <button type="submit" class="btn btn-primary" onclick="problemList.html">Answer</button>
+  </div>
+  </fieldset>
+</form>
+
+    </div>
+</body>
+</html>

@@ -7,5 +7,9 @@
         <mapping class="com.lnu.bean.Category"/>
         <mapping class="com.lnu.bean.Post"/>
         <mapping class="com.lnu.bean.Thread"/>
+        <mapping class="com.lnu.bean.Problem"/>
+        <mapping class="com.lnu.bean.Solution"/>
+        <mapping class="com.lnu.bean.Tag"/>
+        <mapping class="com.lnu.bean.Description"/>
     </session-factory>
 </hibernate-configuration>

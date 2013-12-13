@@ -7,7 +7,6 @@ package com.lnu.bean.view;
 public class InsertionResult extends Result {
 
     public static final InsertionResult OK = new InsertionResult("ok");
-    public static final InsertionResult FAIL = new InsertionResult("fail");
 
     private Long id;
 

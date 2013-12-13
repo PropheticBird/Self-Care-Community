@@ -4,8 +4,8 @@ CREATE TABLE IF NOT EXISTS PERSONS (
 	ID int primary key AUTO_INCREMENT, 
 	Name varchar(255),
 	Surname varchar(255),
-	Picture varchar(),
-	Picture_Small varchar(),
+	Picture varchar(255),
+	Picture_Small varchar(255),
 	Date_of_birth DATE,
 	Gender boolean default 1,
 	Zip_Code INT,
@@ -67,21 +67,40 @@ CREATE TABLE  IF NOT EXISTS TAGS(
 );
 
 
+-- Descriptions --
+
+CREATE TABLE IF NOT EXISTS DESCRIPTIONS(
+	ID int primary key AUTO_INCREMENT,
+	When_ varchar(255) NOT NULL,
+	Where_ varchar(255) NOT NULL,
+	How TEXT NOT NULL,
+	Who varchar(255) NOT NULL,
+	Why TEXT NOT NULL,
+	Consequences TEXT NOT NULL
+);
+
+
 -- Problems --
 
 CREATE TABLE  IF NOT EXISTS PROBLEMS(
 	ID int primary key AUTO_INCREMENT,
 	Author_ID int NOT NULL,
-	Tag_ID int NOT NULL,
-	When varchar(255) NOT NULL,
-	Where varchar(255) NOT NULL,
-	How TEXT NOT NULL,
-	Who varchar(255) NOT NULL,
-	Why TEXT NOT NULL,
-	Consequences TEXT NOT NULL,
+	Description_ID int NOT NULL,
+	IsProblem boolean NOT NULL default 1,
 	Posted_Date DATETIME,
-FOREIGN KEY ( Tag_ID ) REFERENCES TAGS ( ID ),
+FOREIGN KEY ( Description_ID ) REFERENCES DESCRIPTIONS ( ID ),
 FOREIGN KEY ( Author_ID ) REFERENCES PERSONS( ID )
+);
+
+
+-- ProblemToTags --
+
+CREATE TABLE IF NOT EXISTS PROBLEM_TO_TAGS(
+	Problem_ID int NOT NULL, 
+	Tag_ID int NOT NULL,
+FOREIGN KEY ( Problem_ID ) REFERENCES PROBLEMS ( ID ),
+FOREIGN KEY ( Tag_ID ) REFERENCES TAGS ( ID ),
+PRIMARY KEY ( Problem_ID, Tag_ID )
 );
 
 
@@ -90,17 +109,21 @@ FOREIGN KEY ( Author_ID ) REFERENCES PERSONS( ID )
 CREATE TABLE  IF NOT EXISTS SOLUTIONS(
 	ID int primary key AUTO_INCREMENT,
 	Author_ID int NOT NULL,
-	Tag_ID int NOT NULL,
 	Problem_ID int NOT NULL,
-	When varchar(255) NOT NULL,
-	Where varchar(255) NOT NULL,
-	How TEXT NOT NULL,
-	Who varchar(255) NOT NULL,
-	Why TEXT NOT NULL,
-	Consequences TEXT NOT NULL,
+	Description_ID int NOT NULL,
 	Posted_Date DATETIME,
+FOREIGN KEY ( Description_ID ) REFERENCES DESCRIPTIONS ( ID ),
 FOREIGN KEY ( Problem_ID ) REFERENCES PROBLEMS ( ID ),
-FOREIGN KEY ( Tag_ID ) REFERENCES TAGS ( ID ),
 FOREIGN KEY ( Author_ID ) REFERENCES PERSONS( ID )
 );
 
+
+-- SolutionToTags --
+
+CREATE TABLE IF NOT EXISTS SOLUTION_TO_TAGS(
+	Solution_ID int NOT NULL, 
+	Tag_ID int NOT NULL,
+FOREIGN KEY ( Solution_ID ) REFERENCES SOLUTIONS ( ID ),
+FOREIGN KEY ( Tag_ID ) REFERENCES TAGS ( ID ),
+PRIMARY KEY ( Solution_ID, Tag_ID )	
+);

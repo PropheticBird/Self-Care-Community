@@ -94,7 +94,6 @@
 				$("#pagePre").hide();
 			} else {
 				$("#pagePre").show();
-					
 			}
 			
 			$("#postList").html("");
@@ -122,6 +121,28 @@
 			});
 		}	
 	
+    function changeNums(tPrePage, tcPage) {
+    	
+		prePage = tPrePage;	
+		currentPage=tcPage;
+
+    	$("#page"+prePage).parent().attr("class","");
+		$("#page"+prePage+"span").attr("class","");
+		
+		
+		$("#page"+currentPage).parent().attr("class","active");
+		$("#page"+currentPage+"span").attr("class","label label-info");
+		
+		if(currentPage==1)
+			$("#pagePre").parent().attr("class","active");
+		else
+		{
+			$("#pagePre").parent().attr("class","");
+			$("#pagePre").attr("href","/SelfCareCommunity/service/thread/"+threadId+"/posts/page/"+(currentPage+1));
+			$("#pageNext").attr("href","/SelfCareCommunity/service/thread/"+threadId+"/posts/page/"+(currentPage-1));
+		}
+    }
+    
 	function page(item){
 		
 		prePage=currentPage;
@@ -141,22 +162,8 @@
     		currentPage=parseInt(item.innerText);
     		getPosts(item.innerText);
     	} 
-    	
-		$("#page"+prePage).parent().attr("class","");
-		$("#page"+prePage+"span").attr("class","");
+    	changeNums(prePage, currentPage);
 		
-		
-		$("#page"+currentPage).parent().attr("class","active");
-		$("#page"+currentPage+"span").attr("class","label label-info");
-		
-		if(currentPage==1)
-			$("#pagePre").parent().attr("class","active");
-		else
-		{
-			$("#pagePre").parent().attr("class","");
-			$("#pagePre").attr("href","/SelfCareCommunity/service/thread/"+threadId+"/posts/page/"+(currentPage+1));
-			$("#pageNext").attr("href","/SelfCareCommunity/service/thread/"+threadId+"/posts/page/"+(currentPage-1));
-		}
 	}
 		
 	$(function(){
@@ -223,9 +230,12 @@
 					  data: JSON.stringify({ "content":content}),
 					  success: function(){
 						  $("#postSuccess").show();
-						  
-						 var lastpage=parseInt(params['postCount']/5+1);
+						 var lastpage=parseInt(params['postCount']/5)+1;
 						 getPosts(lastpage);
+
+						 changeNums(currentPage, lastpage);
+
+						 $('#content').val("");
 					  },
 					  error: function(xhr, ajaxOptions, thrownError){
 						  $("#postFail").show();

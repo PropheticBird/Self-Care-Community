@@ -19,6 +19,7 @@
 $(function(){
 	
 	var problemId;
+	var redirect;
  	var prmstr = window.location.search.substr(1);
     var prmarr = prmstr.split ("&");
     var params = {};
@@ -29,6 +30,7 @@ $(function(){
     }
    
 	problemId=params['id'];
+	redirect=params['redirect'];
 	
 
 $( "#when").datepicker({
@@ -68,7 +70,7 @@ $("#btnPost").click(function(){
                 "tags":[{"id":1},{"id":2}]
             }),
             success: function(data){
-            	window.location = "solutionView.html";
+            	window.location = redirect;
             },
             error: function(xhr, ajaxOptions, thrownError){
             }

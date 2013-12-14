@@ -15,14 +15,71 @@
 		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
     <script>
-
+	
 $(function(){
+	
+	var problemId;
+ 	var prmstr = window.location.search.substr(1);
+    var prmarr = prmstr.split ("&");
+    var params = {};
 
-$( "#date").datepicker({
+    for ( var i = 0; i < prmarr.length; i++) {
+        var tmparr = prmarr[i].split("=");
+        params[tmparr[0]] = decodeURIComponent(tmparr[1]);
+    }
+   
+	problemId=params['id'];
+	
+
+$( "#when").datepicker({
           yearRange: "1930:2012",
             changeMonth: true,
             changeYear: true
        });
+       
+
+$("#btnPost").click(function(){
+	var who=$.trim($("#who").val());
+	var where=$.trim($("#where").val());
+	var when=$.trim($("#when").val());
+	var how=$.trim($("#how").val());
+	var why=$.trim($("#why").val());
+	var consequences=$.trim($("#consequences").val());
+
+	var url="/SelfCareCommunity/service/problem/"+problemId+"/newsolution";
+	
+	if(who.length==0 || where.length==0 || when.length==0 || how.length==0 || why.length==0 || consequences.length==0)
+		return false;
+	else{
+		$.ajax({
+			  
+			url: url,
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ "description":{
+                "when": when,
+                "where": where,
+                "how": how,
+                "why": why,
+                "who": who,
+                "consequences":consequences
+            },
+                "tags":[{"id":1},{"id":2}]
+            }),
+            success: function(data){
+            	window.location = "solutionView.html";
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+            }
+			  
+		});
+		return false;
+	}
+	
+});	
+
+
 
 });
 </script>
@@ -40,25 +97,29 @@ $( "#date").datepicker({
        
 <form>
   <fieldset>
-    <legend><h3>Please recoder your solution</h3></legend>
+    <legend><h3>Please recoder solution</h3></legend>
 
-    <label>When you have this solution</label>
-    <input type="text" id="date">
 
-     <label>Where you live</label>
-     <input type="text" placeholder="">
+ 	<label>Who have this solution</label>
+    <input id="who" type="text" placeholder="">
+     
+    <label>When have this solution</label>
+    <input id="when" type="text" id="date">
 
-     <label>How you have this solution</label>
-    <textarea rows="6" class="span6"></textarea>
+     <label>Where to live</label>
+     <input id="where" type="text" placeholder="">
 
-     <label>Why you have this solution</label>
-    <textarea rows="6" class="span6"></textarea>
+     <label>How to have this solution</label>
+    <textarea id="how" rows="6" class="span6"></textarea>
 
-     <label>What your current solution</label>
-    <textarea rows="6" class="span6"></textarea>
+     <label>Why to have this solution</label>
+    <textarea id="why" rows="6" class="span6"></textarea>
+
+     <label>What the consequence</label>
+    <textarea id="consequences" rows="6" class="span6"></textarea>
 
     <div class="pull-right">
-    <button type="submit" class="btn btn-primary" onclick="problemList.html">Answer</button>
+    <button id="btnPost" type="submit" class="btn btn-primary">Answer</button>
   </div>
   </fieldset>
 </form>

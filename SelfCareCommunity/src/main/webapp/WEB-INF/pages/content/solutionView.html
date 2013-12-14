@@ -16,8 +16,83 @@
     }
     </style>
     <script>
+	
+    function getSolutions(url){
+		$.ajax({
+			url: url,
+			type: "get",
+			dataType: "json",
+			success: function(result){
+			
+			$("#problem").html("");
+			$("#solutionList").html("");
+				//data=result.data;
+				//alert(result.problem.id);
+				var problem=result.problem;
+					var problemId=problem.id;
+					var when=problem.description.when;
+					var who=problem.description.who;
+					var how=problem.description.how;
+					var why=problem.description.why;
+					var consequences=problem.description.consequences;
+					var where=problem.description.where;
+					var postedDate=problem.postedDate;
+					var author=problem.author,name
 
+					$("a").attr("href","solutionForm.html?id="+problemId);
 
+					$("#problem").loadTemplate("template/strucView.html",
+					{
+						authorPic: '../resources/img/avatar.png',
+						author: author,
+						when: when,
+					    who: who,
+					    how: how,
+					    why: why,
+					    consequences: consequences,
+					    where: where,
+					    postedDate: postedDate
+					});
+					
+				var solutions=result.solutions;
+				
+				//alert(solutions.length);
+				for(var i=0;i<solutions.length;i++){
+
+					var id=solutions[i].id;
+					when=solutions[i].description.when;
+					who=solutions[i].description.who;
+					how=solutions[i].description.how;
+					why=solutions[i].description.why;
+					consequences=solutions[i].description.consequences;
+					where=solutions[i].description.where;
+					postedDate=solutions[i].postedDate;
+					author=solutions[i].author,name
+								
+					$("#solutionList").append("<div id='solution"+id+"'></div>");
+					$("#solution"+id).loadTemplate("template/strucView.html",
+					{
+						authorPic: '../resources/img/avatar.png',
+						author: author,
+						when: when,
+					    who: who,
+					    how: how,
+					    why: why,
+					    consequences: consequences,
+					    where: where,
+					    postedDate: postedDate
+					});
+			}
+							
+				$("#container").show();
+			}
+			});
+		}	
+	
+    $(function(){
+    	getSolutions("/SelfCareCommunity/service/problem/1/solutions");	
+
+    });
    </script>
 
  </head>
@@ -30,42 +105,18 @@
 </div>
 
 
-<div id="container" class="span9 offset3">
+<div id="container"  style="display:none;" class="span9 offset3">
 
+<div id="problem"></div>
 
-<div class="row">
-  <div class="span1">
-    <h4>User</h4>
-    <img src="../resources/img/avatar.png">
-  </div>
-
-  <div class="span8">
- <dl>
-            <dt>When</dt>
-            <dd>12/12/12013</dd>
-            <dt>Where</dt>
-            <dd>vaxjo,Sweden</dd>
-            <dt>How</dt>
-            <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-            <dt>Why</dt>
-            <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-            <dt>What</dt>
-            <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-          </dl>
-  </div>
-</div>
-
-<hr />
-<h4>5 answers</h4>
+<h4 id="solutionsNum">5 solutions</h4>
 <hr />
 
-<div id="answerList" class="well">
-
-
+<div id="solutionList" class="well">
 </div>
 
 
-<button class="btn btn-info pull-right" onclick="window.location.href='solutionForm.html?id=11'">Answer</button>
+<a class="btn btn-info pull-right" href="" >Answer</a>
 
 </div>
 

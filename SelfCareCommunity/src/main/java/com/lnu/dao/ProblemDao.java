@@ -17,4 +17,12 @@ public interface ProblemDao {
     List<Problem> findAllProblems();
 
     List<Solution> findSolutionsForProblem(Long problemId);
+
+    Problem findProblem(Long problemId);
+
+    Tag findTag(Long tagId);
+
+    void insertProblem(Problem problem);
+
+    void insertSolution(Solution solution);
 }

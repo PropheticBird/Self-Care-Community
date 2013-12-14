@@ -3,6 +3,7 @@ package com.lnu.service;
 import com.lnu.bean.Problem;
 import com.lnu.bean.Solution;
 import com.lnu.bean.Tag;
+import com.lnu.bean.view.ProblemAndSolutions;
 
 import java.util.List;
 
@@ -16,5 +17,9 @@ public interface ProblemService {
 
     List<Problem> listProblems();
 
-    List<Solution> listSolutionsForProblem(Long problemId);
+    ProblemAndSolutions listSolutionsForProblem(Long problemId);
+
+    Long createNewProblem(Problem problem);
+
+    Long createNewSolutionForProblem(Long problemId, Solution solution);
 }

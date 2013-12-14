@@ -2,10 +2,7 @@ package com.lnu.controller.json;
 
 import com.lnu.bean.*;
 import com.lnu.bean.Thread;
-import com.lnu.bean.view.InsertionResult;
-import com.lnu.bean.view.NewThread;
-import com.lnu.bean.view.Page;
-import com.lnu.bean.view.Result;
+import com.lnu.bean.view.*;
 import com.lnu.service.ProblemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,26 +34,43 @@ public class ProblemJsonController {
 
     @ResponseBody
     @RequestMapping(value = "/service/problem/{problemId}/solutions", method = RequestMethod.GET)
-    public List<Solution> getSolutionsForProblem(@PathVariable("problemId") Long problemId) {
+    public ProblemAndSolutions getSolutionsForProblem(@PathVariable("problemId") Long problemId) {
         return problemService.listSolutionsForProblem(problemId);
     }
 
-    /*
-
     @ResponseBody
-    @RequestMapping(value = "/service/category/{categoryId}/newthread", method = RequestMethod.POST)
-    public Result newThreadInCategory(@PathVariable("categoryId") Long categoryId, @RequestBody NewThread thread) {
+    @RequestMapping(value = "/service/newproblem", method = RequestMethod.POST)
+    public Result newProblem(@RequestBody Problem problem) {
         Long id;
         try {
-            id = forumService.createNewThread(categoryId, thread);
+            id = problemService.createNewProblem(problem);
             if(id == null){
                 throw new Exception();
             }
         }catch (Exception e){
+            e.printStackTrace();
             return Result.FAIL;
         }
         InsertionResult result= InsertionResult.OK;
         result.setId(id);
         return result;
-    }  */
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/service/problem/{problemId}/newsolution", method = RequestMethod.POST)
+    public Result newSolution(@PathVariable("problemId") Long problemId,@RequestBody Solution solution) {
+        Long id;
+        try {
+            id = problemService.createNewSolutionForProblem(problemId,solution);
+            if(id == null){
+                throw new Exception();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return Result.FAIL;
+        }
+        InsertionResult result= InsertionResult.OK;
+        result.setId(id);
+        return result;
+    }
 }

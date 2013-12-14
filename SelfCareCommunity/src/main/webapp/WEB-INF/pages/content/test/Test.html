@@ -9,22 +9,35 @@
 <body>
 
 <div>
-    <button id = "send">
-        Submit
+    <button id = "send1">
+        New Problem/Abstract solution
+    </button>
 
+    <button id = "send2">
+        Solution to problem with id
     </button>
 </div>
 
 <script>
-        $("#send").click(function(){
-            var url="/SelfCareCommunity/service/post/1/like";
+        $("#send1").click(function(){
+            var url="/SelfCareCommunity/service/newproblem";
 
             $.ajax({
                 url: url,
-                type: "DELETE",
-                //  dataType: "json",
-                //  contentType: 'application/json; charset=utf-8',
-                //  data: JSON.stringify({ "content":content}),
+                type: "POST",
+                  dataType: "json",
+                  contentType: 'application/json; charset=utf-8',
+                  data: JSON.stringify({ "description":{
+                    "when":"when",
+                    "where":"where",
+                    "how":"how",
+                    "why":"why",
+                    "who":"who",
+                    "consequences":"consequences"
+                  },
+                      "isProblem":true,
+                      "tags":[{"id":1},{"id":2}]
+                  }),
                 success: function(data){
                     console.log(data.result);
                 },
@@ -35,6 +48,35 @@
             });
             return false;
     });
+
+        $("#send2").click(function(){
+            var url="/SelfCareCommunity/service/problem/1/newsolution";
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ "description":{
+                    "when":"whenSolution",
+                    "where":"whereSolution",
+                    "how":"howSolution",
+                    "why":"whySolution",
+                    "who":"whoSolution",
+                    "consequences":"consequencesSolution"
+                },
+                    "tags":[{"id":1},{"id":2}]
+                }),
+                success: function(data){
+                    console.log(data.result);
+                },
+                error: function(xhr, ajaxOptions, thrownError){
+                    console.log(xhr.status+"  "+thrownError);
+
+                }
+            });
+            return false;
+        });
 </script>
 </body>
 </html>

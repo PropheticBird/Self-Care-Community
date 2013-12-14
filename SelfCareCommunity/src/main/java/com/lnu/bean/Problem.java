@@ -41,7 +41,7 @@ public class Problem {
     @Column(name = "Posted_Date")
     private Date postedDate;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "PROBLEM_TO_TAGS",
             joinColumns = {@JoinColumn(name = "Problem_ID",referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "Tag_ID",referencedColumnName = "ID")})
@@ -74,11 +74,11 @@ public class Problem {
         this.description = description;
     }
 
-    public Boolean getProblem() {
+    public Boolean getIsProblem() {
         return isProblem;
     }
 
-    public void setProblem(Boolean problem) {
+    public void setIsProblem(Boolean problem) {
         isProblem = problem;
     }
 

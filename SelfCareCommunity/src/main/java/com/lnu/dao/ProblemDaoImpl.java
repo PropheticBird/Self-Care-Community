@@ -42,4 +42,24 @@ public class ProblemDaoImpl implements ProblemDao {
         query.setParameter("problem",problemId);
         return query.list();
     }
+
+    @Override
+    public Problem findProblem(Long problemId) {
+        return (Problem) sessionFactory.getCurrentSession().get(Problem.class, problemId);
+    }
+
+    @Override
+    public Tag findTag(Long tagId) {
+        return (Tag) sessionFactory.getCurrentSession().get(Tag.class,tagId);
+    }
+
+    @Override
+    public void insertProblem(Problem problem) {
+        sessionFactory.getCurrentSession().save(problem);
+    }
+
+    @Override
+    public void insertSolution(Solution solution) {
+        sessionFactory.getCurrentSession().save(solution);
+    }
 }

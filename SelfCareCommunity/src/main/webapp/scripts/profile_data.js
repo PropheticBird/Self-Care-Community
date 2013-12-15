@@ -78,7 +78,7 @@ function saveUserData() {
     };
 	
 	$.ajax({
-        url: url,
+        url: '/SelfCareCommunity/service/currentuserdetails',
         type: "POST",
         data: JSON.stringify(JSONobj),
         contentType: 'application/json; charset=utf-8',

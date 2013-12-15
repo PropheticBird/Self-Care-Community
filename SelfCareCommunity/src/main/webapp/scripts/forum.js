@@ -211,3 +211,7 @@ function getThreads(pageNum){
 		}
 		});
 	}
+
+function createNewThread() {
+	location.href = "/SelfCareCommunity/content/createNewThread.html?categoryId=" + idCat;
+}

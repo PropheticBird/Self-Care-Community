@@ -19,6 +19,7 @@
  </head>
  <body>
 
+
  <div id="new-header">
         <script>
             $("#new-header").load("header.html");
@@ -28,6 +29,7 @@
 <div id="container" style="display:none" class="span11 offset3">
 
 	<h3 id="title"></h3>
+    <button id="btnThreadNewPage" class="btn btn-info" onclick="createNewThread()">Create New Thread</button>
 	<div class="pagination pagination-large">
 				
 				<div class="pagination pagination-centered">
@@ -81,6 +83,17 @@
   	  </ul>
 	</div>
 	
+
+    <div id="postSuccess"class="alert alert-success fade in hide" data-alert="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Post success!</strong> 
+    </div>
+            
+    <div id="postFail" class="alert alert-error fade in hide" data-alert="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Post fail!</strong> 
+    </div>
+
     <div class="span9">
      	 <form>
           	  <span id="categoryId" style="display:none"></span>

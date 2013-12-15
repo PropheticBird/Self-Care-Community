@@ -15,8 +15,7 @@
        margin-bottom: 40px;
     }
     </style>
-    <script>
-	
+    <script>	
     function getSolutions(url){
 		$.ajax({
 			url: url,
@@ -39,8 +38,13 @@
 					var postedDate=problem.postedDate;
 					var author=problem.author,name
 
+					var length=0;
+					
 					$("#answer").attr("href","solutionForm.html?id="+problemId+"&redirect=solutionView.html");
 
+					if(problem.isProblem){
+						
+					
 					$("#problem").loadTemplate("template/strucView.html",
 					{
 						authorPic: '../resources/img/avatar.png',
@@ -54,12 +58,39 @@
 					    postedDate: postedDate
 					});
 					
+					$("#problem").show();
+					}
+					
+					else{
+						
+						$("#solutionList").append("<div id='solution"+problemId+"'></div>");
+						$("#solution"+problemId).loadTemplate("template/strucView.html",
+						{
+							authorPic: '../resources/img/avatar.png',
+							author: author,
+							when: when,
+						    who: who,
+						    how: how,
+						    why: why,
+						    consequences: consequences,
+						    where: where,
+						    postedDate: postedDate
+						});
+						
+						$("#solutionList").show();
+						
+						length++;
+						
+					}
 				var solutions=result.solutions;
+				length+=solutions.length;
 				
-				$("#solutionsNum").html(solutions.length+" solutions");
+				$("#solutionsNum").html(length+" solutions");
 				
 				//alert(solutions.length);
 				for(var i=0;i<solutions.length;i++){
+
+					$("#solutionList").show();
 
 					var id=solutions[i].id;
 					when=solutions[i].description.when;
@@ -92,7 +123,18 @@
 		}	
 	
     $(function(){
-    	getSolutions("/SelfCareCommunity/service/problem/1/solutions");	
+    	
+	 	var prmstr = window.location.search.substr(1);
+	    var prmarr = prmstr.split ("&");
+	    var params = {};
+
+	    for ( var i = 0; i < prmarr.length; i++) {
+	        var tmparr = prmarr[i].split("=");
+	        params[tmparr[0]] = decodeURIComponent(tmparr[1]);
+	    }
+	    var id=params['id'];
+	    
+    	getSolutions("/SelfCareCommunity/service/problem/"+id+"/solutions");	
 
     });
    </script>
@@ -109,12 +151,12 @@
 
 <div id="container"  style="display:none;" class="span9 offset3">
 
-<div id="problem"></div>
+<div id="problem" style="display:none"></div>
 
 <h4 id="solutionsNum"></h4>
 <hr />
 
-<div id="solutionList" class="well">
+<div id="solutionList" style="display:none" class="well">
 </div>
 
 

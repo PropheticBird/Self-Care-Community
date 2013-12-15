@@ -47,12 +47,44 @@ $("#btnPost").click(function(){
 	var how=$.trim($("#how").val());
 	var why=$.trim($("#why").val());
 	var consequences=$.trim($("#consequences").val());
-
-	var url="/SelfCareCommunity/service/problem/"+problemId+"/newsolution";
 	
 	if(who.length==0 || where.length==0 || when.length==0 || how.length==0 || why.length==0 || consequences.length==0)
 		return false;
 	else{
+		
+		if( typeof (problemId) == "undefined")
+		{
+			var url="/SelfCareCommunity/service/newproblem";
+
+			 $.ajax({
+	             url: url,
+	             type: "POST",
+	               dataType: "json",
+	               contentType: 'application/json; charset=utf-8',
+	               data: JSON.stringify({ "description":{
+	                   "when": when,
+	                   "where": where,
+	                   "how": how,
+	                   "why": why,
+	                   "who": who,
+	                   "consequences":consequences
+	               },
+	                   "isProblem":false,
+	                   "tags":[{"id":1},{"id":2}]
+	               }),
+	             success: function(data){
+	             	window.location = redirect;
+	             },
+	             error: function(xhr, ajaxOptions, thrownError){
+	             }
+	         });
+			 
+		}
+
+		else{
+			
+			var url="/SelfCareCommunity/service/problem/"+problemId+"/newsolution";
+			
 		$.ajax({
 			  
 			url: url,
@@ -76,6 +108,7 @@ $("#btnPost").click(function(){
             }
 			  
 		});
+		}
 		return false;
 	}
 	

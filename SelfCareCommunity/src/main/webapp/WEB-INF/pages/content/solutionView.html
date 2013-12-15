@@ -39,7 +39,7 @@
 					var postedDate=problem.postedDate;
 					var author=problem.author,name
 
-					$("a").attr("href","solutionForm.html?id="+problemId+"&redirect=solutionView.html");
+					$("#answer").attr("href","solutionForm.html?id="+problemId+"&redirect=solutionView.html");
 
 					$("#problem").loadTemplate("template/strucView.html",
 					{
@@ -55,6 +55,8 @@
 					});
 					
 				var solutions=result.solutions;
+				
+				$("#solutionsNum").html(solutions.length+" solutions");
 				
 				//alert(solutions.length);
 				for(var i=0;i<solutions.length;i++){
@@ -109,14 +111,14 @@
 
 <div id="problem"></div>
 
-<h4 id="solutionsNum">5 solutions</h4>
+<h4 id="solutionsNum"></h4>
 <hr />
 
 <div id="solutionList" class="well">
 </div>
 
 
-<a class="btn btn-info pull-right" href="" >Answer</a>
+<a id="answer" class="btn btn-info pull-right" href="" >Answer</a>
 
 </div>
 

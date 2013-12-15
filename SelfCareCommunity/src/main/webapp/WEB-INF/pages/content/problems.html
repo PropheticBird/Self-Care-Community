@@ -14,7 +14,8 @@
 <script>
 	$(function() {
 		var array;
-
+		var topic;
+		
 		function composeUrl() {
 			var relativePath = "/SelfCareCommunity/service/problems";
 			var arr = window.location.href.split("/");
@@ -32,19 +33,28 @@
 				data = result;
 
 				console.log("Lenght: "+data.length);
+				console.log("Problem: "+data[0].problem);
 				$("#row-body").html("");
 
 				for (var i = 0; i < data.length; i++) {
 					$("#row-body").append("<div id='row"+i+"'></div>");
-					var topic= "<a href='http://localhost:8080/SelfCareCommunity/content/solutionView.html'>Problem</a>"; 
-					var whenVar = data[i].postedDate;
-					var descVar = data[i].description;
+					var id = data[i].id;
+					if(data[i].problem){
+						topic= "<a href='http://localhost:8080/SelfCareCommunity/content/solutionView.html?id="+id+"'>Problem</a>";
+					}
+					else{
+						topic= "<a href='http://localhost:8080/SelfCareCommunity/content/solutionView.html?id="+id+"'>Solution</a>";
+					}
+					
+					 
+					var whenVar = data[i].description.when;
+					var descVar = data[i].description.where;
 					
 					if(topic == null)
 						topic = "Problem";
 					else if(whenVar == null)
 						whenVar = "When";
-					else
+					else if(descVar == null)
 						descVar = "Description";
 					
 					
@@ -82,9 +92,9 @@
 				<div class="row">
 					<div class="span8">
 						<div class="row">
-							<button id="btnProblem" class="btn btn-info" onclick="window.location.href='problemForm.html?id=11'">Post
+							<button id="btnProblem" class="btn btn-info" onclick="window.location.href='problemForm.html?redirect=problems.html'">Post
 								Problem</button>
-							<button id="btnAnswer" class="btn btn-info" onclick="window.location.href='solutionForm.html?id=11'">Post
+							<button id="btnAnswer" class="btn btn-info" onclick="window.location.href='solutionForm.html?redirect=problems.html'">Post
 								Solution</button>
 						</div>
 					</div>

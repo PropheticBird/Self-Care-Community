@@ -11,5 +11,6 @@
         <mapping class="com.lnu.bean.Solution"/>
         <mapping class="com.lnu.bean.Tag"/>
         <mapping class="com.lnu.bean.Description"/>
+        <mapping class="com.lnu.bean.Like"/>
     </session-factory>
 </hibernate-configuration>

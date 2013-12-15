@@ -3,6 +3,7 @@ package com.lnu.dao;
 import com.lnu.bean.*;
 import com.lnu.bean.Thread;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,5 +99,20 @@ public class ForumDaoImpl implements ForumDao {
     public void updatePost(Post post) {
         Session session = sessionFactory.getCurrentSession();
         session.update(post);
+    }
+
+    @Override
+    public void insertLike(Long postId, Long personId) {
+        Session session = sessionFactory.getCurrentSession();
+        SQLQuery query = session.createSQLQuery("INSERT INTO LIKES_TO_USERS (Person_ID, Post_ID) VALUES ("+personId+","+postId+")");
+        query.executeUpdate();
+    }
+
+    @Override
+    public List<Like> findLikesForPerson(Long personId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Like where id.userID=:personId");
+        query.setParameter("personId",personId);
+        return query.list();
     }
 }

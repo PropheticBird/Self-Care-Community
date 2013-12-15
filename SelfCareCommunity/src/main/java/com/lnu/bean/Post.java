@@ -6,6 +6,7 @@ import com.lnu.controller.json.converter.JsonDateSerializer;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -38,6 +39,9 @@ public class Post{
 
     @Column(name = "Likes")
     private Integer likes;
+
+    @Transient
+    private Boolean canLike;
 
     @JsonSerialize(using = JsonDateSerializer.class)
     @JsonDeserialize(using = JsonDateDeserealizer.class)
@@ -102,5 +106,13 @@ public class Post{
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    public Boolean getCanLike() {
+        return canLike;
+    }
+
+    public void setCanLike(Boolean canLike) {
+        this.canLike = canLike;
     }
 }

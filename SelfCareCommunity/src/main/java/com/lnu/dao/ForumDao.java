@@ -36,4 +36,8 @@ public interface ForumDao {
     Post findPostById(Long postId);
 
     void updatePost(Post post);
+
+    void insertLike(Long postId, Long id);
+
+    List<Like> findLikesForPerson(Long personId);
 }

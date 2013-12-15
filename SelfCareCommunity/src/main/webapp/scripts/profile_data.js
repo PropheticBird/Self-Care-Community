@@ -1,8 +1,11 @@
 
 function loadUserData() {
-	console.log(url);
-	$.getJSON('/SelfCareCommunity/service/currentuserdetails', function(data) {
-		InitControls(data);
+    $.ajax({
+            url: '/SelfCareCommunity/service/currentuserdetails',
+            type: "GET",
+            success: function(data) {
+		        InitControls(data);
+            }
 	});
 	
 	function InitControls(data) {

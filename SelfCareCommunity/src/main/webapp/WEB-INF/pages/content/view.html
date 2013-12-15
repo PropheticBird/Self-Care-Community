@@ -24,7 +24,7 @@
         
     var currentPage=1;
     var prePage=0;
-
+	var num_pages=0; // it will store the number of pages we will have
     var lastPage=false; // this variable is FALSE if it is not the last page and it is TRUE if it is THE LAST PAGE
     var threadId=0;
     
@@ -77,6 +77,48 @@
       	 
        }
     
+    
+    
+    function paginationManagement(last, current){ // this function will handle the visualization of the elements
+    	if (last==true){
+			$(".pageNext").hide();
+		} else {
+			$(".pageNext").show();
+		} 
+		if (current==1){
+			$(".pagePre").hide();
+		} else {
+			$(".pagePre").show();
+		}
+		
+		//in case the number of pages is bigger than 6...
+		if (num_pages> 4 ) {
+			$(".tempAfter").remove();	
+			$(".tempBefore").remove();	
+			for (i= 3; i<=(num_pages -2); i++){
+					$(".page" + i).hide();	
+				
+			}
+			if (current < (num_pages - 2) -1) {
+				$(".page"+(current+1)).after("<span class='tempAfter'>. . .</span>");
+			}	
+			if (current > 4) {
+				$(".page"+(current-1)).before("<span class='tempBefore'>. . .</span>");
+			}
+			for (i= 1; i<=num_pages; i++){
+				if (( i == current)||  (i == current +1) || (i == current -1)) {
+				
+					$(".page" + i).show();	
+				}
+			}
+	
+
+		}
+		
+		
+    }
+    
+    
     function getPosts(pagNum){
     	var url = "/SelfCareCommunity/service/thread/"+threadId+"/posts/page/"+pagNum;
 		$.ajax({
@@ -85,16 +127,8 @@
 			dataType: "json",
 			success: function(result){
 			lastPage = result.last;
-			if (lastPage==true){
-				$("#pageNext").hide();
-			} else {
-				$("#pageNext").show();
-			} 
-			if (currentPage==1){
-				$("#pagePre").hide();
-			} else {
-				$("#pagePre").show();
-			}
+			
+			paginationManagement(lastPage,  currentPage);
 			
 			$("#postList").html("");
 				data=result.data;
@@ -126,33 +160,38 @@
 		prePage = tPrePage;	
 		currentPage=tcPage;
 
-    	$("#page"+prePage).parent().attr("class","");
-		$("#page"+prePage+"span").attr("class","");
+
+		clas='.page'+prePage+'span';
 		
+		$(".page"+prePage).parent().attr("class","");
+		//console.log($(clas).parent().attr());
 		
-		$("#page"+currentPage).parent().attr("class","active");
-		$("#page"+currentPage+"span").attr("class","label label-info");
+		$(clas).attr('class','page'+prePage+'span');
+		
+		clas='.page'+currentPage+'span';
+		
+		$(".page"+currentPage).parent().attr("class","active");
+		$(clas).attr("class","page"+currentPage+"span label label-info");
 		
 		if(currentPage==1)
-			$("#pagePre").parent().attr("class","active");
+			$(".pagePre").parent().attr("class","active");
 		else
 		{
-			$("#pagePre").parent().attr("class","");
-			$("#pagePre").attr("href","/SelfCareCommunity/service/thread/"+threadId+"/posts/page/"+(currentPage+1));
-			$("#pageNext").attr("href","/SelfCareCommunity/service/thread/"+threadId+"/posts/page/"+(currentPage-1));
+			$(".pagePre").parent().attr("class","");
+			$(".pagePre").attr("href","/SelfCareCommunity/service/thread/"+threadId+"/posts/page/"+(currentPage+1));
+			$(".pageNext").attr("href","/SelfCareCommunity/service/thread/"+threadId+"/posts/page/"+(currentPage-1));
 		}
     }
     
 	function page(item){
-		
 		prePage=currentPage;
 		
-		if (item.id=='pageNext'){
+		if (item.className=='pageNext'){
 			currentPage++;
 			getPosts(currentPage);
     			
     	}
-		if (item.id=='pagePre'){
+		if (item.className=='pagePre'){
 			currentPage--;
 			getPosts(currentPage);
     		
@@ -177,39 +216,37 @@
 		    }
 		   
 			threadId=params['id'];
-			
-			getPosts(1);
-		
 			var postCount=parseInt(params['postCount']);
-			var n=parseInt(postCount/5)+1;
-			
+			num_pages=parseInt(postCount/5)+1; // it calculates the numbe of pages we will have
 			
 			currentPage=1;
 			prePage=1;
+			
+			getPosts(1);
 		
-		
-			if(n>1)
+			if(num_pages>1)
 			{
-				element = '<li><a onclick="page(this);return false;"id="pagePre">&laquo</a></li>';
-				$("#page").append(element);
+				element = '<li><a onclick="page(this);return false;"class="pagePre">&laquo</a></li>';
+				$(".page").append(element);
 				
-				element = '<li><a onclick="page(this);return false;"id="page1"><span id="page1span" class="label label-info">1</span></a></li>';
-				$("#page").append(element);
+				element = '<li><a onclick="page(this);return false;"class="page1"><span class="page1span label label-info">1</span></a></li>';
+				$(".page").append(element);
 				
-				for(var i=2;i<=n;i++){										
-					element = '<li><a onclick="page(this);return false;"id="page'+i+'" class="page_num"><span id="page'+i+'span" >'+i+'</span></a></li>';
-					$("#page").append(element);
+				for(var i=2;i<=num_pages;i++){				
+					clas='page'+i+'span';
+					element = '<li><a onclick="page(this);return false;"class="page'+i+'" ><span class='+clas+' >'+i+'</span></a></li>';
+					$(".page").append(element);
 				}
-				element = '<li><a onclick="page(this);return false;"id="pageNext">&raquo;</a></li>';
-				$("#page").append(element);
+				element = '<li><a onclick="page(this);return false;"class="pageNext">&raquo;</a></li>';
+				$(".page").append(element);
 			}
 			else{
-				element = '<li><a onclick="page(this);return false;"id="page1">1</a></li>';
-				$("#page").append(element);	
+				element = '<li><a onclick="page(this);return false;"class="page1">1</a></li>';
+				$(".page").append(element);	
 			}
 			
-			$("#pagePre").parent().attr("class","active");
-			$("#page1").parent().attr("class","active");
+			$(".pagePre").parent().attr("class","active");
+			$(".page1").parent().attr("class","active");
 			
 		$("#threadId").text(threadId);
 		$("#title").text(params['displayName']);
@@ -231,7 +268,7 @@
 					  success: function(){
 						  $("#postSuccess").show();
 						 var lastpage=parseInt(params['postCount']/5)+1;
-						 getPosts(lastpage);
+						 getPosts(lastpage, num_pages);
 
 						 changeNums(currentPage, lastpage);
 
@@ -305,12 +342,20 @@
 			<div class="pagination pagination-large">
 				
 				<div class="pagination pagination-centered">
-			  	  <ul id="page" > </ul>
+			  	  <ul class="page" > </ul>
 				</div>
 			</div>
+			
+			
 			<div id="postList" class="posts">
 			</div>
 			
+			<div class="pagination pagination-large">
+				
+				<div class="pagination pagination-centered">
+			  	  <ul class="page" > </ul>
+				</div>
+			</div>
 			
 		
 			<div id="addPost">

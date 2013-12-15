@@ -147,7 +147,8 @@
 						content: content,
 						date: date,
 						likes: likes+" recommends",
-						postId: data[i].id
+						postId: data[i].id,
+						canLike: !data[i].canLike
 					});
 			}
 				$("#container").show();

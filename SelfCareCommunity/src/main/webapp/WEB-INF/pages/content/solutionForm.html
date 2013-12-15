@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Answer</title>
-    <meta content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
+<head>
+<title>Answer</title>
+<meta content="width=device-width, initial-scale=1.0">
+<!-- Bootstrap -->
 
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+<link href="../resources/styles/bootstrap.min.css" rel="stylesheet" media="screen">
 
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-        <link href="../resources/styles/bootstrap.min.css" rel="stylesheet" media="screen">
-        
-        <script src="../resources/scripts/bootstrap.min.js"></script>
-		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="../resources/scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
-    <script>
+<link href="../resources/styles/bootstrap-duallistbox.css" rel="stylesheet" media="all">
+
+<link href="../resources/styles/bootstrap.css" rel="stylesheet" media="all">
+<link href="../resources/styles/bootstrap-new.css" rel="stylesheet" media="all">
+<script src="../resources/scripts/jquery.bootstrap-duallistbox.js"></script>
+<script src="../resources/scripts/problems.js"></script>
+
+<script>
 	
 $(function(){
+	
+	loadTags();
 	
 	var problemId;
 	var redirect;
@@ -105,6 +113,7 @@ $("#btnPost").click(function(){
             	window.location = redirect;
             },
             error: function(xhr, ajaxOptions, thrownError){
+            	alert(thrownError);
             }
 			  
 		});
@@ -119,46 +128,53 @@ $("#btnPost").click(function(){
 });
 </script>
 
-  </head>
-  <body>
+</head>
+<body>
 
- <div id="new-header">
-        <script>
+	<div id="new-header">
+		<script>
             $("#new-header").load("header.html");
         </script>
-</div>
+	</div>
 
-    <div id="container" class="span6 offset3">
-       
-<form>
-  <fieldset>
-    <legend><h3>Please recoder solution</h3></legend>
+	<div id="container" class="span6 offset3">
+
+		<form>
+			<fieldset>
+				<legend>
+					<h3>Please recoder solution</h3>
+				</legend>
 
 
- 	<label>Who have this solution</label>
-    <input id="who" type="text" placeholder="">
-     
-    <label>When have this solution</label>
-    <input id="when" type="text" id="date">
+				<label>Who have this solution</label> <input id="who" type="text"
+					placeholder=""> <label>When have this solution</label> <input
+					id="when" type="text" id="date"> <label>Where to
+					live</label> <input id="where" type="text" placeholder=""> <label>How
+					to have this solution</label>
+				<textarea id="how" rows="6" class="span6"></textarea>
 
-     <label>Where to live</label>
-     <input id="where" type="text" placeholder="">
+				<label>Why to have this solution</label>
+				<textarea id="why" rows="6" class="span6"></textarea>
 
-     <label>How to have this solution</label>
-    <textarea id="how" rows="6" class="span6"></textarea>
+				<label>What the consequence</label>
+				<textarea id="consequences" rows="6" class="span6"></textarea>
 
-     <label>Why to have this solution</label>
-    <textarea id="why" rows="6" class="span6"></textarea>
+				<div>
+					<div class="row">
+						<div class="col-md-12">
+							<select multiple="multiple" size="10" name="dlb_tabgs"
+								id="dlb_tabgs">
+							</select> <br>
+						</div>
+					</div>
+				</div>
 
-     <label>What the consequence</label>
-    <textarea id="consequences" rows="6" class="span6"></textarea>
+				<div class="pull-right">
+					<button id="btnPost" type="submit" class="btn btn-primary">Answer</button>
+				</div>
+			</fieldset>
+		</form>
 
-    <div class="pull-right">
-    <button id="btnPost" type="submit" class="btn btn-primary">Answer</button>
-  </div>
-  </fieldset>
-</form>
-
-    </div>
+	</div>
 </body>
 </html>

@@ -38,6 +38,9 @@
 					var postedDate=problem.postedDate;
 					var author=problem.author,name
 
+					var tag1=problem.tags[0].tagName;
+					var tag2=problem.tags[1].tagName;
+
 					var length=0;
 					
 					$("#answer").attr("href","solutionForm.html?id="+problemId+"&redirect=solutionView.html");
@@ -55,7 +58,12 @@
 					    why: why,
 					    consequences: consequences,
 					    where: where,
+					    
+					    tag1:tag1,
+					    tag2:tag2,
+					    
 					    postedDate: postedDate
+
 					});
 					
 					$("#problem").show();
@@ -74,6 +82,10 @@
 						    why: why,
 						    consequences: consequences,
 						    where: where,
+						    
+						    tag1:tag1,
+						    tag2:tag2,
+						    
 						    postedDate: postedDate
 						});
 						
@@ -113,6 +125,10 @@
 					    why: why,
 					    consequences: consequences,
 					    where: where,
+					    
+					    tag1:tag1,
+					    tag2:tag2,
+					    
 					    postedDate: postedDate
 					});
 			}

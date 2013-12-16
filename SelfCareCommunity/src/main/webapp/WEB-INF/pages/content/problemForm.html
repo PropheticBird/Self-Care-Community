@@ -6,25 +6,20 @@
 <!-- Bootstrap -->
 
 
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-<link href="../resources/styles/bootstrap.min.css" rel="stylesheet"
-	media="screen">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+<link href="../resources/styles/bootstrap.min.css" rel="stylesheet"	media="screen">
 
 <script src="../resources/scripts/bootstrap.min.js"></script>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
-<link href="../resources/styles/bootstrap-duallistbox.css"
-	rel="stylesheet" media="all">
+<link href="../resources/styles/bootstrap-duallistbox.css" 	rel="stylesheet" media="all">
 
-<link href="../resources/styles/bootstrap.css" rel="stylesheet"
-	media="all">
-<link href="../resources/styles/bootstrap-new.css" rel="stylesheet"
-	media="all">
+<link href="../resources/styles/bootstrap.css" rel="stylesheet" 	media="all">
+<link href="../resources/styles/bootstrap-new.css" rel="stylesheet"	media="all">
 <script src="../resources/scripts/jquery.bootstrap-duallistbox.js"></script>
+<script src="../resources/scripts/global.js"></script>
 <script src="../resources/scripts/problems.js"></script>
 
 <script>
@@ -32,23 +27,7 @@
 
 		loadTags();
 
-		var redirect;
-		var prmstr = window.location.search.substr(1);
-		var prmarr = prmstr.split("&");
-		var params = {};
-
-		for (var i = 0; i < prmarr.length; i++) {
-			var tmparr = prmarr[i].split("=");
-			params[tmparr[0]] = decodeURIComponent(tmparr[1]);
-		}
-
-		redirect = params['redirect'];
-
-		$("#when").datepicker({
-			yearRange : "1930:2012",
-			changeMonth : true,
-			changeYear : true
-		});
+		var params = parseParams(window.location.search.substr(1));
 
 		$("#btnPost").click(
 				function() {
@@ -68,7 +47,6 @@
 					var consequences = $.trim($("#consequences").val());
 
 					var url = "/SelfCareCommunity/service/newproblem";
-					var tags = $('[name="dlb_tabgs"]').val();
 
 					if (who.length == 0 || where.length == 0
 							|| when.length == 0 || how.length == 0
@@ -89,11 +67,12 @@
 									"who" : who,
 									"consequences" : consequences
 								},
-								"isProblem" : true,
+								"isProblem" : params['isProblem'],
 								"tags": tagsObj
 							}),
 							success : function(data) {
-								window.location = redirect;
+                                console.log("data");
+								//window.location = redirect;
 							},
 							error : function(xhr, ajaxOptions, thrownError) {
 							}
@@ -149,7 +128,6 @@
 				</div>
 			</fieldset>
 		</form>
-
 	</div>
 </body>
 </html>

@@ -1,38 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>List</title>
     <meta content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Bootstrap -->
     <link href="../resources/styles/bootstrap.min.css" rel="stylesheet" media="screen">
     <script src="../resources/scripts/bootstrap.min.js"></script>
     <script src="../resources/scripts/jquery.js"></script>
     <script src="../resources/scripts/jquery.loadTemplate-1.3.2.min.js"></script>
-     <!--// Bootstrap -->
-     
-    
-     <link href="../resources/styles/forum.css" rel="stylesheet" media="screen">
-     <script src="../resources/scripts/newThreadInCategory.js"></script>
-     <script src="../resources/scripts/createNewThread.js"></script>
+    <!--// Bootstrap -->
 
-   
 
- </head>
- <body>
+    <link href="../resources/styles/forum.css" rel="stylesheet" media="screen">
+    <script src="../resources/scripts/global.js"></script>
+    <script src="../resources/scripts/createNewThreadCategory.js"></script>
 
- <div id="new-header">
-        <script>
-            $("#new-header").load("header.html");
-        </script>
+</head>
+<body>
+
+<div id="new-header">
 </div>
 
 <div class="span9">
-                 <h4>Add a topic</h4>
-                 <input type="text" class="span6" id="topicSeparatePage" placeholder="Type something about the topic">
-                 <textarea class="field span9" rows="6" id="contentSeparatePage"></textarea>
-                 <div class="pull-right">
-                 <button id="btnThreadNewPage" class="btn btn-info" onClick="gnida();">Submit</button></div>
+    <h4>Add a topic</h4>
+    <input type="text" class="span6" id="topicSeparatePage" placeholder="Type something about the topic">
+    <textarea class="field span9" rows="6" id="contentSeparatePage"></textarea>
+    <div class="pull-right">
+        <button id="btnThreadNewPage" class="btn btn-info">Submit</button></div>
 </div>
 
 </body>

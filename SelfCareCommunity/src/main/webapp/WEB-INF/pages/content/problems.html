@@ -15,16 +15,9 @@
 	$(function() {
 		var array;
 		var topic;
-		
-		function composeUrl() {
-			var relativePath = "/SelfCareCommunity/service/problems";
-			var arr = window.location.href.split("/");
-			var hostName = arr[0] + "//" + arr[2];
-			return hostName + relativePath;
-		}
+
 		var data = [];
-		var url = composeUrl();
-		console.log("Path: " + url);
+		var url = "/SelfCareCommunity/service/problems";
 		$.ajax({
 			url : url,
 			type : "get",
@@ -33,13 +26,13 @@
 				data = result;
 
 				console.log("Lenght: "+data.length);
-				console.log("Problem: "+data[0].problem);
+				console.log("Problem: "+data[0].isProblem);
 				$("#row-body").html("");
 
 				for (var i = 0; i < data.length; i++) {
 					$("#row-body").append("<div id='row"+i+"'></div>");
 					var id = data[i].id;
-					if(data[i].problem){
+					if(data[i].isProblem){
 						topic= "<a href='http://localhost:8080/SelfCareCommunity/content/solutionView.html?id="+id+"'>Problem</a>";
 					}
 					else{
@@ -92,10 +85,12 @@
 				<div class="row">
 					<div class="span8">
 						<div class="row">
-							<button id="btnProblem" class="btn btn-info" onclick="window.location.href='problemForm.html?redirect=problems.html'">Post
-								Problem</button>
-							<button id="btnAnswer" class="btn btn-info" onclick="window.location.href='solutionForm.html?redirect=problems.html'">Post
-								Solution</button>
+							<button id="btnProblem" class="btn btn-info" onclick="window.location.href='problemForm.html?redirect=problems.html&isProblem=true'">
+                                Post Problem
+                            </button>
+							<button id="btnAnswer" class="btn btn-info" onclick="window.location.href='problemForm.html?redirect=problems.html&isProblem=false'">
+                                Post Solution
+                            </button>
 						</div>
 					</div>
 				</div>

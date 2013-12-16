@@ -8,13 +8,15 @@ function initalizePagination(itemsCount, itemsPerPage, itemClickFunction){
     element = '<li><a class="pagePre">&laquo</a></li>';
     $(".page").append(element);
     for(var i=1;i<=pageCount;i++){
-
-        element = '<li><a class="pagination-item">'+i+'</a></li>';
+         var activeClass = "";
+         if(i==currentPage){
+             activeClass = "active";
+         }
+        element = '<li class="'+activeClass+'"><a class="pagination-item">'+i+'</a></li>';
         $(".page").append(element);
     }
     element = '<li><a class="pageNext">&raquo;</a></li>';
     $(".page").append(element);
-
     $(".pagination-item").click(function(){
                 currentPage=parseInt(this.innerHTML);
                 itemClickFunction(this.innerHTML);

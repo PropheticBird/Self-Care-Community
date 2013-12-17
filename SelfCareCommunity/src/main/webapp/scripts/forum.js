@@ -59,14 +59,18 @@ function getThreads(pageNum){
 			$("#threadList").html("");
 
 			for(var i=0;i<data.length;i++){
-		
+				
 				var id=data[i].id;
 				var author=data[i].author.name;
 				var displayName=data[i].displayName;
 				var postCount=data[i].postCount;
 				var lastPostDate=data[i].lastPostDate;
-
-				$("#threadList").append("<div id='thread"+id+"'></div>");
+				
+				if(i%2==0){
+					$("#threadList").append("<div class='forum_emphasized' id='thread"+id+"'></div>");
+				}else{
+					$("#threadList").append("<div id='thread"+id+"'></div>");
+				}
 				$("#thread"+id).loadTemplate("template/thread.html",
 				{
 					author: author,
@@ -74,7 +78,8 @@ function getThreads(pageNum){
 					displayName:displayName,
 					postCount:postCount,
 					date: lastPostDate
-				});		
+				});
+				
 		    }
             initalizePagination(params['threadCount'], 10, getThreads);
             paginationManageArrows(result.last);

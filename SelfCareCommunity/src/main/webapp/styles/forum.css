@@ -1,3 +1,13 @@
 body{
        margin-bottom: 40px;
     }
+.forum_hr{
+	border-top: 1px solid #bbb;
+}
+.forum_emphasized{
+	
+	background: #eee;
+}
+.row{
+	padding: 19px 15px 15px 15px;
+}

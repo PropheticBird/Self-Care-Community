@@ -5,60 +5,13 @@
 <meta content="width=device-width, initial-scale=1.0">
 <!-- Bootstrap -->
 <meta content="width=device-width, initial-scale=1.0">
-<link href="../resources/styles/bootstrap.min.css" rel="stylesheet"
-	media="screen">
+<link href="../resources/styles/bootstrap.min.css" rel="stylesheet" media="screen">
 <script src="../resources/scripts/bootstrap.min.js"></script>
 <script src="../resources/scripts/jquery.js"></script>
 <script src="../resources/scripts/jquery.loadTemplate-1.3.2.min.js"></script>
 
-<script>
-	$(function() {
-		var array;
-		var topic;
+<script src="../resources/scripts/ask.js"></script>
 
-		var data = [];
-		var url = "/SelfCareCommunity/service/problems";
-		$.ajax({
-			url : url,
-			type : "get",
-			dataType : "json",
-			success : function(result) {
-				data = result;
-
-				console.log("Lenght: "+data.length);
-				console.log("Problem: "+data[0].isProblem);
-				$("#row-body").html("");
-
-				for (var i = 0; i < data.length; i++) {
-					$("#row-body").append("<div id='row"+i+"'></div>");
-					var id = data[i].id;
-					if(data[i].isProblem){
-						topic= "<a href='http://localhost:8080/SelfCareCommunity/content/solutionView.html?id="+id+"'>Problem</a>";
-					}
-					else{
-						topic= "<a href='http://localhost:8080/SelfCareCommunity/content/solutionView.html?id="+id+"'>Solution</a>";
-					}
-					
-					 
-					var whenVar = data[i].description.when;
-					var descVar = data[i].description.where;
-					
-					if(topic == null)
-						topic = "Problem";
-					else if(whenVar == null)
-						whenVar = "When";
-					else if(descVar == null)
-						descVar = "Description";
-					
-					
-					$("#row" + i).append("<h3 style='margin-bottom: -10px;'>" + topic + "</h3><br><h4 style='margin-top: 0px;'>"+whenVar+"</h4><h4 style='margin-top: 0px;'>"+descVar+"</h4><hr/>");
-				}
-			}
-
-		});
-
-	});
-</script>
 </head>
 <div id="new-header">
 	<script>
@@ -66,21 +19,26 @@
 	</script>
 </div>
 <body>
-
 	<div id="container" >
 		<div class="row">
 			<div class="span9 offset4">
 				<h3>Problems &amp; Solutions</h3>
 				<div class="row">
-					<div class="span8">
+					<div class="span8" id="problems">
 						<hr/>
 						<div id="row-body"></div>
 					</div>
+					<div id="problems_loading">
+        				<img id="loading_icon" src="../resources/img/loading18.gif">
+        				<br/>
+        				<br/>
+    				</div>
 				</div>
 			</div>
 		</div>
-
-		<div class="buttons">
+	</div>
+	
+	<div class="buttons">
 			<div class="span9 offset4">
 				<div class="row">
 					<div class="span8">
@@ -95,8 +53,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
-
 	</div>
+
 </body>
 </html>

@@ -32,3 +32,9 @@
 	color: rgb(73, 175, 205);
 	 text-decoration: none;
 	}
+
+    #loading_icon {
+        width: 152px;
+        height: 152px;
+        margin-left: 300px;
+    }

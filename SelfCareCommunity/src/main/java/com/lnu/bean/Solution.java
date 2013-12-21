@@ -29,9 +29,7 @@ public class Solution {
     @JoinColumn(name = "Author_ID")
     private Person person;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "Description_ID")
-    private Description description;
+    private String description;
 
     @JsonIgnore
     @ManyToOne
@@ -68,11 +66,11 @@ public class Solution {
         this.person = person;
     }
 
-    public Description getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(Description description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 

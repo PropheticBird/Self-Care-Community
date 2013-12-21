@@ -57,14 +57,7 @@
                 type: "POST",
                 dataType: "json",
                 contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify({ "description":{
-                    "when":"whenSolution",
-                    "where":"whereSolution",
-                    "how":"howSolution",
-                    "why":"whySolution",
-                    "who":"whoSolution",
-                    "consequences":"consequencesSolution"
-                },
+                data: JSON.stringify({ "description":"test_description",
                     "tags":[{"id":1},{"id":2}]
                 }),
                 success: function(data){

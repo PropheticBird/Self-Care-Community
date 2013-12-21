@@ -72,16 +72,11 @@
 					else{
 						
 						$("#solutionList").append("<div id='solution"+problemId+"'></div>");
-						$("#solution"+problemId).loadTemplate("template/strucView.html",
+						$("#solution"+problemId).loadTemplate("template/solutionItem.html",
 						{
 							authorPic: '../resources/img/avatar.png',
 							author: author,
-							when: when,
-						    who: who,
-						    how: how,
-						    why: why,
-						    consequences: consequences,
-						    where: where,
+							description: description,
 						    
 						    tag1:tag1,
 						    tag2:tag2,
@@ -102,29 +97,26 @@
 				//alert(solutions.length);
 				for(var i=0;i<solutions.length;i++){
 
+
 					$("#solutionList").show();
 
 					var id=solutions[i].id;
-					when=solutions[i].description.when;
-					who=solutions[i].description.who;
-					how=solutions[i].description.how;
-					why=solutions[i].description.why;
-					consequences=solutions[i].description.consequences;
-					where=solutions[i].description.where;
+					description = solutions[i].description;
 					postedDate=solutions[i].postedDate;
 					author=solutions[i].author,name
-								
-					$("#solutionList").append("<div id='solution"+id+"'></div>");
-					$("#solution"+id).loadTemplate("template/strucView.html",
+
+					if(i % 2 == 0) {
+						$("#solutionList").append("<div class='selection' id='solution"+id+"'></div>");
+					}	
+					else {
+						$("#solutionList").append("<div id='solution"+id+"'></div>");
+					}		
+					
+					$("#solution"+id).loadTemplate("template/solutionItem.html",
 					{
 						authorPic: '../resources/img/avatar.png',
 						author: author,
-						when: when,
-					    who: who,
-					    how: how,
-					    why: why,
-					    consequences: consequences,
-					    where: where,
+						description: description,
 					    
 					    tag1:tag1,
 					    tag2:tag2,
@@ -172,7 +164,7 @@
 <h4 id="solutionsNum"></h4>
 <hr />
 
-<div id="solutionList" style="display:none" class="well">
+<div id="solutionList" style="display:none">
 </div>
 
 

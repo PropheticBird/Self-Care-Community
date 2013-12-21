@@ -38,3 +38,19 @@
         height: 152px;
         margin-left: 300px;
     }
+
+    .solution_item {
+        padding: 20px;
+    }
+
+    .selection {
+        background-color: #ddd;
+    }
+
+    .solution_author_data {
+        border-bottom: 1px solid #888;
+    }
+
+    .solution_text {
+        margin: 10px 0 0 20px;
+    }

@@ -59,8 +59,10 @@ public class ForumServiceImpl implements ForumService {
             post.setAuthor(Author.createFromPerson(post.getPerson()));
             if(likes.contains(Like.newLike(0l,post.getId()))){
                 post.setCanLike(false);
+                post.setCanDislike(false);
             } else{
                 post.setCanLike(true);
+                post.setCanDislike(true);
             }
         }
         Boolean isLastPage =ForumDao.POST_PAGE_SIZE*pageNumber>=count;
@@ -109,7 +111,7 @@ public class ForumServiceImpl implements ForumService {
         if(increaseLikes){
             post.setLikes(post.getLikes()+1);
         } else {
-            post.setLikes(post.getLikes()-1);
+            post.setDislikes(post.getDislikes()+1);
         }
         Person person = userDao.findByUserName(UserJsonController.getCurrentUserName()).getPerson();
         forumDao.insertLike(postId, person.getId());

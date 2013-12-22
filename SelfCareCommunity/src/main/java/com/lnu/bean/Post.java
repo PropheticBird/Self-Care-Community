@@ -39,9 +39,15 @@ public class Post{
 
     @Column(name = "Likes")
     private Integer likes;
+    
+    @Column(name = "Dislikes")
+    private Integer dislikes;
 
     @Transient
     private Boolean canLike;
+    
+    @Transient
+    private Boolean canDislike;
 
     @JsonSerialize(using = JsonDateSerializer.class)
     @JsonDeserialize(using = JsonDateDeserealizer.class)
@@ -91,6 +97,14 @@ public class Post{
     public void setLikes(Integer likes) {
         this.likes = likes;
     }
+    
+    public Integer getDislikes() {
+        return dislikes;
+    }
+
+    public void setDislikes(Integer dislikes) {
+        this.dislikes = dislikes;
+    }
 
     public Date getPostedDate() {
         return postedDate;
@@ -114,5 +128,13 @@ public class Post{
 
     public void setCanLike(Boolean canLike) {
         this.canLike = canLike;
+    }
+    
+    public Boolean getCanDislike() {
+        return canDislike;
+    }
+
+    public void setCanDislike(Boolean canDislike) {
+        this.canDislike = canDislike;
     }
 }

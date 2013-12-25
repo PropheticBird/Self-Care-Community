@@ -37,12 +37,13 @@
             </div>
             
             <div class="span2">
-              <button type="button" class="btn" data-alt="postId" onclick="like(this,1)" data-template-bind='[{"attribute": "disabled", "value": "canLike"}]'>Good Advice</button>
-             </div>
-             
-             <div class="span2">
-              <button type="button" class="btn" data-alt="postId" onclick="like(this,0)">Bad Advice</button>
+            	<p data-content="dislikes" class="muted"></p>
             </div>
+            
+            <div class="span2">
+               <button type="button" class="btn span2" data-alt="postId" onclick="like(this,1)" data-template-bind='[{"attribute": "disabled", "value": "canLike"}]'>Good Advice</button>
+               <button type="button" class="btn span2" data-alt="postId" onclick="like(this,0)" data-template-bind='[{"attribute": "disabled", "value": "canDislike"}]'>Bad Advice</button>
+             </div>
             
             <!--  
             <div class="span1">

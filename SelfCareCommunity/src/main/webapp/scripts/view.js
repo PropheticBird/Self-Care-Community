@@ -77,6 +77,7 @@ function getPosts(pagNum){
 				var content=data[i].content;
 				var date=data[i].postedDate;
 				var likes=data[i].likes;
+				var dislikes=data[i].dislikes;
 							
 				$("#postList").append("<div id='post"+id+"'></div>");
 				$("#post"+id).loadTemplate("template/post.html",
@@ -85,9 +86,11 @@ function getPosts(pagNum){
 					author: author,
 					content: content,
 					date: date,
-					likes: likes+" recommends",
+					likes: likes+" good advices",
+					dislikes: dislikes+" bad advices",
 					postId: data[i].id,
-					canLike: !data[i].canLike
+					canLike: !data[i].canLike,
+					canDislike: !data[i].canDislike
 				});
 		}
 			initalizePagination(params['postCount'], 5, getPosts);
@@ -119,7 +122,7 @@ function like(item,identify){
  				}
  				num=num+1;
  				//alert(likeContent.replace(/[^(\d | '-')]/g,''));
- 				$(item).parent().parent().find("p")[1].innerHTML=num+" recommends";	 
+ 				$(item).parent().parent().find("p")[1].innerHTML=num+" good advices";	 
  						 
  			 }
  		 });
@@ -129,21 +132,21 @@ function like(item,identify){
  			 url:url,
  			 type:"DELETE",
  			 success:function(result){
- 				var like=$(item).parent().parent().find("p")[1];
+ 				var like=$(item).parent().parent().find("p")[2];
  				var likeContent=like.innerHTML;
  				var num=parseInt(likeContent.replace(/[^\d]/g,''));
  				if(likeContent.indexOf("-")>=0){
  					num=0-num;
      				//alert(num);
  				}
- 				num=num-1;
- 				$(item).parent().parent().find("p")[1].innerHTML=num+" recommends";	   			 
+ 				num=num+1;
+ 				$(item).parent().parent().find("p")[2].innerHTML=num+" bad advices";	   			 
 			}
  		 });
  	 }
- 	 
+ 	
  	$(item).attr("disabled","true");
- 	 
+ 	$(item).siblings().attr("disabled","true");
   }
 
 //zoom functionality	

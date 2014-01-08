@@ -34,8 +34,10 @@
 					var tagData = $('[name="dlb_tabgs"]').val()
 					var tagsObj = new Array();
 					
-					for (var i = 0 ; i < tagData.length; i ++){
-						tagsObj[i] = {"id" : tagData[i]};
+					var k=0;
+					while(tagData[k]!=undefined){
+						tagsObj[k] = {"id" : tagData[k]};
+						k++;
 					}
 
 					var who = $.trim($("#who").val());

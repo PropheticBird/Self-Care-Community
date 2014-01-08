@@ -67,26 +67,25 @@
 					$("#problem").show();
 				
 					
-				
 				var solutions=result.solutions;
 				length+=solutions.length;
 				
-				$("#solutionsNum").html(length+" solutions");
+				$("#solutionsNum").html(length+" answers");
 				
 				//alert(solutions.length);
 				for(var i=0;i<solutions.length;i++){
 
 					
 					$("#solutionList").show();
-
+					
 					var id=solutions[i].id;
 					description = solutions[i].description;
 					postedDate=solutions[i].postedDate;
 					author=solutions[i].author.name;
-					
+					var tags = 'tags: ';
 					for(var j=0;j<solutions[i].tags.length;j++)	
 						tags=tags+solutions[i].tags[j].tagName+" ";
-					
+						
 					if(i % 2 == 0) {
 						$("#solutionList").append("<div class='selection' id='solution"+id+"'></div>");
 					}	
@@ -99,7 +98,6 @@
 						authorPic: '../resources/img/avatar.png',
 						author: author,
 						description: description,
-					    tags:tags,
 					    postedDate: postedDate
 					});
 			}
@@ -145,7 +143,9 @@
 
 <div id="solutionList" style="display:none">
 </div>
-
+<div id='text_area_for_answers'> 
+ <textarea class="field span9" rows="6" id="ask_answer_textarea"></textarea>
+</div>
 
 <a id="answer" class="btn btn-info pull-right" href="" >Answer</a>
 

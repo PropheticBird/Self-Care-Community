@@ -46,8 +46,14 @@
     .selection {
         background-color: #ddd;
     }
-
+	.ask_author_name{
+		margin-top: -1px;
+	}
+	#ask_answer_textarea{
+		margin-top: 15px;
+	}
     .solution_author_data {
+    	padding: 2px;
         border-bottom: 1px solid #888;
     }
 

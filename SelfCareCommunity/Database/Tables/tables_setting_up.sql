@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS CATEGORIES(
 
 CREATE TABLE IF NOT EXISTS THREADS(
 	ID int primary key AUTO_INCREMENT,
-	Display_Name varchar (250) NOT NULL,
+	Display_Name varchar (250) not null,
 	Author_ID int not null,
 	Category_ID int not null,
 FOREIGN KEY ( Category_ID ) REFERENCES CATEGORIES ( ID ),
@@ -138,6 +138,7 @@ FOREIGN KEY ( Post_ID ) REFERENCES POSTS ( ID ),
 PRIMARY KEY ( Person_ID, Post_ID )
 );
 
+/*
 -- DislikesToUsers --
 
 CREATE TABLE IF NOT EXISTS DISLIKES_TO_USERS(
@@ -147,4 +148,4 @@ FOREIGN KEY ( Person_ID ) REFERENCES PERSONS ( ID ),
 FOREIGN KEY ( Post_ID ) REFERENCES POSTS ( ID ),
 PRIMARY KEY ( Person_ID, Post_ID )
 );
-
+*/

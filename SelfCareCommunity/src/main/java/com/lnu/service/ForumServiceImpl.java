@@ -83,6 +83,7 @@ public class ForumServiceImpl implements ForumService {
         newPostBean.setPerson(authorPerson);
         newPostBean.setContent(threadView.getContent());
         newPostBean.setLikes(0);
+        newPostBean.setDislikes(0);
         newPostBean.setPostedDate(new Date());
         newPostBean.setThread(newThreadBean);
         forumDao.saveThread(newThreadBean);

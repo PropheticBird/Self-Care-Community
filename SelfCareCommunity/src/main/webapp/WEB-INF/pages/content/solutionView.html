@@ -45,8 +45,6 @@
 					var length=0;
 					
 					$("#answer").attr("href","solutionForm.html?id="+problemId+"&redirect=solutionView.html");
-
-					if(problem.isProblem){
 						
 					
 					$("#problem").loadTemplate("template/strucView.html",
@@ -67,33 +65,9 @@
 					});
 					
 					$("#problem").show();
-					}
+				
 					
-					else{
-						
-						$("#solutionList").append("<div id='solution"+problemId+"'></div>");
-						$("#solution"+problemId).loadTemplate("template/solutionItem.html",
-						{
-							authorPic: '../resources/img/avatar.png',
-							author: author,
-							when: when,
-						    who: who,
-						    how: how,
-						    why: why,
-						    consequences: consequences,
-						    where: where,
-						    
-						    tags: tags,
-						    
-						    postedDate: postedDate
-
-						});
-						
-						$("#solutionList").show();
-						
-						length++;
-						
-					}
+				
 				var solutions=result.solutions;
 				length+=solutions.length;
 				

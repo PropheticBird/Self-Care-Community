@@ -84,6 +84,7 @@ function getThreads(pageNum){
             initalizePagination(params['threadCount'], 10, getThreads);
             paginationManageArrows(result.last);
         	$("#container").show();
+        	$("#back").show();
 		}
 	});
 }

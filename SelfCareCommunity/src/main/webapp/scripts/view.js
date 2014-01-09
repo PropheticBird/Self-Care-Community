@@ -97,6 +97,8 @@ function getPosts(pagNum){
 	        paginationManageArrows(result.last);
 	        paginationManagement(pagNum, num_pages);
 			$("#container").show();
+        	$("#back").show();
+
 		}
 		});
 	}	

@@ -83,6 +83,16 @@
 					}
 
 				});
+		
+	    $(function() {
+	    	 $( "#when" ).datepicker({
+	    		  yearRange: "1930:2012",
+	    	      changeMonth: true,
+	    	      changeYear: true
+	    	 });
+	    });
+	    
+	    
 	});
 </script>
 
@@ -105,7 +115,7 @@
 
 				<label>Who has this solution?</label> <input id="who" type="text"
 					placeholder=""> <label>When did this problem occur?</label> <input
-					id="when" type="text" id="date"> <label>Location where the problem
+					id="when" type="text"> <label>Location where the problem
 					occurred?</label> <input id="where" type="text" placeholder=""> <label>What
 					are the special methods?</label>
 				<textarea id="how" rows="6" class="span6"></textarea>

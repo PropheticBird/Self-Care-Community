@@ -20,8 +20,10 @@ function loadUserData() {
 		$('#tbEmail').val(data.email);
 		$('#lblEmail').text(data.email);
 		
-		$('#tbDofB').val(data.person.birthDate.substr(0,9));
-		$('#lblDofB').text(data.person.birthDate.substr(0,9));
+		if (data.person.birthDate){
+			$('#tbDofB').val(data.person.birthDate.substr(0,9));
+			$('#lblDofB').text(data.person.birthDate.substr(0,9));
+		}
 		
 		if (data.person.gender == 1){
 			$('#lblGender').text ('Male');

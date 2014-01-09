@@ -15,18 +15,18 @@
        margin-bottom: 40px;
     }
     </style>
-    <script>	
+    <script>
+    
+    var tags_answer = [];
+    
     function getSolutions(url){
 		$.ajax({
 			url: url,
 			type: "get",
 			dataType: "json",
 			success: function(result){
-			
 			$("#problem").html("");
 			$("#solutionList").html("");
-				//data=result.data;
-				//alert(result.problem.id);
 				var problem=result.problem;
 					var problemId=problem.id;
 					var when=problem.description.when;
@@ -39,12 +39,11 @@
 					var author=problem.author.name;
 										
 					var tags = "";
-					for(var j=0;j<problem.tags.length;j++)	
+					for(var j=0;j<problem.tags.length;j++){	
 						tags=tags+"&lt;"+problem.tags[j].tagName+"&gt;&nbsp;";
-
+						tags_answer[j] = {"id":problem.tags[j].id};					
+					}
 					var length=0;
-					
-					$("#answer").attr("href","solutionForm.html?id="+problemId+"&redirect=solutionView.html");
 						
 					
 					$("#problem").loadTemplate("template/strucView.html",
@@ -66,13 +65,33 @@
 					
 					$("#problem").show();
 				
+					$("#answer").click(function() {
+						
+						var url="/SelfCareCommunity/service/problem/"+ problemId +"/newsolution";
+
+				        $.ajax({
+				            url: url,
+				            type: "POST",
+				            dataType: "json",
+				            contentType: 'application/json; charset=utf-8',
+				            data: JSON.stringify({ "description":$('#ask_answer_textarea').val(),
+				                "tags": tags_answer
+				            }),
+				            success: function(data){
+				            	getSolutions("/SelfCareCommunity/service/problem/"+problemId+"/solutions");
+				            },
+				            error: function(xhr, ajaxOptions, thrownError){
+				                alert(xhr.status+"  "+thrownError);
+				            }
+				        });
+					});
+					
 					
 				var solutions=result.solutions;
 				length+=solutions.length;
 				
 				$("#solutionsNum").html(length+" answers");
 				
-				//alert(solutions.length);
 				for(var i=0;i<solutions.length;i++){
 
 					
@@ -105,7 +124,7 @@
 				$("#container").show();
 			}
 			});
-		}	
+		}
 	
     $(function(){
     	
@@ -147,7 +166,7 @@
  <textarea class="field span9" rows="6" id="ask_answer_textarea"></textarea>
 </div>
 
-<a id="answer" class="btn btn-info pull-right" href="" >Answer</a>
+<a id="answer" class="btn btn-info pull-right">Answer</a>
 
 </div>
 

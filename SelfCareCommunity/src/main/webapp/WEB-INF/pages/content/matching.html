@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>List</title>
+    <meta content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+	<link href="../resources/styles/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="../resources/scripts/bootstrap.min.js"></script>
+    <script src="../resources/scripts/jquery.js"></script>
+    <script src="../resources/scripts/jquery.loadTemplate-1.3.2.min.js"></script>
+    <link href="../resources/styles/matching.css" rel="stylesheet" media="screen">
+    
+</head>
+<body>
+<div id="new-header">
+        <script>
+            $("#new-header").load("header.html");
+            $( document ).ready(function() {
+			for(var i=0;i<10;i++){
+				
+				var id=i;
+				var author="author "+i;
+				var content="content"+i;
+				var date="date"+i;
+				
+				if(i%2==0){
+					$("#profile_list").append("<div class='matching_emphasized' id='person"+id+"'></div>");
+				}else{
+					$("#profile_list").append("<div id='person"+id+"'></div>");
+				}
+				$("#person"+id).loadTemplate("template/person_for_matching.html",
+				{
+					authorPic: '../resources/img/avatar.png',
+					author: author,
+					content: content,
+					date: date
+				});
+				
+		    }});
+        </script>
+</div>
+<div id="container" class="offset3">
+
+	<div  class="span8">
+		<div id="profile_list">
+   		</div>
+	</div>
+
+</div>
+
+</body>
+</html>

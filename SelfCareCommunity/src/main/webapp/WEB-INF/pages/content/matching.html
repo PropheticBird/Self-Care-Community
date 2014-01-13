@@ -16,27 +16,27 @@
         <script>
             $("#new-header").load("header.html");
             $( document ).ready(function() {
-			for(var i=0;i<10;i++){
-				
-				var id=i;
-				var author="author "+i;
-				var content="content"+i;
-				var date="date"+i;
-				
-				if(i%2==0){
-					$("#profile_list").append("<div class='matching_emphasized' id='person"+id+"'></div>");
-				}else{
-					$("#profile_list").append("<div id='person"+id+"'></div>");
-				}
-				$("#person"+id).loadTemplate("template/person_for_matching.html",
-				{
-					authorPic: '../resources/img/avatar.png',
-					author: author,
-					content: content,
-					date: date
-				});
-				
-		    }});
+                $.ajax({
+                    url: '/SelfCareCommunity/service/matching/people',
+                    type: "GET",
+                    success: function(data) {
+                        for(i=0;i<data.length;i++){
+                            if(i%2==0){
+                                $("#profile_list").append("<div class='matching_emphasized' id='person"+i+"'></div>");
+                            }else{
+                                $("#profile_list").append("<div id='person"+i+"'></div>");
+                            }
+                            $("#person"+i).loadTemplate("template/person_for_matching.html",
+                                    {
+                                        authorPic: '../resources/img/avatar.png',
+                                        author: data[i][0]+" "+data[i][1],
+                                        content: data[i][2],
+                                        date: data[i][3]
+                                    });
+                            }
+                        }
+                    });
+                });
         </script>
 </div>
 <div id="container" class="offset3">

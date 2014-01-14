@@ -5,7 +5,7 @@ $( document ).ready(function() {
 
     $(function() {
     	 $( "#tbDofB" ).datepicker({
-    		  yearRange: "1930:2012",
+    		  yearRange: "1900:2020",
     	      changeMonth: true,
     	      changeYear: true
     	 });

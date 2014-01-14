@@ -20,6 +20,7 @@
                     url: '/SelfCareCommunity/service/matching/people',
                     type: "GET",
                     success: function(data) {
+                    	if(data!=""){
                         for(i=0;i<data.length;i++){
                             if(i%2==0){
                                 $("#profile_list").append("<div class='matching_emphasized' id='person"+i+"'></div>");
@@ -35,6 +36,9 @@
                                     });
                             }
                         }
+                    	else
+                    		$("#profile_list").append("<p>You need to offer more information and you will find related people !</p>");
+                    	}
                     });
                 });
         </script>

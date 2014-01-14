@@ -68,7 +68,10 @@
 					$("#answer").click(function() {
 						
 						var url="/SelfCareCommunity/service/problem/"+ problemId +"/newsolution";
-
+						var content=$.trim($("#ask_answer_textarea").val());
+						
+						if(content!="")
+						{
 				        $.ajax({
 				            url: url,
 				            type: "POST",
@@ -83,14 +86,14 @@
 				            error: function(xhr, ajaxOptions, thrownError){
 				                alert(xhr.status+"  "+thrownError);
 				            }
-				        });
+				        });}
 					});
 					
 					
 				var solutions=result.solutions;
 				length+=solutions.length;
 				
-				$("#solutionsNum").html(length+" answers");
+				$("#solutionsNum").html(length+" comments");
 				
 				for(var i=0;i<solutions.length;i++){
 
@@ -166,7 +169,7 @@
  <textarea class="field span9" rows="6" id="ask_answer_textarea"></textarea>
 </div>
 
-<a id="answer" class="btn btn-info pull-right">Answer</a>
+<a id="answer" class="btn btn-info pull-right">Comment</a>
 
 </div>
 

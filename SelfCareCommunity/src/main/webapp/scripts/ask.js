@@ -14,7 +14,8 @@ $(document).ready(function() {
         dataType : "json",
         success : function(result) {
             data = result;
-
+            
+            if(data.length>0){
             console.log("Lenght: "+data.length);
             console.log("Problem: "+data[0].isProblem);
             $("#row-body").html("");
@@ -47,6 +48,9 @@ $(document).ready(function() {
                 $("#row" + i).append("<h3 style='margin-bottom: -10px;'>" + topic + "</h3><br><h4 style='margin-top: 0px;'>"+whenVar+"</h4><h4 style='margin-top: 0px;'>"+descVar+"</h4><hr/>");
             }
         }
+            else
+            	alert("Sorry, there are not any problems or solutions yet!");
+       }
 
     });
 

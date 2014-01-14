@@ -8,21 +8,29 @@ function loadUserData() {
             }
 	});
 	
+    function replace(str){
+    	if(str==null)
+    		return "";
+    	else
+    		return str;
+    }
+    
 	function InitControls(data) {
 
+		$('#lblUserName').text(data.login + " (login)");
 		//initialize controls with data from database 
-		$('#tbName').val(data.person.name);
-		$('#lblName').text(data.person.name);
+		$('#tbName').val(replace(data.person.name));
+		$('#lblName').text(replace(data.person.name));
 		
-		$('#tbSurName').val(data.person.surname);
-		$('#lblSurName').text(data.person.surname);
+		$('#tbSurName').val(replace(data.person.surname));
+		$('#lblSurName').text(replace(data.person.surname));
 		
-		$('#tbEmail').val(data.email);
-		$('#lblEmail').text(data.email);
+		$('#tbEmail').val(replace(data.email));
+		$('#lblEmail').text(replace(data.email));
 		
 		if (data.person.birthDate){
-			$('#tbDofB').val(data.person.birthDate.substr(0,9));
-			$('#lblDofB').text(data.person.birthDate.substr(0,9));
+			$('#tbDofB').val(replace(data.person.birthDate.substr(0,9)));
+			$('#lblDofB').text(replace(data.person.birthDate.substr(0,9)));
 		}
 		
 		if (data.person.gender == 1){
@@ -36,14 +44,14 @@ function loadUserData() {
 			$('#radioMale').attr('checked', false);
 		}
 		
-		$('#tbZipCode').val(data.person.zipCode);
-		$('#lblZipCode').text(data.person.zipCode);
+		$('#tbZipCode').val(replace(data.person.zipCode));
+		$('#lblZipCode').text(replace(data.person.zipCode));
 		
-		$('#tbHeartDisease').val(data.person.disease);
-		$('#lblHeartDisease').text(data.person.disease);
+		$('#tbHeartDisease').val(replace(data.person.disease));
+		$('#lblHeartDisease').text(replace(data.person.disease));
 		
-		$('#tbInterests').val(data.person.interest);
-		$('#lblInterests').text(data.person.interest);
+		$('#tbInterests').val(replace(data.person.interest));
+		$('#lblInterests').text(replace(data.person.interest));
 	}
 }
 

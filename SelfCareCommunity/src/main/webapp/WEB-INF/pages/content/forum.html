@@ -29,7 +29,9 @@
 
 	<h3 id="title"></h3>
 
-    <button id="btnThreadNewPage" class="btn btn-info">Create New Thread</button>
+    <!-- <button id="btnThreadNewPage" class="btn btn-info">Create New Thread</button>-->
+    
+    <button class="btn btn-info" onclick="window.scrollTo(0,99999);return false;">Create New Thread</button>
 
     <div class="pagination-container  nav nav-pills">
     </div>
@@ -68,9 +70,9 @@
 
             <div class="span9">
                 <form>
-                    <h4>Add a topic</h4>
-                    <input type="text" class="span6" id="topic" placeholder="Type something about the topic">
-                    <textarea class="field span9" rows="6" id="content"></textarea>
+                    <h4>Add a thread</h4>
+                    <input type="text" class="span6" id="topic" placeholder="Type the main point about the topic">
+                    <textarea class="field span9" rows="6" id="content" placeholder="Type something about the topic"></textarea>
                     <div class="pull-right">
                         <button id="btnThread"class="btn btn-info" type="submit">Submit</button></div>
                 </form>

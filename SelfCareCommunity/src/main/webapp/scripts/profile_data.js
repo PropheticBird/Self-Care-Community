@@ -5,6 +5,9 @@ function loadUserData() {
             type: "GET",
             success: function(data) {
 		        InitControls(data);
+		        $("#content").show();
+		        $("#avatar").show();
+		        $("#loading").hide();
             }
 	});
 	

@@ -14,11 +14,12 @@ $( document ).ready(function() {
 });
 $(document).ajaxStart(function () {
     $("#content").hide();
+    $("#avatar").hide();
     $("#loading").show();
 });
 
 $(document).ajaxComplete(function () {
-    $("#content").show();
-    $("#loading").hide();
+    //$("#content").show();
+    //$("#loading").hide();
 });
 	

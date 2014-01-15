@@ -48,9 +48,13 @@ $(document).ready(function() {
                 $("#row" + i).append("<h3 style='margin-bottom: -10px;'>" + topic + "</h3><br><h4 style='margin-top: 0px;'>"+whenVar+"</h4><h4 style='margin-top: 0px;'>"+descVar+"</h4><hr/>");
             }
         }
-            else
-            	alert("Sorry, there are not any problems or solutions yet!");
-       }
+            else{
+            	$("#problems_loading").hide(); 
+            	$("#buttons-bottom").hide(); 
+            	$("#rowBox").append('<p> There are not any problems or solutions yet, Be the first one on posting! </p>');
+            	 
+             }
+        }
 
     });
 

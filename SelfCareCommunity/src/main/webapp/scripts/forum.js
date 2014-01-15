@@ -1,6 +1,9 @@
 var params;
 $(document).ready(function() {
-
+	
+	$("#topic").val("");
+	$("#content").val("");
+	
     //Loading templates
     $(".pagination-container").load("template/pagination.html");
     $("#new-header").load("header.html");

@@ -3,22 +3,44 @@
 <head>
 <meta charset="US-ASCII">
 <title>Profile</title>
+
+        <script>
+            $( document ).ready(function() {
+                $.ajax({
+                    url: '/SelfCareCommunity/service/matching/problems',
+                    type: "GET",
+                    success: function(data) {
+                    	if(data!=""){
+                        for(i=0;i<data.length;i++){
+                            if(i%2==0){
+                                $("#problems").append("<div class='matching_emphasized' id='problem"+i+"'></div>");
+                            }else{
+                                $("#problems").append("<div id='problem"+i+"'></div>");
+                            }
+                            $("#problem"+i).loadTemplate("template/problem_for_matching.html",
+                                    {
+                                        url: "solutionView.html?id="+data[i][0],
+                						authorPic: '../resources/img/avatar.png',
+                                        when: data[i][4],
+                                        where:data[i][5],
+                                        how:data[i][6],
+                                        who:data[i][7],
+                                        why:data[i][8],
+                                        consequences:data[i][9]
+                                    });
+                            }
+                        }
+                    	else
+                    		$("#problems").append("<p>There are no related problems or solutions !</p>");
+                    	}
+                    });
+                });
+        </script>
+        
 </head>
 <body>
-<table class="table table-striped">
-             
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>problem_name</td>
-                  <td>problem_link</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>solution_name</td>
-                  <td>Thornton_link</td>
-                </tr>
-              </tbody>
-            </table>
+              <div id="problems">
+                
+              </div>
 </body>
 </html>

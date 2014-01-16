@@ -41,12 +41,6 @@ public class Solution {
     @Column(name = "Posted_Date")
     private Date postedDate;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "SOLUTION_TO_TAGS",
-            joinColumns = {@JoinColumn(name = "Solution_ID",referencedColumnName = "ID")},
-            inverseJoinColumns = {@JoinColumn(name = "Tag_ID",referencedColumnName = "ID")})
-    private Set<Tag> tags;
-
     @Transient
     private Author author;
 
@@ -88,14 +82,6 @@ public class Solution {
 
     public void setPostedDate(Date postedDate) {
         this.postedDate = postedDate;
-    }
-
-    public Set<Tag> getTags() {
-        return tags;
-    }
-
-    public void setTags(Set<Tag> tags) {
-        this.tags = tags;
     }
 
     public Author getAuthor() {

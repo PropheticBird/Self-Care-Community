@@ -88,13 +88,6 @@ public class ProblemServiceImpl implements ProblemService{
         Person authorPerson = userDao.findByUserName(UserJsonController.getCurrentUserName()).getPerson();
         solution.setPerson(authorPerson);
 
-        Set<Tag> tags = solution.getTags();
-        Set<Tag> persistedTags = new HashSet<Tag>();
-        for (Tag tag : tags){
-            persistedTags.add(problemDao.findTag(tag.getId()));
-        }
-        solution.setTags(persistedTags);
-
         Problem problem = problemDao.findProblem(problemId);
         solution.setProblem(problem);
 

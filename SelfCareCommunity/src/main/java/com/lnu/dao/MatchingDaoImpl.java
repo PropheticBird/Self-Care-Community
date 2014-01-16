@@ -38,7 +38,7 @@ public class MatchingDaoImpl implements MatchingDao {
             "order by similar_problems DESC ";
 
     private static final String RELATED_PROBLEMS_QUERY =
-            "select name author_name,surname author_surname,isproblem,posted_date,when_,where_,how,who,why,consequences, count(Tag_ID) tags_matched \n" +
+            "select problems.ID,name author_name,surname author_surname,isproblem,when_,where_,how,who,why,consequences, count(Tag_ID) tags_matched \n" +
             "from problem_to_tags,problems,descriptions,persons \n" +
             "where\n" +
             "  problems.author_id=persons.id and\n" +

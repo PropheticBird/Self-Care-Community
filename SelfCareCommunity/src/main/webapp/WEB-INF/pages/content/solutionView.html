@@ -35,6 +35,11 @@
 					var where=problem.description.where;
 					var postedDate=problem.postedDate;
 					var author=problem.author.name;
+
+					var tags = "";
+					for(var j=0;j<problem.tags.length;j++){
+						tags=tags+"&lt;"+problem.tags[j].tagName+"&gt;&nbsp;";
+					}
 					var length=0;
 						
 					
@@ -48,6 +53,9 @@
 					    why: why,
 					    consequences: consequences,
 					    where: where,
+
+					    tags: tags,
+
 					    postedDate: postedDate
 
 					});
@@ -91,7 +99,8 @@
 					description = solutions[i].description;
 					postedDate=solutions[i].postedDate;
 					author=solutions[i].author.name;
-						
+					var tags = 'tags: ';
+
 					if(i % 2 == 0) {
 						$("#solutionList").append("<div class='selection' id='solution"+id+"'></div>");
 					}	

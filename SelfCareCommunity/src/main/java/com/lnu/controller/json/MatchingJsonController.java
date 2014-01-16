@@ -25,4 +25,10 @@ public class MatchingJsonController {
     public List<Person> matchPeople() {
         return matchingService.matchRelatedPeople();
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/service/matching/problems", method = RequestMethod.GET)
+    public List<Person> matchProblems() {
+        return matchingService.matchRelatedProblems();
+    }
 }

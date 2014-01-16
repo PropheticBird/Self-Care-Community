@@ -28,4 +28,11 @@ public class MatchingServiceImpl implements MatchingService{
         Person current = userDao.findByUserName(UserJsonController.getCurrentUserName()).getPerson();
         return matchingDao.findRelatedPeople(current);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Person> matchRelatedProblems() {
+        Person current = userDao.findByUserName(UserJsonController.getCurrentUserName()).getPerson();
+        return matchingDao.findRelatedProblems(current);
+    }
 }

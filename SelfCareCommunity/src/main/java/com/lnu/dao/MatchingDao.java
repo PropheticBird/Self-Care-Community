@@ -11,4 +11,6 @@ public interface MatchingDao {
 
 
     List<Person> findRelatedPeople(Person toPerson);
+
+    List<Person> findRelatedProblems(Person toPerson);
 }

@@ -37,6 +37,23 @@ public class MatchingDaoImpl implements MatchingDao {
             "group by persons.id " +
             "order by similar_problems DESC ";
 
+    private static final String RELATED_PROBLEMS_QUERY =
+            "select name author_name,surname author_surname,isproblem,posted_date,when_,where_,how,who,why,consequences, count(Tag_ID) tags_matched \n" +
+            "from problem_to_tags,problems,descriptions,persons \n" +
+            "where\n" +
+            "  problems.author_id=persons.id and\n" +
+            "  problems.description_id=descriptions.id and\n" +
+            "  problems.id = problem_to_tags.problem_id and\n" +
+            "  problem_to_tags.tag_id in (\n" +
+            "  SELECT DISTINCT(pt.Tag_ID) FROM problem_to_tags pt WHERE pt.Problem_ID IN\n" +
+            "      (\n" +
+            "           SELECT pr.ID FROM problems pr WHERE pr.Author_ID = :authorID \n" +
+            "      )\n" +
+            ")\n" +
+            "group by problem_id\n" +
+            "having tags_matched>=2\n" +
+            "ORDER BY tags_matched desc;";
+
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -44,6 +61,14 @@ public class MatchingDaoImpl implements MatchingDao {
     public List<Person> findRelatedPeople(Person toPerson) {
         Session session = sessionFactory.getCurrentSession();
         SQLQuery sqlQuery = session.createSQLQuery(RELATED_PEOPLE_QUERY);
+        sqlQuery.setParameter("authorID",toPerson.getId());
+        return sqlQuery.list();
+    }
+
+    @Override
+    public List<Person> findRelatedProblems(Person toPerson) {
+        Session session = sessionFactory.getCurrentSession();
+        SQLQuery sqlQuery = session.createSQLQuery(RELATED_PROBLEMS_QUERY);
         sqlQuery.setParameter("authorID",toPerson.getId());
         return sqlQuery.list();
     }
